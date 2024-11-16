@@ -21,6 +21,16 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 
+area_choices = ("Trysil")
+
+class Area(models.Model):
+    area_name = models.CharField(max_length=20, choices=area_choices, default="Trysil")
+
+    def __str__(self):
+        return self.area_name
+
+
+
 
 class Activity(models.Model):
     short_description = models.TextField(max_length=140)
