@@ -1,6 +1,6 @@
 # LookAround
 
-Location Bingo application
+Location Bingo application based on geolocation
 
 
 # Installation
