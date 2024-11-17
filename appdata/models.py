@@ -1,3 +1,5 @@
+from getpass import fallback_getpass
+
 from django import forms
 from django.db import models
 
@@ -20,6 +22,18 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Venue(models.Model):
+    venue_name = models.CharField(max_length=32)
+    area = models.ForeignKey(Area)
+    venue_work_hours = models.IntegerField(from_hour = models.TimeField(),to_hour = models.TimeField(), blank=False)
+    description_of_the_venue = models.TextField(max_length=200, blank=False)
+    venue_logo = models.ImageField(upload_to='venuelogo/', blank=False)
+    venue_link_tripadvisor = models.URLField(max_length=200, blank=False)
+
+    def __str__(self):
+        return self.venue_name
 
 
 class Activity(models.Model):
