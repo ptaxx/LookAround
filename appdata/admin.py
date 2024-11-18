@@ -1,10 +1,8 @@
 from django.contrib import admin
-from .models import User, BusinessClient, Team, Area, Venue, Activity, Game
+from .models import CustomUser, Team, Area, Venue, Activity, Game
 
 
-admin.site.register(User)
-
-admin.site.register(BusinessClient)
+admin.site.register(CustomUser)
 
 admin.site.register(Team)
 

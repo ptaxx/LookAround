@@ -1,33 +1,22 @@
 from getpass import fallback_getpass
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django import forms
 from django.db import models
 
 
-class User(models.Model):
-    username = models.CharField(max_length=32)
-    name = models.CharField(max_length=100)
-    email = models.EmailField(null=True, blank=True)
+class CustomUser(AbstractUser):
     short_bio = models.TextField(max_length=200, blank=True)
+    isplayer = models.BooleanField(default=True)
     
     def __str__(self):
         return self.username
-    
-
-class BusinessClient(models.Model):
-    username = models.CharField(max_length=32)
-    name = models.CharField(max_length=100)
-    email = models.EmailField(null=True, blank=True)
-
-    def __str__(self):
-        return self.username
-        
-
+  
+   
 class Team(models.Model):
     name = models.CharField(max_length=32)
-    moderator = models.ForeignKey(User, related_name='moderator', on_delete=models.CASCADE)
-    team_user = models.ManyToManyField(User, related_name='member')
+    moderator = models.ForeignKey(CustomUser, related_name='moderator', on_delete=models.CASCADE)
+    team_user = models.ManyToManyField(CustomUser, related_name='member')
 
     def __str__(self):
         return self.name
@@ -47,6 +36,7 @@ class Venue(models.Model):
     opening_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     closing_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     description = models.TextField(max_length=200, blank=False)
+    contact = models.ForeignKey(CustomUser, null=True, on_delete=models.SET_NULL)
     tripadvisor_link = models.URLField(max_length=200, null=True, blank=True)
 
     def __str__(self):
@@ -74,7 +64,7 @@ class Game(models.Model):
     game_size = forms.MultipleChoiceField(choices=GAME_SIZE_CHOICES)
     availability = models.BooleanField(default=True)
     area = models.ForeignKey(Area, on_delete=models.CASCADE)
-    players = models.ManyToManyField(User)
+    players = models.ManyToManyField(CustomUser)
     activities = models.ManyToManyField(Activity)
 
     def __str__(self):
