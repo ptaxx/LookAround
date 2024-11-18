@@ -9,10 +9,11 @@
     <h1>Welcome to the Game Page</h1>
     <ul>
         {% for activity in activities %}
-            <li>{{ activity.short_description }}</li>
+            <li>
+                <a href="{% url 'activity_page' activity.id %}">{{ activity.short_description }}</a>
+            </li>
         {% endfor %}
     </ul>
-    
 </div>
 </body>
 </html>

@@ -11,3 +11,9 @@ class GamePageView(View):
         return render(request, "game_page.html", context)
     
     
+class ActivityView(View):
+    def get(self, request, *args, **kwargs):
+        activitie = Activity.objects.get(id=kwargs.get('pk'))
+        context = {"activitie": activitie}
+        return render(request, "activity_page.html", context)
+    
