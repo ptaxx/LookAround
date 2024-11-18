@@ -68,5 +68,5 @@ class Game(models.Model):
     activities = models.ManyToManyField(Activity)
 
     def __str__(self):
-        return self.starting_time
+        return self.id
 
