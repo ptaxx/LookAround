@@ -1,8 +1,10 @@
 from django.urls import path
 
-from appdata.views import GamePageView
+from appdata.views import ActivityView, GamePageView, GamesPageView
 
 urlpatterns = [
     # path('', IndexView.as_view(), name='index'),
-    path('gamepage/<int:pk>/', GamePageView.as_view(), name="game_page"),
+    path('gamespage/', GamesPageView.as_view(), name='gamespage'),
+    path('gamepage/<int:pk>/', GamePageView.as_view(), name='gamepage'),
+    path('activitypage/<int:pk>/', ActivityView.as_view(), name='activitypage')
 ]

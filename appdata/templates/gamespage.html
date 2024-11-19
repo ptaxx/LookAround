@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game page</title>
+</head>
+<body>
+<div>
+    <h1>Welcome to the Game Page for all the games</h1>
+    <ul>
+        {% for game in games %}
+            <li>
+                <a href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+</div>
+</body>
+</html>
