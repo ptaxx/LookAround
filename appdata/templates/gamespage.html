@@ -6,14 +6,16 @@
 </head>
 <body>
 <div>
-    <h1>Welcome to the Game Page</h1>
+    <h1>Welcome to the Game Page for all the games</h1>
     <ul>
-        {% for activity in activities %}
+        {% for game in games %}
             <li>
-                <a href="{% url 'activity_page' activity.id %}">{{ activity.short_description }}</a>
+                <a href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
             </li>
         {% endfor %}
     </ul>
+
+
 </div>
 </body>
 </html>
