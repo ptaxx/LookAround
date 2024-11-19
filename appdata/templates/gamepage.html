@@ -12,14 +12,15 @@
     <ul>
         {% for activity in activities %}
             <li>
-                <a href="{% url 'activitypage' activity.id %}">{{ activity.short_description }}</a>
+                <a href="{% url 'activitypage' activity.id %}">{{ activity.short_description }} - {{activity.active}}</a>
             </li>
         {% endfor %}
     </ul>
 
     <br>
 
-    Players and Leader Boards
+    <h2>All players playing this Game:</h2>
+
     <ul>
         {% for player in players %}
             <li>
@@ -28,6 +29,15 @@
         {% endfor %}
     </ul>
 
+    <h2>All Teams playing in this Game:</h2>
+
+    <ul>
+        {% for team in teams %}
+            <li>
+                {{ team.name }}
+            </li>
+        {% endfor %}
+    </ul>
 
     <!-- Activity log -->
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
-from appdata.models import Activity, Game
+from appdata.models import Activity, Game, Team
 
 
 class GamePageView(View):
@@ -9,7 +9,8 @@ class GamePageView(View):
         game = Game.objects.get(id=kwargs.get('pk'))
         activities = game.activities.all()
         players = game.players.all()
-        context = {"game": game, "activities": activities, "players": players}
+        teams = Team.objects.filter(team_user__in=game.players.all()).distinct()  # search for teams, where at least 1 player is part of this game. So find all the teams that have players who are part of a specific game. And remove all dublicated teams.
+        context = {"game": game, "activities": activities, "players": players, 'teams':teams}
         return render(request, "gamepage.html", context)
     
     
