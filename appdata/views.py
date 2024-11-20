@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
-from appdata.models import Activity, Game, Team
+from appdata.models import Activity, Game, Team, Area, CustomUser
 
 
 class GamePageView(View):
@@ -26,3 +26,11 @@ class GamesPageView(View):
         games = Game.objects.all()
         context = {"games": games}
         return render(request, "gamespage.html", context)
+    
+
+class IndexView(View):
+    def get(self, request, *args, **kwargs):
+        games = Game.objects.all
+        area = Area.objects.all
+        context = {"games": games, "area": area,}
+        return render(request, "index.html", context)
