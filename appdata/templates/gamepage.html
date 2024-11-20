@@ -1,21 +1,29 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Game page</title>
+    <link rel="stylesheet" href="{% static 'appdata/css/styles.css' %}">
 </head>
 <body>
 <div>
     <h1>Welcome to the Game Page</h1>
 
     <h2>All the activities listed in this game:</h2>
-    <ul>
-        {% for activity in activities %}
-            <li>
-                <a href="{% url 'activitypage' activity.id %}">{{ activity.short_description }} - {{activity.active}}</a>
-            </li>
+
+    <!-- BINGO GRID -->
+    <h2>Game Activities:</h2>
+    <div class="bingo-grid">
+        {% for activity in activities|slice:":9" %}    <!-- take first 9 activities from the current game, leave empty box if not enouch boxes -->
+            <div class="bingo-cell" data-id="{{ activity.id }}">
+                <a href="{% url 'activitypage' activity.id %}" style="color: inherit; text-decoration: none;">
+                    {{ activity.short_description }}
+                </a>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 
     <br>
 
