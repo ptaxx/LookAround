@@ -3,13 +3,16 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
-  max-width: 300px;
+  max-width: 80%;
   margin: 0 auto;
+  padding: 5px;
 }
   
 .bingo-cell {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 0;
+  padding-bottom: 50%;
+  padding-top: 50%;
   background-color: #031021;
   color: white;
   display: flex;
@@ -19,6 +22,16 @@
   font-weight: bold;
   cursor: pointer;
   border: 2px solid #2a0f0f;
+}
+
+.bingo-cell a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;  /* Makes the link a flex container */
+  align-items: center;  /* Centers text vertically */
+  justify-content: center;  /* Centers text horizontally */
+  width: 50%;  /* Ensures the link takes the full width of the cell */
+  height: 50%;  /* Ensures the link takes the full height of the cell */
 }
 
 .bingo-cell:hover {
