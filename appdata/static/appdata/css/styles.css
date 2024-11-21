@@ -38,3 +38,86 @@
   transform: scale(1.2);
   box-shadow: 0 0 10px #a9edf7, 0 0 25px #b2e8fb;
 }
+
+.profile-picture{
+  width: 100%; /* Make it take up the full width of the container */
+  height: 120px;
+  max-width: 120px; /* Limit the size of the profile picture */
+  border-radius: 20%;
+  margin-right: 20px;
+  object-fit: cover;
+
+}
+
+.profile-container{
+  width: 90%;
+  margin: 0 auto;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.profile-header{
+  display: flex;
+  flex-wrap: wrap; /* Allow the text and profile picture to wrap */
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem; /* Adjusted font size for better readability */
+  text-align: left;
+}
+.profile-header h1 {
+  margin: 0; /* Ensure the heading doesn't add extra space */
+}
+
+.statistics-container{
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 2%;
+  margin-top: 5%;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1.9rem;
+}
+
+
+.statistics-container ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; 
+  margin: 0;
+}
+
+.statistics-container li {
+  margin: 15px 0;
+  font-size: 1.9rem;
+}
+
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 600px) {
+  .profile-header {
+    font-size: 1.4rem; /* Further decrease font size */
+    flex-direction: column; /* Stack profile picture and text vertically */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 20px; /* Adjust margin for mobile */
+  }
+
+  .profile-picture {
+    width: 100px; /* Smaller profile picture */
+    height: 100px; /* Smaller profile picture */
+  }
+
+  .profile-container {
+    width: 95%; /* Make profile container take up more space */
+  }
+
+  .statistics-container {
+    padding: 5%; /* More padding for smaller screens */
+    font-size: 1.5rem; /* Adjust font size */
+  }
+
+  .statistics-container ul {
+    padding-left: 20px; /* Add some left padding for the list */
+  }
+}
+
+

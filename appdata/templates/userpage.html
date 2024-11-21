@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game page</title>
+    <link rel="stylesheet" href="{% static 'appdata/css/styles.css' %}">
+</head>
+<body>
+<div>
+
+    <div class="profile-container">
+         <h1>Profile</h1>
+        <div class="profile-header">
+            <img class="profile-picture" src="{{ user.userpic.url }}">
+            <div class="text-container">
+                Name:<b> {{ user.first_name }} {{ user.last_name }}</b>
+                <br>
+                Username: <b>{{ user.username }}</b>
+                <br>
+                <b>Something about you:</b>
+                <br>
+                {{ user.short_bio }}
+            </div>
+        </div>
+        <div class="statistics-container">
+            <b>Your Games:</b>
+            <ul>
+                {% for game in games %}
+                    <li>
+                        <a href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="statistics-container">
+            <b>Your Teams:</b>
+            <ul>
+                {% for team in teams %}
+                    <li>{{ team.name }} - moderator: {{team.moderator}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="statistics-container">
+            <b>Your Statistics:</b>
+
+        </div>
+    </div>
+    
+
+
+</div>
+</body>
+</html>

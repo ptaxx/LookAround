@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from decouple import config
 
@@ -133,3 +134,6 @@ AUTH_USER_MODEL = "appdata.CustomUser"
 LOGIN_REDIRECT_URL = "/"
 
 ACCOUNT_SIGNUP_REDIRECT_URL = "login/"
+
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images')

@@ -8,7 +8,7 @@ from django.db import models
 class CustomUser(AbstractUser):
     short_bio = models.TextField(max_length=200, blank=True)
     isplayer = models.BooleanField(default=True)
-    userpic = models.ImageField(upload_to='images', null=True)
+    userpic = models.ImageField(default='default_user_picture.jpg', upload_to='profile_pictures')
     
     def __str__(self):
         return self.username

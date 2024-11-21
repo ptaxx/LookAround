@@ -48,3 +48,13 @@ def sign_up(request):
         fm = SignUpForm()
     return render(request, 'registration/signup.html', {'form':fm})
 
+class UserPageViews(View):
+    def get(self, request, *args, **kwargs):
+        user = CustomUser.objects.get(id=kwargs.get('pk'))
+        # Find all teams where at least one player is part of
+        teams = Team.objects.filter(team_user__in=user.game_set.values_list('players', flat=True)).distinct()
+        # Find all games where user is the player
+        games = Game.objects.filter(players=user).distinct()
+        context = {"user": user, "teams": teams, "games": games}
+        return render(request, "userpage.html", context)
+
