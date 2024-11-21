@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from .forms import SignUpForm
 
 from appdata.models import Activity, Game, Team, Area, CustomUser
 
@@ -34,3 +35,13 @@ class IndexView(View):
         area = Area.objects.all
         context = {"games": games, "area": area,}
         return render(request, "index.html", context)
+    
+
+def sign_up(request):
+    if request.method == "POST":
+        fm = SignUpForm(request.POST)
+        if fm.is_valid():
+            fm.save()
+    else:
+        fm = SignUpForm()
+    return render(request, 'registration/signup.html', {'form':fm})
