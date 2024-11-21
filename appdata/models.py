@@ -8,6 +8,7 @@ from django.db import models
 class CustomUser(AbstractUser):
     short_bio = models.TextField(max_length=200, blank=True)
     isplayer = models.BooleanField(default=True)
+    userpic = models.ImageField(upload_to='images', null=True)
     
     def __str__(self):
         return self.username
@@ -25,6 +26,7 @@ class Team(models.Model):
 class Area(models.Model):
     name = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
+    picture = models.ImageField(upload_to='images', null=True)
 
     def __str__(self):
         return self.name
@@ -36,6 +38,7 @@ class Venue(models.Model):
     opening_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     closing_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     description = models.TextField(max_length=200, blank=False)
+    picture = models.ImageField(upload_to='images', null=True)
     contact = models.ForeignKey(CustomUser, null=True, on_delete=models.SET_NULL)
     tripadvisor_link = models.URLField(max_length=200, null=True, blank=True)
 
