@@ -55,7 +55,7 @@ class Activity(models.Model):
 
 
 class Game(models.Model):
-    starting_time = models.TimeField(auto_now_add=True)
+    starting_time = models.TimeField(auto_now=True)
     finishing_time = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     GAME_SIZE_CHOICES = [
         (9, 9),
