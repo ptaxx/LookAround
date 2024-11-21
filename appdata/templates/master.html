@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+{% block menu %}
+    <line>
+        <div id="menu" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+            <a href="/">Area</a>
+            <a href="/">Games</a>
+            <a href="/">Teams</a>
+            <a href="/">Friends</a>
+            <a href="/">Profile</a>
+            <a href="/">Game rules</a>
+            <a href="/">Contact</a>
+            <a href="/">Privacy Policy</a>
+        </div>
+
+        <div id="main">
+            <button class="openbtn" onclick="openNav()">☰ Toggle Sidebar</button>
+        </div>
+
+        <div>
+            <button herf="login.html"> Login </button>
+
+
+         </div>
+
+
+    </line>
+
+function openNav() {
+  document.getElementById("menu").style.width = "250px";
+}
+
+/* Set the width of the sidebar to 0 (hide it) */
+function closeNav() {
+  document.getElementById("menu").style.width = "0";
+
+
+        <button herf="login.html">Login</button>
+
+
+{% endblock %}
+
+
+
+</body>
+</html>

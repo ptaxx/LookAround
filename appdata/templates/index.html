@@ -7,5 +7,37 @@
 </head>
 <body>
     <h1>Welcome to the Main Page</h1>
+{#        {% extends "master.html" %}#}
+{##}
+{#            {% block menu %}#}
+{##}
+{##}
+{#            {% endblock %}#}
+
+    <h2>Area</h2>
+    <ul>
+        {% for area in area %}
+        <li>{{ area }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Available going on games</h2>
+    <ul>
+        {% for game in games %}
+        <li>{{ game }}</li>
+        {% endfor %}
+    </ul>
+
+
+
+    <h2>Avalable starting games </h2>
+    <ul>
+        {% for game in games %}
+            <li>{{ game.game.startingtime}}</li>
+        {% endfor %}
+    </ul>
+
+
+
 </body>
 </html>

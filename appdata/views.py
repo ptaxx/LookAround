@@ -26,6 +26,8 @@ class GamesPageView(View):
         games = Game.objects.all()
         context = {"games": games}
         return render(request, "gamespage.html", context)
+
+    
     
 
 class IndexView(View):
