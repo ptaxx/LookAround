@@ -27,6 +27,8 @@ class GamesPageView(View):
         games = Game.objects.all()
         context = {"games": games}
         return render(request, "gamespage.html", context)
+
+    
     
 
 class IndexView(View):
@@ -35,8 +37,8 @@ class IndexView(View):
         area = Area.objects.all
         context = {"games": games, "area": area,}
         return render(request, "index.html", context)
-    
 
+      
 def sign_up(request):
     if request.method == "POST":
         fm = SignUpForm(request.POST)
@@ -45,3 +47,4 @@ def sign_up(request):
     else:
         fm = SignUpForm()
     return render(request, 'registration/signup.html', {'form':fm})
+
