@@ -3,6 +3,7 @@ from django.views import View
 from .forms import SignUpForm, GameCreationForm
 from django.contrib import messages
 from appdata.models import Activity, Game, Team, Area, CustomUser
+from django.template import loader
 
 
 class GamePageView(View):
@@ -69,4 +70,5 @@ def game_entry(request):
         fm = GameCreationForm()
     return render(request, 'creategame.html', {'form':fm})
 
-    
+def contactpage(request):
+    return render(request, 'contactpage.html')
