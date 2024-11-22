@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
-from appdata.views import ActivityView, GamePageView, GamesPageView, IndexView, UserPageViews, sign_up
+from appdata.views import ActivityView, GamePageView, GamesPageView, IndexView, UserPageViews, sign_up, game_entry
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -13,5 +13,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', sign_up),
     path('userpage/<int:pk>/', UserPageViews.as_view(), name='userpage'),
+    path('creategame', game_entry)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

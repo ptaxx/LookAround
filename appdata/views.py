@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import SignUpForm
+from .forms import SignUpForm, GameCreationForm
 from django.contrib import messages
 from appdata.models import Activity, Game, Team, Area, CustomUser
 
@@ -58,3 +58,15 @@ class UserPageViews(View):
         context = {"user": user, "teams": teams, "games": games}
         return render(request, "userpage.html", context)
 
+
+def game_entry(request):
+    if(request.method=="POST"):
+        fm = GameCreationForm(request.POST)
+        if fm.is_valid():
+            fm.save()
+            return redirect(f'/gamespage')
+    else:
+        fm = GameCreationForm()
+    return render(request, 'creategame.html', {'form':fm})
+
+    
