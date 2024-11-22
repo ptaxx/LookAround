@@ -1,53 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+.topnav a.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
 </head>
 <body>
 
-{% block menu %}
-    <line>
-        <div id="menu" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
-            <a href="/">Area</a>
-            <a href="/">Games</a>
-            <a href="/">Teams</a>
-            <a href="/">Friends</a>
-            <a href="/">Profile</a>
-            <a href="/">Game rules</a>
-            <a href="/">Contact</a>
-            <a href="/">Privacy Policy</a>
-        </div>
+{% block body %}
 
-        <div id="main">
-            <button class="openbtn" onclick="openNav()">☰ Toggle Sidebar</button>
-        </div>
+<!-- Simulate a smartphone / tablet -->
+<div class="mobile-container">
 
-        <div>
-            <button herf="login.html"> Login </button>
-
-
-         </div>
-
-
-    </line>
-
-function openNav() {
-  document.getElementById("menu").style.width = "250px";
-}
-
-/* Set the width of the sidebar to 0 (hide it) */
-function closeNav() {
-  document.getElementById("menu").style.width = "0";
+<!-- Top Navigation Menu -->
+<div class="topnav">
+  <a href="#home" class="active">Logo</a>
+  <div id="myLinks">
+      <a href="Area">Area</a>
+      <a href="#Games">Games</a>
+      <a href="#Teams">Teams</a>
+      <a href="#Friends">Friends</a>
+      <a href="#Profile">Profile</a>
+      <a href="#Game Rules">Game Rules</a>
+      <a href="#Contact">Contact</a>
+      <a href="#Privacy Policy">Privacy Policy</a>
+  </div>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 
 
-        <button herf="login.html">Login</button>
+    <div>
+        <a href="login" class="button">Login</a>
+    </div>
+
+    <div style="padding-left:16px">
+        <p>This is rest of the menu.</p>
+
+</div>
+
+   <h2>Area</h2>
+        <ul>
+            {% for area in area %}
+                <li>{{ area }}</li>
+            {% endfor %}
+        </ul>
+
+    <h2>Available going on games</h2>
+        <ul>
+            {% for game in games %}
+                <li>{{ game }}</li>
+            {% endfor %}
+        </ul>
+
+
+
+    <h2>Avalable starting games </h2>
+    <ul>
+        {% for game in games %}
+            <li>{{ game.game.startingtime}}</li>
+        {% endfor %}
+    </ul>
 
 
 {% endblock %}
 
 
+<!-- End smartphone / tablet look -->
+</div>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
 
 </body>
 </html>
+
+
+
+
