@@ -1,3 +1,4 @@
+{% extends "master.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,27 +7,22 @@
     <title>Main Page</title>
 </head>
 <body>
+
     <h1>Welcome to the Main Page</h1>
-{#        {% extends "master.html" %}#}
-{##}
-{#            {% block menu %}#}
-{##}
-{##}
-{#            {% endblock %}#}
 
     <h2>Area</h2>
-    <ul>
-        {% for area in area %}
-        <li>{{ area }}</li>
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for area in area %}
+                <li>{{ area }}</li>
+            {% endfor %}
+        </ul>
 
     <h2>Available going on games</h2>
-    <ul>
-        {% for game in games %}
-        <li>{{ game }}</li>
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for game in games %}
+                <li>{{ game }}</li>
+            {% endfor %}
+        </ul>
 
 
 
