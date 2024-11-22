@@ -1,6 +1,7 @@
+from django import forms
 from .models import CustomUser, Game
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import ModelForm
+from django.forms import DateTimeInput, ModelForm
 
 
 class SignUpForm(UserCreationForm):
@@ -11,6 +12,9 @@ class SignUpForm(UserCreationForm):
 
 
 class GameCreationForm(ModelForm):
+    finishing_time = forms.DateTimeField(
+        widget=forms.widgets.DateTimeInput(attrs={'type':'datetime-local'}),
+    )
     class Meta:
         model = Game
         fields = [
@@ -25,3 +29,4 @@ class GameCreationForm(ModelForm):
             'players': 'Players',
             'avaialbility': 'Available to everyone',
         }
+        widget = {'finishing_time': forms.TextInput(attrs={'type':'datetime-local'})}
