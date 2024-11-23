@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import View
 from .forms import SignUpForm, GameCreationForm
 from django.contrib import messages
 from appdata.models import Activity, Game, Team, Area, CustomUser
 from django.template import loader
+from .forms import SignUpForm
+from django.views.generic.edit import CreateView
 
 
 class GamePageView(View):
@@ -37,17 +40,27 @@ class IndexView(View):
         context = {"games": games, "area": area,}
         return render(request, "index.html", context)
 
-      
-def sign_up(request):
-    if request.method == "POST":
-        fm = SignUpForm(request.POST)
-        if fm.is_valid():
-            messages.success(request, 'Registration successful!')
-            fm.save()
-            return redirect("/")
-    else:
-        fm = SignUpForm()
-    return render(request, 'registration/signup.html', {'form':fm})
+
+class SignUpView(CreateView):
+    form_class = SignUpForm
+    template_name = 'registration/signup.html'
+    success_url = reverse_lazy('login')  # Redirects to login if registration was successful
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Registration was successful!')
+        response = super().form_valid(form)
+        return response
+
+# def sign_up(request):
+#     if request.method == "POST":
+#         fm = SignUpForm(request.POST)
+#         if fm.is_valid():
+#             messages.success(request, 'Registration successful!')
+#             fm.save()
+#             return redirect("/")
+#     else:
+#         fm = SignUpForm()
+#     return render(request, 'registration/signup.html', {'form':fm})
 
 class UserPageViews(View):
     def get(self, request, *args, **kwargs):
