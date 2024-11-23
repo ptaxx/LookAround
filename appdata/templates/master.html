@@ -7,48 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'appdata/css/styles.css' %}">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-  position: relative;
-}
-
-.topnav #myLinks {
-  display: none;
-}
-
-.topnav a {
-  color: white;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  display: block;
-}
-
-.topnav a.icon {
-  background: black;
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.active {
-  background-color: #bbc7c3;
-  color: white;
-}
-</style>
 </head>
 <body>
 
@@ -57,8 +15,8 @@ body {
 
 <!-- Top Navigation Menu -->
 <div class="topnav">
-  <a href="" class="active">Logo</a>
-  <div id="myLinks">
+    <a href="" class="active">Logo</a>
+    <div id="myLinks">
       <a href="Area">Area</a>
       <a href="gamespage/">Games</a>
       <a href="#Teams">Teams</a>
@@ -67,18 +25,13 @@ body {
       <a href="contactpage/">Game Rules</a>
       <a href="contactpage/">Contact</a>
       <a href="contactpage/">Privacy Policy</a>
-  </div>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
-
-
-    <div style="padding-left:16px">
-        <a href="login" class="button">Login</a>
     </div>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+    </a>
+    <a href="login" class="button">Login</a>
 
-    
+</div>
 
    
 {% endblock %}
