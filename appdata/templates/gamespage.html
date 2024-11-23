@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Game page</title>
-</head>
-<body>
-<div>
+{% extends "master.html" %}
+{% block title %} ame page {% endblock %}
+
+{% block content %}
+
     <h1>Welcome to the Game Page for all the games</h1>
     <ul>
         {% for game in games %}
@@ -16,6 +13,4 @@
     </ul>
 
 
-</div>
-</body>
-</html>
+{% endblock %}

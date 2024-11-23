@@ -1,20 +1,20 @@
+
+{% extends "master.html" %}
+{% block title %} Game page {% endblock %}
+
+{% block content %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Game page</title>
     <link rel="stylesheet" href="{% static 'appdata/css/styles.css' %}">
 </head>
 <body>
 <div>
-    <h1>Welcome to the Game Page</h1>
-
-    <h2>All the activities listed in this game:</h2>
+    <h1>Your game</h1>
 
     <!-- BINGO GRID -->
-    <h2>Game Activities:</h2>
+    <b>Bingo card:</b>
     <div class="bingo-grid">
         {% for activity in activities|slice:":9" %}    <!-- take first 9 activities from the current game, leave empty box if not enouch boxes -->
             <div class="bingo-cell" data-id="{{ activity.id }}">
@@ -54,5 +54,5 @@
 
 
 </div>
-</body>
-</html>
+
+{% endblock %}

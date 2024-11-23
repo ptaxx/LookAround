@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Activity page</title>
-</head>
-<body>
+{% extends "master.html" %}
+{% block title %} Activity page {% endblock %}
+
+{% block content %}
+
 This is page for the activity
 <br>
 {{ activity.short_description }}
-</body>
-</html>
+
+{% endblock %}

@@ -13,7 +13,7 @@
   height: 0;
   padding-bottom: 50%;
   padding-top: 50%;
-  background-color: #031021;
+  background-color: #1a2b2b;
   color: white;
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
-  border: 2px solid #2a0f0f;
+  border: 2px solid #02092f;
 }
 
 .bingo-cell a {
@@ -75,7 +75,7 @@
   padding: 2%;
   margin-top: 5%;
   background-color: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 30, 31, 0.1);
   font-size: 1.9rem;
 }
 
