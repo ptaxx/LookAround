@@ -65,27 +65,24 @@ class UserPageViews(View):
         return render(request, "userpage.html", context)
 
 
-class GameEntryView(CreateView):
+class GameEntryView(FormView):
     form_class = GameCreationForm
     template_name = 'creategame.html'
-    success_url = reverse_lazy('index')
+    success_url = '/'
     def form_valid(self, form):
-        messages.success(self.request, 'Game created successfully!')
-        response = super().form_valid(form)
-        return response
+        game = Game.objects.create(
+            area=form.cleaned_data['area'],
+            finishing_time=form.cleaned_data['finishing_time'],
+            availability=form.cleaned_data['availability'],
+            )
+        for player in form.cleaned_data['players']:
+                game.players.add(player),
+        return super(GameEntryView, self).form_valid(form)
     
-# def game_entry(request):
-#     if(request.method=="POST"):
-#         fm = GameCreationForm(request.POST)
-#         if fm.is_valid():
-#             fm.save()
-#             return redirect(f'/gamespage')
-#     else:
-#         fm = GameCreationForm()
-#     return render(request, 'creategame.html', {'form':fm})
 
-def contactpage(request):
-    return render(request, 'contactpage.html')
+class ContactPage(View):
+    def get(self, request):
+        return render(request, 'contactpage.html')
 
 
 class ActivityCreationFormView(FormView):
