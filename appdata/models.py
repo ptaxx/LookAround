@@ -47,7 +47,7 @@ class Venue(models.Model):
 
 
 class Activity(models.Model):
-    short_description = models.TextField()
+    short_description = models.TextField(max_length=80)
     full_description = models.TextField()
     passcode = models.CharField(max_length=5)
     active = models.BooleanField(default=True)
