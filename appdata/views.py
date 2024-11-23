@@ -1,9 +1,11 @@
+from random import randint
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import SignUpForm, GameCreationForm
+from .forms import SignUpForm, GameCreationForm, ActivityCreationForm
 from django.contrib import messages
 from appdata.models import Activity, Game, Team, Area, CustomUser
 from django.template import loader
+from django.views.generic.edit import FormView
 
 
 class GamePageView(View):
@@ -72,3 +74,17 @@ def game_entry(request):
 
 def contactpage(request):
     return render(request, 'contactpage.html')
+
+
+class ActivityCreationFormView(FormView):
+    template_name = 'createactivity.html'
+    form_class = ActivityCreationForm
+    success_url = '/'
+    def form_valid(self, form):
+        activity = Activity.objects.create(
+            short_description=form.cleaned_data['short_description'],
+            full_description=form.cleaned_data['full_description'],
+            venue=form.cleaned_data['venue'],
+            passcode=str(randint(10000,99999))
+            )
+        return super(ActivityCreationFormView, self).form_valid(form)
