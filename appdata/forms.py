@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser, Game
+from .models import CustomUser, Game, Activity
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import DateTimeInput, ModelForm
 
@@ -30,3 +30,18 @@ class GameCreationForm(ModelForm):
             'avaialbility': 'Available to everyone',
         }
         widget = {'finishing_time': forms.TextInput(attrs={'type':'datetime-local'})}
+
+
+class ActivityCreationForm(ModelForm):
+    class Meta:
+        model = Activity
+        fields = [
+            'short_description',
+            'full_description',
+            'venue',
+        ]
+        labels = {
+            'short_description': "Short Description (80 symbols max)",
+            'full_description': 'Full description',
+            'venue': 'Venue',
+        }
