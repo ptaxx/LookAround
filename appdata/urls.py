@@ -1,7 +1,15 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
-from appdata.views import ActivityView, GamePageView, GamesPageView, IndexView, UserPageViews, sign_up, game_entry, \
+from appdata.views import (
+    ActivityView, 
+    GamePageView, 
+    GamesPageView, 
+    IndexView, 
+    UserPageViews, 
+    sign_up, 
+    game_entry,
     contactpage
+)
 from django.conf import settings
 from django.conf.urls.static import static
 

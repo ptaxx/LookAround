@@ -32,8 +32,8 @@ class GamesPageView(View):
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
-        games = Game.objects.all
-        area = Area.objects.all
+        games = Game.objects.all()
+        area = Area.objects.all()
         context = {"games": games, "area": area,}
         return render(request, "index.html", context)
 
