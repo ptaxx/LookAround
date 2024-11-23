@@ -42,7 +42,7 @@ body {
 }
 
 .active {
-  background-color: #04AA6D;
+  background-color: #bbc7c3;
   color: white;
 }
 </style>
@@ -51,8 +51,6 @@ body {
 
 {% block body %}
 
-<!-- Simulate a smartphone / tablet -->
-<div class="mobile-container">
 
 <!-- Top Navigation Menu -->
 <div class="topnav">
@@ -77,40 +75,16 @@ body {
         <a href="login" class="button">Login</a>
     </div>
 
-    <div style="padding-left:16px">
-        <p>This is rest of the menu.</p>
+    
 
-</div>
+   
+{% endblock %}
 
-   <h2>Area</h2>
-        <ul>
-            {% for area in area %}
-                <li>{{ area }}</li>
-            {% endfor %}
-        </ul>
-
-    <h2>Available going on games</h2>
-        <ul>
-            {% for game in games %}
-                <li>{{ game }}</li>
-            {% endfor %}
-        </ul>
-
-
-
-    <h2>Avalable starting games </h2>
-    <ul>
-        {% for game in games %}
-            <li>{{ game.game.startingtime}}</li>
-        {% endfor %}
-    </ul>
-
-
+{% block content %}
 {% endblock %}
 
 
-<!-- End smartphone / tablet look -->
-</div>
+
 
 <script>
 function myFunction() {
