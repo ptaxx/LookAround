@@ -6,9 +6,9 @@ from appdata.views import (
     GamesPageView, 
     IndexView, 
     UserPageViews, 
-    sign_up, 
-    game_entry,
-    contactpage,
+    SignUpView, 
+    GameEntryView,
+    ContactPage,
     ActivityCreationFormView
 )
 from django.conf import settings
@@ -21,11 +21,14 @@ urlpatterns = [
     path('activitypage/<int:pk>/', ActivityView.as_view(), name='activitypage'),
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('signup/', sign_up),
+    path('signup/', SignUpView.as_view(), name='signup'),
     path('userpage/<int:pk>/', UserPageViews.as_view(), name='userpage'),
     path('creategame', game_entry),
     path('contactpage/', contactpage),
     path('createactivity', ActivityCreationFormView.as_view(), name='createactivity'),
-    path("logout/", LogoutView.as_view(template_name="index.html"), name="home"),
+    path('creategame', GameEntryView.as_view(), name='index'),
+    path('contactpage/', ContactPage.as_view(), name='contact'),
+    path('createactivity', ActivityCreationFormView.as_view(), name='createactivity')
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
