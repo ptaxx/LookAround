@@ -1,14 +1,14 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 from appdata.views import (
-    ActivityView,
-    GameEntryView, 
+    ActivityView, 
     GamePageView, 
     GamesPageView, 
-    IndexView,
-    SignUpView, 
-    UserPageViews,
-    ContactPage,
+    IndexView, 
+    UserPageViews, 
+    sign_up, 
+    game_entry,
+    contactpage,
     ActivityCreationFormView
 )
 from django.conf import settings
@@ -21,10 +21,10 @@ urlpatterns = [
     path('activitypage/<int:pk>/', ActivityView.as_view(), name='activitypage'),
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('signup/', SignUpView.as_view(), name='signup'),
+    path('signup/', sign_up),
     path('userpage/<int:pk>/', UserPageViews.as_view(), name='userpage'),
-    path('creategame/', GameEntryView.as_view(), name='index'),
-    path('contactpage/', ContactPage.as_view(), name='contact'),
+    path('creategame', game_entry),
+    path('contactpage/', contactpage),
     path('createactivity', ActivityCreationFormView.as_view(), name='createactivity')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
