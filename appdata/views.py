@@ -58,7 +58,9 @@ class UserPageViews(View):
     def get(self, request, *args, **kwargs):
         user = CustomUser.objects.get(id=kwargs.get('pk'))
         # Find all teams where at least one player is part of
-        teams = Team.objects.filter(team_user__in=user.game_set.values_list('players', flat=True)).distinct()
+        teams = Team.objects.filter(
+            team_user__in=user.game_set.values_list('players', flat=True)
+            ).distinct()
         # Find all games where user is the player
         games = Game.objects.filter(players=user).distinct()
         context = {"user": user, "teams": teams, "games": games}
@@ -90,8 +92,8 @@ class ActivityCreationFormView(FormView):
     form_class = ActivityCreationForm
     success_url = '/'
     def form_valid(self, form):
-        activity = Activity.objects.create(
-            short_description=form.cleaned_data['short_description'],
+        Activity.objects.create(
+            short_description=form.cleaned_data.get('short_description'),
             full_description=form.cleaned_data['full_description'],
             venue=form.cleaned_data['venue'],
             passcode=str(randint(10000,99999))
