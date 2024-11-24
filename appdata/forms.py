@@ -19,18 +19,18 @@ class GameCreationForm(ModelForm):
         model = Game
         fields = [
             'area',
+            'availability',
             'finishing_time',
             'players',
-            'availability',
         ]
         labels ={
             'area': 'Area',
             'finishing_time': 'Finishing time (optional)',
             'players': 'Players',
-            'avaialbility': 'Available to everyone',
+            'availability': 'Available to everyone',
         }
         widget = {'finishing_time': forms.TextInput(attrs={'type':'datetime-local'})}
-
+     
 
 class ActivityCreationForm(ModelForm):
     class Meta:

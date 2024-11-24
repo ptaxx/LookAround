@@ -1,17 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static 'appdata/css/styles.css' %}">
     <title>Create Game</title>
 </head>
-<body>
-    <form action="" method="post" novalidate>
-    {% csrf_token %}
-        {% for fm in form %}
-            {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
-        {% endfor %}
-    <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
+
+    <body>
+    <div class="box", style="margin: auto;">
+        <form action="" method="post" novalidate>
+        {% csrf_token %}
+            {% for fm in form %}
+                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+            {% endfor %}
+        <input type="submit" value="Submit">
+        </form>
+    </div>
+    </body>
+    </html>
