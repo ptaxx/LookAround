@@ -20,14 +20,14 @@
     <!-- Example Code -->
 
 
-    <nav class="navbar navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-dark bg-dark fixed-top" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <a class="navbar-brand" href="http://127.0.0.1:8000/">LOOKAROUND</a>
         <hr>
         <hr>
         <hr>
             {% if user.is_authenticated %}
-                {{ user.username }}
+                <nav class="navbar-brand" style="color:white">  {{ user.username }} </nav>
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
                     <button type="submit" >Log Out</button>
