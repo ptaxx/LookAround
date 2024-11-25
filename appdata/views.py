@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from .forms import SignUpForm, GameCreationForm, ActivityCreationForm
 from django.contrib import messages
-from appdata.models import Activity, Game, Team, Area, CustomUser
+from appdata.models import Activity, Game, Team, Area, CustomUser, Venue
 from django.template import loader
 from django.views.generic.edit import FormView, CreateView
 
@@ -15,35 +15,42 @@ class GamePageView(View):
         activities = game.activities.all()
         players = game.players.all()
         teams = Team.objects.filter(team_user__in=game.players.all()).distinct()  # search for teams, where at least 1 player is part of this game. So find all the teams that have players who are part of a specific game. And remove all dublicated teams.
-        context = {"game": game, "activities": activities, "players": players, 'teams':teams}
-        return render(request, "gamepage.html", context)
+        context = {'game': game, 'activities': activities, 'players': players, 'teams':teams}
+        return render(request, 'gamepage.html', context)
     
 class AreaPageView(View):
     def get(self, request, *args, **kwargs):
         area = Area.objects.get(id=kwargs.get('pk'))
-        context = {"area": area}
-        return render(request, "areapage.html", context)
+        context = {'area': area}
+        return render(request, 'areapage.html', context)
+    
+
+class VenuePageView(View):
+    def get(self, request, *args, **kwargs):
+        venue = Venue.objects.get(id=kwargs.get('pk'))
+        context = {'venue': venue}
+        return render(request, "venuepage.html", context)
     
     
 class ActivityView(View):
     def get(self, request, *args, **kwargs):
         activity = Activity.objects.get(id=kwargs.get('pk'))
-        context = {"activity": activity}
-        return render(request, "activitypage.html", context)
+        context = {'activity': activity}
+        return render(request, 'activitypage.html', context)
     
 
 class GamesPageView(View):
     def get(self, request, *args, **kwargs):
         games = Game.objects.all()
-        context = {"games": games}
-        return render(request, "gamespage.html", context)
+        context = {'games': games}
+        return render(request, 'gamespage.html', context)
     
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         games = Game.objects.all()
         area = Area.objects.all()
-        context = {"games": games, "area": area,}
+        context = {'games': games, 'area': area,}
         return render(request, "index.html", context)
 
       
@@ -67,8 +74,8 @@ class UserPageViews(View):
             ).distinct()
         # Find all games where user is the player
         games = Game.objects.filter(players=user).distinct()
-        context = {"user": user, "teams": teams, "games": games}
-        return render(request, "userpage.html", context)
+        context = {'user': user, 'teams': teams, 'games': games}
+        return render(request, 'userpage.html', context)
 
 
 class GameEntryView(FormView):
