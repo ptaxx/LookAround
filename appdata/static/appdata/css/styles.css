@@ -1,16 +1,14 @@
 .box {
-  background-color: lightgrey;
+  background-color: rgb(244, 236, 236);
   width: 300px;
   border: 15px solid rgba(128, 111, 0, 0.09);
-  padding: 50px;
+  /* padding: 5%; */
   margin: 20px;
 }
-
 
 .bingo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   gap: 10px;
   max-width: 80%;
   margin: 0 auto;
@@ -18,29 +16,38 @@
 }
   
 .bingo-cell {
-  width: 100%;
-  height: 0;
-  padding-bottom: 50%;
-  padding-top: 50%;
+  aspect-ratio: 1 / 1; /* Ensures the cell is always square */
   background-color: #1a2b2b;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
   border: 2px solid #02092f;
+  text-align: center;
+  overflow: hidden; /* Ensures content doesn't overflow the box */
 }
 
 .bingo-cell a {
   color: inherit;
   text-decoration: none;
-  display: flex;  /* Makes the link a flex container */
-  align-items: center;  /* Centers text vertically */
-  justify-content: center;  /* Centers text horizontally */
-  width: 50%;  /* Ensures the link takes the full width of the cell */
-  height: 50%;  /* Ensures the link takes the full height of the cell */
+  width: 100%; /* Ensures the link fills the entire cell */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.bingo-cell a span {
+  display: block;
+  width: 90%; /* Leave some padding around text */
+  height: 90%;
+  font-size: clamp(0.5rem, 5vw, 1.5rem); /* Adjust text size dynamically */
+  white-space: normal; /* Wrap the text inside the box */
+  overflow: hidden; /* Prevents content spilling out */
+  text-overflow: ellipsis; /* Adds ellipsis if text is still too large */
 }
 
 .bingo-cell:hover {
@@ -129,5 +136,5 @@
   }
 }
 
-<!-- Top Navigation Menu -->
+/* <!-- Top Navigation Menu --> */
 

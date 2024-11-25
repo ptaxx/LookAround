@@ -18,6 +18,12 @@ class GamePageView(View):
         context = {"game": game, "activities": activities, "players": players, 'teams':teams}
         return render(request, "gamepage.html", context)
     
+class AreaPageView(View):
+    def get(self, request, *args, **kwargs):
+        area = Area.objects.get(id=kwargs.get('pk'))
+        context = {"area": area}
+        return render(request, "areapage.html", context)
+    
     
 class ActivityView(View):
     def get(self, request, *args, **kwargs):

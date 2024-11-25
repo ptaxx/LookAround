@@ -9,29 +9,27 @@
 
 </div>
 <div class="box">
-    <b>available areas</b>
+    <b>Available areas</b>
         <ul>
             {% for area in area %}
-                <li>{{ area }}</li>
+                <li>
+                    <a href="{% url 'areapage' area.id %}">
+                        {{ area }}
+                    </a>
+                </li>
             {% endfor %}
         </ul>  
 </div>
 
 <div class="box">
-    <h2>Available ongoing games</h2>
+    <b>Available ongoing games</b>
         <ul>
             {% for game in games %}
-                <li>{{ game }}</li>
+                <li>
+                    <a href="{% url 'gamepage' game.id %}">{{ game }} </a>
+                </li>
             {% endfor %}
         </ul>
 </div>
 
-<div class="box">
-    <h2>Avalable starting games </h2>
-    <ul>
-        {% for game in games %}
-            <li>{{ game.game.startingtime}}</li>
-        {% endfor %}
-    </ul>
-</div>
 {% endblock %}
