@@ -1,5 +1,5 @@
 {% extends "master.html" %}
-{% block title %} Activity page {% endblock %}
+{% block title %} Area page {% endblock %}
 
 {% block content %}
 
@@ -8,11 +8,10 @@
     <br>
     {{ area }}
 </div>
-
 <div class='box'>
-    <b>Activity</b>
+    <b>Description</b>
     <br>
-    {{ activity.short_description }}
+    {{ area.description }}
 </div>
 
 {% endblock %}

@@ -9,10 +9,14 @@
 
 </div>
 <div class="box">
-    <b>available areas</b>
+    <b>Available areas</b>
         <ul>
             {% for area in area %}
-                <li>{{ area }}</li>
+                <li>
+                    <a href="{% url 'areapage' area.id %}">
+                        {{ area }}
+                    </a>
+                </li>
             {% endfor %}
         </ul>  
 </div>

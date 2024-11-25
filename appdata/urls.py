@@ -1,7 +1,8 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 from appdata.views import (
-    ActivityView, 
+    ActivityView,
+    AreaPageView, 
     GamePageView, 
     GamesPageView, 
     IndexView, 
@@ -16,6 +17,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
+    path('areapage/<int:pk>/', AreaPageView.as_view(), name='areapage'),
     path('gamespage/', GamesPageView.as_view(), name='gamespage'),
     path('gamepage/<int:pk>/', GamePageView.as_view(), name='gamepage'),
     path('activitypage/<int:pk>/', ActivityView.as_view(), name='activitypage'),
