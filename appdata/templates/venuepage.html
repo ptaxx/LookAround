@@ -3,25 +3,39 @@
 
 {% block content %}
     <div class="box">
-        <img class="profile-picture" src="{{ venue.picture.url }}">
-
+        <b>{{venue.name}}</b>
+    </div>
+    <div class="box">
+        <div style="display: flex; justify-content: center; align-items: center; text-align: center;">
+            <div>
+                <pre>
+            _______
+            /       \
+            |  O   O  |
+            |    ^    |
+            |   \_/   |
+            \_______/
+                </pre>
+            </div>
+        </div>        
     </div>
     <div class="box">
         Name: {{venue.name}}<br>
         Area: {{venue.area}}<br>
-        Open: {{venue.opening_hour}}<br>
-            {{venue.opening_hour}}<br>
+        Opening hours: <br>
+        {{venue.opening_hour}}<br>
+        {{venue.opening_hour}}<br>
     </div>
     <div class="box">
-        <b>Description</b>
+        <b>Description</b><br>
             {{venue.description}}<br>
     </div>
     <div class="box">
-        <b>Tripadvisor</b>
+        <b>Tripadvisor</b><br>
             {{venue.tripadvisor_link}}<br>
     </div>
     <div class="box">
-        <b>Contact</b>
+        <b>Contact</b><br>
             {{venue.contact}}<br>
     </div>
 
