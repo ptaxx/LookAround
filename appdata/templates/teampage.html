@@ -1,0 +1,29 @@
+
+{% extends "master.html" %}
+{% block title %} Team page {% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div>
+    <div class="box">
+        <b>{{team.name}}</template></b>
+    </div>
+    
+    <div class="box">
+         <b>Players in this team</b> <br>
+         
+         <ul>
+            {% for player in teamplayers %}
+                <li>
+                    {{ player.username }}
+                </li>
+            {% endfor %}
+        </ul>     
+        moderator: <b>{{team.moderator}}</b> <br>
+        
+    </div>
+
+</div>
+
+{% endblock %}

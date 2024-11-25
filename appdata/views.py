@@ -77,6 +77,14 @@ class UserPageViews(View):
         context = {'user': user, 'teams': teams, 'games': games}
         return render(request, 'userpage.html', context)
 
+    
+class TeamPageViews(View):
+    def get(self, request, *args, **kwargs):
+        team = Team.objects.get(id=kwargs.get('pk'))
+        teamplayers = team.team_user.all()
+        context = {'team': team, 'teamplayers': teamplayers}
+        return render(request, 'teampage.html', context)
+
 
 class GameEntryView(FormView):
     form_class = GameCreationForm
