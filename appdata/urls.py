@@ -10,7 +10,8 @@ from appdata.views import (
     SignUpView, 
     GameEntryView,
     ContactPage,
-    ActivityCreationFormView
+    ActivityCreationFormView,
+    VenuePageView
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -18,6 +19,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('areapage/<int:pk>/', AreaPageView.as_view(), name='areapage'),
+    path('venuepage/<int:pk>/', VenuePageView.as_view(), name='venuepage'),
     path('gamespage/', GamesPageView.as_view(), name='gamespage'),
     path('gamepage/<int:pk>/', GamePageView.as_view(), name='gamepage'),
     path('activitypage/<int:pk>/', ActivityView.as_view(), name='activitypage'),
