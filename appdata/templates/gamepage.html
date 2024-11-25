@@ -7,10 +7,10 @@
 
 
 <div>
-    <b>Your game</b>
-
     <!-- BINGO GRID -->
-    <b>Bingo card:</b>
+    <div class="box">
+        <b>Bingo card</b>
+    </div>
     <div class='bingo-grid'>
         {% for activity in activities|slice:":9" %}    <!-- take first 9 activities from the current game, leave empty box if not enouch boxes -->
             <div class='bingo-cell' data-id='{{ activity.id }}'>
@@ -21,7 +21,7 @@
             </div>
         {% endfor %}
     </div>
-
+    <button type="button" class="btn btn-outline-dark pull-right">Join game</button>
     <br>
     <div class="box">
          <b>Players in this game</b>
@@ -47,8 +47,6 @@
     </div>
     <!-- Activity log -->
 
-    <!-- Join game button -->
-    <button>Join Game</button>
 </div>
 
 {% endblock %}
