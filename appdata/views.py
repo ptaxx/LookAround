@@ -29,7 +29,7 @@ class VenuePageView(View):
     def get(self, request, *args, **kwargs):
         venue = Venue.objects.get(id=kwargs.get('pk'))
         context = {'venue': venue}
-        return render(request, "venuepage.html", context)
+        return render(request, 'venuepage.html', context)
     
     
 class ActivityView(View):
