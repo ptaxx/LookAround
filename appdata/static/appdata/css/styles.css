@@ -31,7 +31,7 @@ game_rules{
 .box_contactpage {
   background-color: rgb(244, 236, 236);
   float: none;
-  width: 500px;
+  /* width: 500px; */
   overflow: hidden;
   border: 15px solid rgba(200, 111, 0, 0.09);
   /* padding: 5%; */
@@ -42,10 +42,10 @@ game_rules{
 .box {
   background-color: rgb(244, 236, 236);
   float: none;
-  width: 300px;
+  /* width: 300px; */
   overflow: hidden;
   border: 15px solid rgba(128, 111, 0, 0.09);
-  /* padding: 5%; */
+  padding: 5%;
   margin: 20px;
   text-align: left;
   box-sizing: content-box;
