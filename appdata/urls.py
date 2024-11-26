@@ -13,7 +13,8 @@ from appdata.views import (
     ContactPage,
     ActivityCreationFormView,
     VenuePageView,
-    VenueCreationFormView
+    VenueCreationFormView,
+    TeamCreationFormView,
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -34,5 +35,6 @@ urlpatterns = [
     path('creategame/', GameEntryView.as_view(), name='creategame'),
     path('contactpage/', ContactPage.as_view(), name='contact'),
     path('createvenue/', VenueCreationFormView.as_view(), name='createvenue'),
+    path('createteam/', TeamCreationFormView.as_view(), name='createteam'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

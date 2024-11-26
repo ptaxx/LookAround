@@ -6,7 +6,8 @@ from .forms import (
     SignUpForm, 
     GameCreationForm, 
     ActivityCreationForm,
-    VenueCreationForm
+    VenueCreationForm,
+    TeamCreationForm,
     )
 from django.contrib import messages
 from appdata.models import Activity, Game, Team, Area, CustomUser, Venue
@@ -141,3 +142,17 @@ class VenueCreationFormView(FormView):
             tripadvisor_link=form.cleaned_data.get('tripadvisor_link'),
             )
         return super(VenueCreationFormView, self).form_valid(form)
+    
+    
+class TeamCreationFormView(FormView):
+    template_name = 'createteam.html'
+    form_class = TeamCreationForm
+    success_url = '/'
+    def form_valid(self, form):
+        team = Team.objects.create(
+            name=form.cleaned_data.get('name'),
+            moderator=form.cleaned_data.get('moderator'),
+            )
+        for player in form.cleaned_data['team_user']:
+                team.team_user.add(player),
+        return super(TeamCreationFormView, self).form_valid(form)

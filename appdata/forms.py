@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser, Game, Activity, Venue
+from .models import CustomUser, Game, Activity, Venue, Team
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import DateTimeInput, ModelForm
 
@@ -77,3 +77,18 @@ class VenueCreationForm(ModelForm):
             'closing_hour': forms.widgets.TimeInput(attrs={'type':'time'}),
             }
         enctype="multipart/form-data"
+        
+        
+class TeamCreationForm(ModelForm):
+    class Meta:
+        model = Team
+        fields = [
+            'name',
+            'moderator',
+            'team_user',
+        ]
+        labels = {
+            'name': 'Team name',
+            'moderator': 'Team moderator',
+            'team_user': 'Team members',
+        }
