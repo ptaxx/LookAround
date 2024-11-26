@@ -2,26 +2,45 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-<div class="box">
+<div class='box'>
     <b>Weather</b>
     City - Temp
     cloudyness
 
 </div>
-<div class="box">
-    <b>Available areas</b>
-        <ul>
-            {% for area in area %}
-                <li>
-                    <a href="{% url 'areapage' area.id %}">
-                        {{ area }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>  
-</div>
 
-<div class="box">
+
+{% if user.is_authenticated %}
+    <div class='box'>
+        <b>Your areas</b>
+            <ul>
+                {% for area in user_area %}
+                    <li>
+                        <a href="{% url 'areapage' user.current_area %}">
+                            {{ area }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>  
+    </div>
+
+{% else %}
+    <div class='box'>      
+        <b>Discover available areas</b>
+            <ul>
+                {% for area in area %}
+                    <li>
+                        <a href="{% url 'areapage' area.id %}">
+                            {{ area }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>  
+    </div>
+    
+{% endif %}
+
+<div class='box'>
     <b>Available ongoing games</b>
         <ul>
             {% for game in games %}

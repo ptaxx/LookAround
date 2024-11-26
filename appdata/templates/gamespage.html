@@ -4,7 +4,7 @@
 {% block content %}
 
     <h1>Welcome to the Game Page for all the games</h1>
-    <ul class="box">
+    <ul class='box'>
         {% for game in games %}
             <li>
                 <a href="{% url 'gamepage' game.id %}">{{ game.id }}</a>

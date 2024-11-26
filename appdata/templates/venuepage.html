@@ -1,0 +1,57 @@
+{% extends "master.html" %}
+{% block title %} Game page {% endblock %}
+
+{% block content %}
+    <div class="box">
+        <b>{{venue.name}}</b>
+    </div>
+    <div class="box">
+        <div style="display: flex; justify-content: center; align-items: center; text-align: center;">
+            <div>
+                <pre>
+            _______
+            /       \
+            |  O   O  |
+            |    ^    |
+            |   \_/   |
+            \_______/
+                </pre>
+            </div>
+        </div>        
+    </div>
+    <div class="box">
+        Name: {{venue.name}}<br>
+        Area: {{venue.area}}<br>
+        Opening hours: <br>
+        {{venue.opening_hour}}<br>
+        {{venue.opening_hour}}<br>
+    </div>
+    <div class="box">
+        <b>Description</b><br>
+            {{venue.description}}<br>
+    </div>
+    <div class="box">
+        <b>Tripadvisor</b><br>
+            {{venue.tripadvisor_link}}<br>
+    </div>
+    <div class="box">
+        <b>Contact</b><br>
+            {{venue.contact}}<br>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+class Venue(models.Model):
+    name = models.CharField(max_length=32)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE)
+    opening_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    closing_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    description = models.TextField(max_length=200, blank=False)
+    picture = models.ImageField(upload_to='images', null=True)
+    contact = models.ForeignKey(CustomUser, null=True, on_delete=models.SET_NULL)
+    tripadvisor_link = models.URLField(max_length=200, null=True, blank=True)
