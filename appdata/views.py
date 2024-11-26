@@ -2,7 +2,12 @@ from random import randint
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from .forms import SignUpForm, GameCreationForm, ActivityCreationForm
+from .forms import (
+    SignUpForm, 
+    GameCreationForm, 
+    ActivityCreationForm,
+    VenueCreationForm
+    )
 from django.contrib import messages
 from appdata.models import Activity, Game, Team, Area, CustomUser, Venue
 from django.template import loader
@@ -118,3 +123,21 @@ class ActivityCreationFormView(FormView):
             passcode=str(randint(10000,99999))
             )
         return super(ActivityCreationFormView, self).form_valid(form)
+    
+    
+class VenueCreationFormView(FormView):
+    template_name = 'createvenue.html'
+    form_class = VenueCreationForm
+    success_url = '/'
+    def form_valid(self, form):
+        Venue.objects.create(
+            name=form.cleaned_data.get('name'),
+            area=form.cleaned_data.get('area'),
+            opening_hour=form.cleaned_data.get('opening_hour'),
+            closing_hour=form.cleaned_data.get('closing_hour'),
+            description=form.cleaned_data.get('description'),
+            contact=form.cleaned_data.get('contact'),
+            picture=form.cleaned_data.get('picture'),
+            tripadvisor_link=form.cleaned_data.get('tripadvisor_link'),
+            )
+        return super(VenueCreationFormView, self).form_valid(form)
