@@ -7,11 +7,15 @@
     <ul class='box'>
         {% for game in games %}
             <li>
-                <a href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
+                <a class="list-group" href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
                 {{ game}}
             </li>
         {% endfor %}
     </ul>
+
+    <a class="btn btn-primary" type="button" href="{% url 'creategame' %}">Create game</a>
+
+
 
 
 
