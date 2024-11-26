@@ -41,4 +41,3 @@ urlpatterns = [
     path('createteam/', TeamCreationFormView.as_view(), name='createteam'),
     path('join/<int:game_id>/', JoinGameView.as_view(), name='join_game'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
