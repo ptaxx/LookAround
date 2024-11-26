@@ -7,6 +7,7 @@ from appdata.views import (
     GamePageView, 
     GamesPageView, 
     IndexView,
+    JoinGameView,
     TeamPageViews, 
     UserPageViews, 
     SignUpView, 
@@ -38,5 +39,6 @@ urlpatterns = [
     path('contactpage/', ContactPage.as_view(), name='contact'),
     path('createvenue/', VenueCreationFormView.as_view(), name='createvenue'),
     path('createteam/', TeamCreationFormView.as_view(), name='createteam'),
+    path('join/<int:game_id>/', JoinGameView.as_view(), name='join_game'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,5 +1,6 @@
 from random import randint
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from .forms import (
@@ -13,6 +14,7 @@ from django.contrib import messages
 from appdata.models import Activity, Game, Team, Area, CustomUser, Venue
 from django.template import loader
 from django.views.generic.edit import FormView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class GamePageView(View):
@@ -172,3 +174,17 @@ class TeamCreationFormView(FormView):
         return super(TeamCreationFormView, self).form_valid(form)
     def get_success_url(self):
         return reverse('teampage', kwargs={'pk': self.team.pk})
+
+
+class JoinGameView(LoginRequiredMixin, View):
+    def post(self, request, game_id):
+        game = get_object_or_404(Game, id=game_id)
+
+        if request.user in game.players.all():
+            messages.warning(request, "You are already part of this game!")
+        else:
+            game.players.add(request.user)
+            messages.success(request, "You have successfully joined the game")
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    
