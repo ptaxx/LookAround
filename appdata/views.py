@@ -45,6 +45,13 @@ class ActivityView(View):
         return render(request, 'activitypage.html', context)
     
 
+class AreasPageView(View):
+    def get(self, request, *args, **kwargs):
+        areas = Area.objects.all()
+        context = {'areas': areas}
+        return render(request, 'areaspage.html', context)
+
+
 class GamesPageView(View):
     def get(self, request, *args, **kwargs):
         games = Game.objects.all()

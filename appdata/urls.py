@@ -2,7 +2,8 @@ from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 from appdata.views import (
     ActivityView,
-    AreaPageView, 
+    AreaPageView,
+    AreasPageView, 
     GamePageView, 
     GamesPageView, 
     IndexView,
@@ -24,6 +25,7 @@ urlpatterns = [
     path('areapage/<int:pk>/', AreaPageView.as_view(), name='areapage'),
     path('venuepage/<int:pk>/', VenuePageView.as_view(), name='venuepage'),
     path('gamespage/', GamesPageView.as_view(), name='gamespage'),
+    path('areaspage/', AreasPageView.as_view(), name='areaspage'),
     path('gamepage/<int:pk>/', GamePageView.as_view(), name='gamepage'),
     path('activitypage/<int:pk>/', ActivityView.as_view(), name='activitypage'),
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
