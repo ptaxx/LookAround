@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+{% block title %} Area page {% endblock %}
+
+{% block content %}
+
+<ul class='box'>
+    <b> All available areas</b>
+    {% for area in areas %}
+        <li>
+            <a href="{% url 'areapage' area.id %}">{{ area.name }}</a>
+            {{ game}}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
