@@ -156,10 +156,12 @@ class TeamCreationFormView(FormView):
     form_class = TeamCreationForm
     success_url = '/'
     def form_valid(self, form):
-        team = Team.objects.create(
+        self.team = Team.objects.create(
             name=form.cleaned_data.get('name'),
             moderator=form.cleaned_data.get('moderator'),
             )
         for player in form.cleaned_data['team_user']:
-                team.team_user.add(player),
+                self.team.team_user.add(player),
         return super(TeamCreationFormView, self).form_valid(form)
+    def get_success_url(self):
+        return reverse('teampage', kwargs={'pk': self.team.pk})
