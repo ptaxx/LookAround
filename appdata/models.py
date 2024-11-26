@@ -37,7 +37,7 @@ class Venue(models.Model):
     opening_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     closing_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     description = models.TextField(max_length=200, blank=False)
-    picture = models.ImageField(upload_to='images', null=True)
+    picture = models.ImageField(upload_to='venue_pictures', null=True)
     contact = models.ForeignKey(CustomUser, null=True, on_delete=models.SET_NULL)
     tripadvisor_link = models.URLField(max_length=200, null=True, blank=True)
 
