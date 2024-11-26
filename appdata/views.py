@@ -1,6 +1,6 @@
 from random import randint
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views import View
 from .forms import (
     SignUpForm, 
@@ -97,14 +97,17 @@ class GameEntryView(FormView):
     template_name = 'creategame.html'
     success_url = '/'
     def form_valid(self, form):
-        game = Game.objects.create(
+        self.game = Game.objects.create(
             area=form.cleaned_data.get('area'),
+            starting_time=form.cleaned_data.get('starting_time'),
             finishing_time=form.cleaned_data.get('finishing_time'),
             availability=form.cleaned_data.get('availability'),
             )
         for player in form.cleaned_data['players']:
-                game.players.add(player),
+                self.game.players.add(player),
         return super(GameEntryView, self).form_valid(form)
+    def get_success_url(self):
+        return reverse('gamepage', kwargs={'pk': self.game.pk})
     
     
 class ContactPage(View):
@@ -117,13 +120,15 @@ class ActivityCreationFormView(FormView):
     form_class = ActivityCreationForm
     success_url = '/'
     def form_valid(self, form):
-        Activity.objects.create(
+        self.activity = Activity.objects.create(
             short_description=form.cleaned_data.get('short_description'),
             full_description=form.cleaned_data.get('full_description'),
             venue=form.cleaned_data.get('venue'),
             passcode=str(randint(10000,99999))
             )
         return super(ActivityCreationFormView, self).form_valid(form)
+    def get_success_url(self):
+        return reverse('activitypage', kwargs={'pk': self.activity.pk})
     
     
 class VenueCreationFormView(FormView):
@@ -131,7 +136,7 @@ class VenueCreationFormView(FormView):
     form_class = VenueCreationForm
     success_url = '/'
     def form_valid(self, form):
-        Venue.objects.create(
+        self.venue = Venue.objects.create(
             name=form.cleaned_data.get('name'),
             area=form.cleaned_data.get('area'),
             opening_hour=form.cleaned_data.get('opening_hour'),
@@ -142,6 +147,8 @@ class VenueCreationFormView(FormView):
             tripadvisor_link=form.cleaned_data.get('tripadvisor_link'),
             )
         return super(VenueCreationFormView, self).form_valid(form)
+    def get_success_url(self):
+        return reverse('venuepage', kwargs={'pk': self.venue.pk})
     
     
 class TeamCreationFormView(FormView):
