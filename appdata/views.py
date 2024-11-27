@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice, sample
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse, reverse_lazy
@@ -120,6 +120,24 @@ class GameEntryView(FormView):
             )
         for player in form.cleaned_data['players']:
                 self.game.players.add(player),
+        
+        venues = Venue.objects.filter(area=form.cleaned_data.get('area'))
+        if len(venues) < 9:
+            for x in venues:
+                activities = Activity.objects.filter(venue=x)
+                if activities.exists():
+                    activity = choice(activities)
+                    self.game.activities.add(activity)
+        if len(venues) >= 9:
+            venues = list(venues)
+            selected_venues = sample(venues, 9)
+            for x in selected_venues:
+                activities = Activity.objects.filter(venue=x)
+                if activities.exists():
+                    activity = choice(activities)
+                    self.game.activities.add(activity)
+            
+        
         return super(GameEntryView, self).form_valid(form)
     def get_success_url(self):
         return reverse('gamepage', kwargs={'pk': self.game.pk})
