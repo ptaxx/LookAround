@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+{% block title %} All teams {% endblock %}
+
+{% block content %}
+
+<ul class='box'>
+    <b> All available teams</b>
+    {% for team in teams %}
+        <li>
+            <a href=" {% url 'teampage' team.id %}">{{ team.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<ul class='box'>
+    <b> All your teams</b>
+
+</ul>
+{% endblock %}

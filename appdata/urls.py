@@ -3,20 +3,21 @@ from django.contrib.auth.views import LoginView, LogoutView
 from appdata.views import (
     ActivityView,
     AreaPageView,
-    AreasPageView, 
-    GamePageView, 
-    GamesPageView, 
+    AreasPageView,
+    GamePageView,
+    GamesPageView,
     IndexView,
     JoinGameView,
-    TeamPageViews, 
-    UserPageViews, 
-    SignUpView, 
+    TeamPageViews,
+    UserPageViews,
+    SignUpView,
     GameEntryView,
     ContactPage,
     ActivityCreationFormView,
     VenuePageView,
     VenueCreationFormView,
     TeamCreationFormView,
+    TeamsPageView,
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -40,4 +41,5 @@ urlpatterns = [
     path('createvenue/', VenueCreationFormView.as_view(), name='createvenue'),
     path('createteam/', TeamCreationFormView.as_view(), name='createteam'),
     path('join/<int:game_id>/', JoinGameView.as_view(), name='join_game'),
+    path('teamspage/', TeamsPageView.as_view(), name='teamspage'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
