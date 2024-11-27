@@ -1,0 +1,26 @@
+{% extends "master.html" %}
+{% block title %} All teams {% endblock %}
+
+{% block content %}
+
+<ul class='box'>
+    <b> All available teams</b>
+    {% for team in teams %}
+        <li>
+            <a href=" {% url 'teampage' team.id %}">{{ team.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<ul class='box'>
+    <b> All your teams</b>
+        {% for team in teams %}
+            <li class="list-group-ite">{{ team.name }} - moderator: {{ team.moderator }}
+            </li>
+        {% endfor %}
+</ul>
+
+<a class="btn btn-outline-dark pull-left" type="button" href="{% url 'createteam' %}">Create team</a>
+
+
+{% endblock %}

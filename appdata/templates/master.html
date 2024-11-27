@@ -57,11 +57,11 @@
                             <a class="nav-link" href={% url 'gamespage' %}>Games</a>
                         </li>
                         <li class="nav-item">
-                           {% if team.is_authenticated %}
-                                  <a class="nav-link" href={% url 'teampage' team.id %}>Teams</a>
-                               {% else %}
-                                   <a class="navbar-brand" href="{% url 'createteam' %}">Teams</a>
-                               {% endif %}
+                           {% if user.is_authenticated%}
+                               <a class="nav-link" href={% url 'teamspage' %}>Teams</a>
+                           {% else %}
+                               <a class="nav-link" href="{% url 'login' %}">Teams</a>
+                           {% endif %}
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../friends/">Friends</a>
@@ -70,7 +70,7 @@
                             {% if user.is_authenticated %}
                                 <a class="nav-link" href={% url 'userpage' user.id %}>Profile</a>
                             {% else %}
-                                <a class="navbar-brand" href="{% url 'login' %}">Profile</a>
+                                <a class="nav-link" href="{% url 'login' %}">Profile</a>
                             {% endif %}
                         </li>
                         <li class="nav-item">

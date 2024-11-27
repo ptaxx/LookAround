@@ -54,6 +54,12 @@ class AreasPageView(View):
         return render(request, 'areaspage.html', context)
 
 
+class TeamsPageView(View):
+    def get(self, request, *args, **kwargs):
+        teams = Team.objects.all()
+        context = {'teams': teams}
+        return render(request, 'teamspage.html', context)
+
 class GamesPageView(View):
     def get(self, request, *args, **kwargs):
         games = Game.objects.all()
