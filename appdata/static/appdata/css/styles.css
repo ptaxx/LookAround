@@ -104,13 +104,21 @@ game_rules{
 }
 
 .profile-picture{
+  /* width: 100%; Make it take up the full width of the container */
+  height: 120px;
+  max-width: 60px; /* Limit the size of the profile picture */
+  border-radius: 20%;
+  margin-right: 20px;
+  object-fit: cover;
+
+}
+.venue-picture{
   width: 100%; /* Make it take up the full width of the container */
   height: 120px;
   max-width: 120px; /* Limit the size of the profile picture */
   border-radius: 20%;
   margin-right: 20px;
   object-fit: cover;
-
 }
 
 .profile-container{
