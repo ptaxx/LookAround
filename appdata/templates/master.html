@@ -60,7 +60,7 @@
                            {% if team.is_authenticated %}
                                   <a class="nav-link" href={% url 'teampage' team.id %}>Teams</a>
                                {% else %}
-                                   <a class="navbar-brand" href="{% url 'createteam' %}">Teams</a>
+                                   <a class="nav-link" href="{% url 'createteam' %}">Teams</a>
                                {% endif %}
                         </li>
                         <li class="nav-item">
@@ -70,7 +70,7 @@
                             {% if user.is_authenticated %}
                                 <a class="nav-link" href={% url 'userpage' user.id %}>Profile</a>
                             {% else %}
-                                <a class="navbar-brand" href="{% url 'login' %}">Profile</a>
+                                <a class="nav-link" href="{% url 'login' %}">Profile</a>
                             {% endif %}
                         </li>
                         <li class="nav-item">
