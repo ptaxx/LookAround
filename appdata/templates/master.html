@@ -22,11 +22,8 @@
 
     <nav class="navbar navbar-dark bg-dark fixed-top" style="background-color: #e3f2fd;">
         <div class="container-fluid">
+            <img src="{% static '/images/logo.png' %}" alt="Logo" width="60" height="40">
             <a class="navbar-brand" href="http://127.0.0.1:8000/">LOOKAROUND</a>
-            <img src="{% static '/images/Logo1_copy.png' %}" alt="Logo" width="30" height="40">
-        <hr>
-        <hr>
-        <hr>
             {% if user.is_authenticated %}
                 <nav class="navbar-brand" style="color:white">  {{ user.username }} </nav>
                 <form action="{% url 'logout' %}" method="post">
