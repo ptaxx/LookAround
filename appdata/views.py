@@ -194,3 +194,16 @@ class JoinGameView(LoginRequiredMixin, View):
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
     
+    
+class LeaveGameView(LoginRequiredMixin, View):
+    def post(self, request, game_id):
+        game = get_object_or_404(Game, id=game_id)
+
+        if request.user not in game.players.all():
+            messages.warning(request, "You not a part of this game!")
+        else:
+            game.players.remove(request.user)
+            messages.success(request, "You have successfully joined the game")
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    

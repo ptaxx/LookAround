@@ -18,6 +18,7 @@ from appdata.views import (
     VenueCreationFormView,
     TeamCreationFormView,
     TeamsPageView,
+    LeaveGameView,
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -42,4 +43,5 @@ urlpatterns = [
     path('createteam/', TeamCreationFormView.as_view(), name='createteam'),
     path('join/<int:game_id>/', JoinGameView.as_view(), name='join_game'),
     path('teamspage/', TeamsPageView.as_view(), name='teamspage'),
+    path('leave/<int:game_id>/', LeaveGameView.as_view(), name='leave_game'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
