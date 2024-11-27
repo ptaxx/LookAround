@@ -4,15 +4,20 @@
 {% block content %}
 
 <div class='box'>
-    <b>Area</b>
+    <b>Venue</b>
     <br>
-    {{ area }}
+    <a class="list-group-ite" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
 </div>
 
 <div class='box'>
     <b>Activity</b>
     <br>
     {{ activity.short_description }}
+    <br>
+    {{ activity.full_description }}
+    <br>
+    <button type='submit' class='btn btn-outline-dark pull-right'>Enter passcode</button>
+
 </div>
 
 {% endblock %}
