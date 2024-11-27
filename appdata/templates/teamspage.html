@@ -15,8 +15,10 @@
 <ul class='box'>
     <b> All your teams</b>
         {% for team in teams %}
+            {% if user in team.team_user or user == team.moderator %}
             <li class="list-group-ite">{{ team.name }} - moderator: {{ team.moderator }}
             </li>
+            {% endif %}
         {% endfor %}
 </ul>
 
