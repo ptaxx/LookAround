@@ -1,37 +1,70 @@
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #414445;;
-  color: #ffffff;
-  text-align: center;
-  margin: 0;
-  align-items: center;
-  all-space-treatment:0.5 ;
+/* Default link color for closed hamburger menu */
+.navbar-nav .nav-link {
+    color: black; /* Black color when the menu is closed */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
 
+/* Link color when the offcanvas menu is open */
+.offcanvas.show .navbar-nav .nav-link {
+    color: white; /* White color when the menu is open */
+}
+
+/* Hover effect on links */
+.navbar-nav .nav-link:hover {
+    color: #f8f9fa; /* Light color when hovered */
+}
+
+.footer {
+  background-color: #f8f9fa; /* Light background for footer */
+  padding: 10px 0;
+  margin-top: auto;
+  border-top: 1px solid #dee2e6;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.footer-nav a {
+  margin-right: 15px;
+}
+html, body {
+  height: 100%; /* Make sure the body takes the full viewport height */
+  margin: 0; /* Remove default margin */
+}
+
+.content-wrapper {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+}
+
+main {
+    flex-grow: 1; /* Makes the main content take up available space */
+}
+
+.main-content {
+        flex: 1;
 }
 
 body {
-  font-size: 18px;
+  font-size: 22px;
   vertical-align: baseline;
   text-decoration: none;
   word-spacing: normal;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Makes body span the full viewport height */
+  min-height: 100vh; /* Makes body span the full viewport height */
+  background-color: #003366;
+
 }
 
-a {
-  class: 'link-underline-dark'
-}
 
-h1 {
-  font-size: 36px;
-  text-align: left;
-}
 
-p.c {
-  font-size: 16px;
-  text-align-last: justify;
-}
 
 game_rules{
   font-size: 18px;
@@ -40,17 +73,6 @@ game_rules{
   word-spacing: normal;
   text-align: right;
   text-align-last: justify;
-  box-sizing: content-box;
-}
-.box_contactpage {
-  background-color: rgb(244, 236, 236);
-  float: none;
-  /* width: 500px; */
-  overflow: hidden;
-  border: 15px solid rgba(200, 111, 0, 0.09);
-  /* padding: 5%; */
-  margin: 20px;
-  text-align: left;
   box-sizing: content-box;
 }
 
