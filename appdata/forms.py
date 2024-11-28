@@ -94,3 +94,11 @@ class TeamCreationForm(ModelForm):
             'moderator': 'Team moderator',
             'team_user': 'Team members',
         }
+        
+        
+class PasscodeForm(forms.Form):
+    passcode = forms.CharField(
+        label="Passcode", 
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        required=True
+    )

@@ -15,9 +15,22 @@
     {{ activity.short_description }}
     <br>
     {{ activity.full_description }}
-    <br>
-    <button type='submit' class='btn btn-outline-dark pull-right'>Enter passcode</button>
-
 </div>
+
+<form method="post">
+    <div class="box">
+    {% if user.is_authenticated and user.isplayer and user_has_activity %}
+    {% csrf_token %}
+    
+        {{ form.passcode.label_tag }}
+        {{ form.passcode }}
+
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    {% endif %}
+    <button type="submit" class="btn btn-outline-dark">Submit</button>
+</div>
+</form>
 
 {% endblock %}

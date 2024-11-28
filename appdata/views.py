@@ -1,5 +1,5 @@
 from random import randint, choice, sample
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
@@ -9,9 +9,19 @@ from .forms import (
     ActivityCreationForm,
     VenueCreationForm,
     TeamCreationForm,
+    PasscodeForm,
     )
 from django.contrib import messages
-from appdata.models import Activity, Game, Team, Area, CustomUser, Venue
+from appdata.models import (
+    Activity, 
+    Game, 
+    Team, 
+    Area, 
+    CustomUser, 
+    Venue, 
+    ActivityCheck, 
+    ScoreBoard,
+)
 from django.template import loader
 from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -40,10 +50,74 @@ class VenuePageView(View):
         return render(request, 'venuepage.html', context)
     
     
-class ActivityView(View):
+class ActivityView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         activity = Activity.objects.get(id=kwargs.get('pk'))
-        context = {'activity': activity}
+        form = PasscodeForm()
+        activitycheck = ActivityCheck.objects.filter(activity=activity)
+        user_has_activity = ActivityCheck.objects.filter(
+            user = request.user,
+            activity = activity
+        ).exists
+        context = {
+            'activity': activity, 
+            'form': form,
+            'activitycheck': activitycheck,
+            'user_has_activity': user_has_activity,
+            }
+        return render(request, 'activitypage.html', context)
+    def post(self, request, *args, **kwargs):
+        activity = Activity.objects.get(id=kwargs.get('pk'))
+        activitycheck = ActivityCheck.objects.filter(activity=activity)
+        user_has_activity = ActivityCheck.objects.filter(
+            user = request.user,
+            activity = activity
+        ).exists
+        form = PasscodeForm(request.POST)
+        if form.is_valid():
+            passcode = form.cleaned_data['passcode']
+            if passcode == activity.passcode:
+                messages.success(request, 'The passcode is correct! Task complete!')
+                activity_checks = ActivityCheck.objects.filter(
+                    activity=activity, 
+                    user=request.user
+                    )
+                for entry in activity_checks:
+                    entry.is_active = False
+                    entry.save()
+                games = Game.objects.filter(activities=activity)
+                for game in games:
+                    scoreboards = ScoreBoard.objects.filter(
+                        game=game,
+                        user=request.user
+                    )
+                    for scoreboard in scoreboards:
+                        if scoreboard.points < 9:
+                            scoreboard.points += 1
+                            scoreboard.save()
+                            if scoreboard.points == 9:
+                                scoreboards = ScoreBoard.objects.filter(game=game)
+                                positions = [entry.position for entry in scoreboards]
+                                if '3rd place' in positions:
+                                    scoreboard.position = 'Finished'
+                                    scoreboard.save()
+                                elif '2nd place' in positions:
+                                    scoreboard.position = '3rd place'
+                                    scoreboard.save()
+                                elif '1st place' in positions:
+                                    scoreboard.position = '2nd place'
+                                    scoreboard.save()
+                                else:
+                                    scoreboard.position = '1st place'
+                                    scoreboard.save()
+            else:
+                messages.error(request, 'Incorrect passcode. Please try again.')
+        context = {
+            'activity': activity, 
+            'form': form,
+            'activitycheck': activitycheck,
+            'user_has_activity': user_has_activity,
+            }
         return render(request, 'activitypage.html', context)
     
 
@@ -119,7 +193,9 @@ class GameEntryView(FormView):
             availability=form.cleaned_data.get('availability'),
             )
         for player in form.cleaned_data['players']:
-                self.game.players.add(player),
+            self.game.players.add(player)
+        for team in form.cleaned_data['teams']:
+                self.game.teams.add(team)
         
         venues = Venue.objects.filter(area=form.cleaned_data.get('area'))
         if len(venues) < 9:
@@ -136,8 +212,27 @@ class GameEntryView(FormView):
                 if activities.exists():
                     activity = choice(activities)
                     self.game.activities.add(activity)
-            
-        
+                    
+        activities = self.game.activities.all()
+        players = set(self.game.players.all())
+        teams = self.game.teams.all()
+        for team in teams:
+            for user in team.team_user.all():
+                players.add(user)
+            players.add(team.moderator)
+        for activity in activities:
+            for player in players:
+                ActivityCheck.objects.create(
+                    game=self.game,
+                    user=player,
+                    activity=activity,
+                )
+        for player in players:
+            ScoreBoard.objects.create(
+                game=self.game,
+                user=player,
+            )  
+                           
         return super(GameEntryView, self).form_valid(form)
     def get_success_url(self):
         return reverse('gamepage', kwargs={'pk': self.game.pk})
@@ -224,4 +319,6 @@ class LeaveGameView(LoginRequiredMixin, View):
             messages.success(request, "You have successfully joined the game")
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    
+
     

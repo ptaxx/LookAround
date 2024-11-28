@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, Team, Area, Venue, Activity, Game
+from .models import CustomUser, Team, Area, Venue, Activity, Game, ScoreBoard, ActivityCheck
 
 
 admin.site.register(CustomUser)
@@ -14,6 +14,9 @@ admin.site.register(Activity)
 
 admin.site.register(Game)
 
+admin.site.register(ActivityCheck)
+
+admin.site.register(ScoreBoard)
 
 
 
