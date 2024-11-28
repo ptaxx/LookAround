@@ -20,6 +20,7 @@ class GameCreationForm(ModelForm):
             'starting_time',
             'finishing_time',
             'players',
+            'teams',
         ]
         labels ={
             'area': 'Area',
@@ -27,6 +28,7 @@ class GameCreationForm(ModelForm):
             'finishing_time': 'Finishing time (optional)',
             'players': 'Players',
             'availability': 'Available to everyone',
+            'teams': 'Add team',
         }
         widgets = {
             'starting_time': forms.widgets.DateTimeInput(attrs={'type':'datetime-local'}),

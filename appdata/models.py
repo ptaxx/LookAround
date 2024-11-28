@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.models import AbstractUser
 from django import forms
 from django.db import models
@@ -57,7 +58,7 @@ class Activity(models.Model):
 
 
 class Game(models.Model):
-    starting_time = models.DateTimeField(auto_now=False, auto_now_add=False)
+    starting_time = models.DateTimeField(auto_now=False, auto_now_add=False, default=datetime.now)
     finishing_time = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     GAME_SIZE_CHOICES = [
         (9, 9),
@@ -67,8 +68,22 @@ class Game(models.Model):
     availability = models.BooleanField(default=True)
     area = models.ForeignKey(Area, on_delete=models.CASCADE)
     players = models.ManyToManyField(CustomUser)
+    teams = models.ManyToManyField(Team)
     activities = models.ManyToManyField(Activity)
 
     def __str__(self):
         return f'{self.starting_time.strftime("%Y-%m-%d %H:%M:%S")}, {self.area}'
+    
+    
+class ActivityCheck(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
 
+
+class ScoreBoard(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    points = models.IntegerField(default=0)
+    position = models.CharField(null=True, blank=True, max_length=32)
