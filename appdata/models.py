@@ -72,7 +72,7 @@ class Game(models.Model):
     activities = models.ManyToManyField(Activity)
 
     def __str__(self):
-        return f'{self.starting_time.strftime("%Y-%m-%d %H:%M:%S")}, {self.area}'
+        return f'{self.area}. {self.starting_time.strftime("%Y-%m-%d %H:%M:%S")}'
     
     
 class ActivityCheck(models.Model):
@@ -80,6 +80,9 @@ class ActivityCheck(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f'{self.game}. {self.user}. {self.activity}'
 
 
 class ScoreBoard(models.Model):
@@ -87,3 +90,6 @@ class ScoreBoard(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     points = models.IntegerField(default=0)
     position = models.CharField(null=True, blank=True, max_length=32)
+
+    def __str__(self):
+        return f'{self.game}. {self.user}. {self.points}, {self.position}'
