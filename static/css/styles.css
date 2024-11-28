@@ -55,8 +55,8 @@ game_rules{
   min-width: 50%; /* Minimum width for Game section */
 }
 
-.info {
-  flex: 1 1 50%; /* Info (Players and Teams) takes 35% of the container */
+.game-info {
+  flex: 1 1 60%; /* Info (Players and Teams) takes 35% of the container */
   min-width: 300px; /* Minimum width for Info section */
   display: flex;
   flex-direction: column; /* Stack Players and Teams vertically */
@@ -66,25 +66,32 @@ game_rules{
 @media screen and (max-width: 768px) {
   .container {
     flex-direction: column; /* Stack Game and Info vertically */
+    
   }
 
-  .game, .info {
+  .game, .game-info {
     flex: 1 1 100%; /* Take up the full width */
+
   }
 }
-
 
 .box {
   background-color: rgb(244, 236, 236);
   float: none;
   overflow: hidden;
-  border: 15px solid rgba(128, 111, 0, 0.09);
+  border: 6px solid rgba(128, 111, 0, 0.09);
   margin: 20px;
+  padding: 1%;
   text-align: center;
   box-sizing: content-box;
   width: auto;
   block-size: auto;
+
+  border-radius: 15px; /* Rounds the edges */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
 }
+
 .box ul {
   list-style-type: none; /* Remove bullet points */
   padding: 0; /* Remove default padding */

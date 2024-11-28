@@ -25,28 +25,34 @@
         </div>
 
         <div class="game-info">
+
+            <div class="box">
+                {% if user.is_authenticated %}
+                {% if user in players %}
+                    <form method="post" action="{% url 'leave_game' game.id %}">
+                        {% csrf_token %}
+                        <button type='submit' class='btn btn-outline-dark'>Leave game</button>
+                    </form>
+                    {% else %}
+                    <form method="post" action="{% url 'join_game' game.id %}">
+                        {% csrf_token %}
+                        <button type='submit' class='btn btn-outline-dark'>Join game</button>
+                    </form>
+                {% endif %}
+                {% endif %}                
+            </div>
             <div class='box'>
                 <b>Players in this game</b>
                 <ul>
                     {% for player in players %}
                         <li>
-                            {{ player.username }}
+                                {{ player.username }}
+                            
+                            
                         </li>
                     {% endfor %}
                 </ul>
-                {% if user.is_authenticated %}
-                {% if user in players %}
-                    <form method="post" action="{% url 'leave_game' game.id %}">
-                        {% csrf_token %}
-                        <button type='submit' class='btn btn-outline-dark pull-right'>Leave game</button>
-                    </form>
-                    {% else %}
-                    <form method="post" action="{% url 'join_game' game.id %}">
-                        {% csrf_token %}
-                        <button type='submit' class='btn btn-outline-dark pull-right'>Join game</button>
-                    </form>
-                {% endif %}
-                {% endif %}   
+   
                 
         </div>
         <div class='box'> 
