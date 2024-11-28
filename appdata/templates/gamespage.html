@@ -4,10 +4,10 @@
 {% block content %}
 
     <h1>Welcome to the Game Page for all the games</h1>
-    <ul class='box'>
+    <ul class="list-group">
         {% for game in games|slice:"10" %}
-            <li>
-                <a class="list-group-ite" href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
+            <li class="list-group-item">
+                <a class="btn btn-primary" href="{% url 'gamepage' game.id %}" >{{ game.id }}</a>
                 {{ game}}
             </li>
         {% endfor %}
