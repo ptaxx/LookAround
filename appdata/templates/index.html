@@ -43,7 +43,7 @@
 <div class='box'>
     <b>Available ongoing games</b>
         <ul>
-            {% for game in games %}
+            {% for game in games|slice:"10"  %}
                 <li>
                     <a href="{% url 'gamepage' game.id %}">{{ game }} </a>
                 </li>

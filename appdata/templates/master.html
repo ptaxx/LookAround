@@ -24,14 +24,19 @@
         <div class="container-fluid">
             <img src="{% static '/images/logo.png' %}" alt="Logo" width="60" height="40">
             <a class="navbar-brand" href="http://127.0.0.1:8000/">LOOKAROUND</a>
-            {% if user.is_authenticated %}
+            <a>
+                {% if user.is_authenticated %}
                 <nav class="navbar-brand" style="color:white">  {{ user.username }} </nav>
+                {% endif %}
+            </a>
+
+            {% if user.is_authenticated %}
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
-                    <button type="submit" >Log Out</button>
+                    <button class="btn btn-secondary btn-sm" type="submit" >Log Out</button>
                 </form>
             {% else %}
-                <a class="navbar-brand" href="{% url 'login' %}">Log In</a>
+                    <a class="btn btn-secondary btn-sm" href="{% url 'login' %}">Log In</a>
             {% endif %}
 
 
@@ -60,10 +65,6 @@
                            {% else %}
                                <a class="nav-link" href="{% url 'login' %}">Teams</a>
                            {% endif %}
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../friends/">Friends</a>
-                        </li>
                         <li class="nav-item">
                             {% if user.is_authenticated %}
                                 <a class="nav-link" href={% url 'userpage' user.id %}>Profile</a>
@@ -72,13 +73,8 @@
                             {% endif %}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href={% url 'contact' %}>Game Rules</a>
+                            <a class="nav-link" href={% url 'contact' %}>Informitive info</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href={% url 'contact' %}>Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href={% url 'contact' %}>Privacy Policy</a>
                     </ul>
                 </div>
             </div>
@@ -90,6 +86,13 @@
 {% block content %}
 {% endblock %}
 
-  </body>
+<footer class="footer">
+    <p>LOOKAROUND</p>
+    <img src="{% static '/images/logo.png' %}" alt="Logo" width="50" height="40">
+
+</footer>
+</body>
+
+
 </html>
 

@@ -1,3 +1,17 @@
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #414445;;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  align-items: center;
+  all-space-treatment:0.5 ;
+
+}
+
 body {
   font-size: 18px;
   vertical-align: baseline;
@@ -36,7 +50,7 @@ game_rules{
   border: 15px solid rgba(200, 111, 0, 0.09);
   /* padding: 5%; */
   margin: 20px;
-  text-align: justify;
+  text-align: left;
   box-sizing: content-box;
 }
 
