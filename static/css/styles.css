@@ -39,6 +39,41 @@ game_rules{
   text-align: justify;
   box-sizing: content-box;
 }
+
+.container {
+  display: flex; /* Use Flexbox for layout */
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  justify-content: space-between; /* Add spacing between items */
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px; /* Add spacing between items */
+  margin: 20px auto; /* Center container horizontally */
+  max-width: 1200px; /* Set a max-width for consistent layout */
+}
+
+.game {
+  flex: 1 1 60%; /* Game takes 60% of the container width */
+  min-width: 50%; /* Minimum width for Game section */
+}
+
+.info {
+  flex: 1 1 50%; /* Info (Players and Teams) takes 35% of the container */
+  min-width: 300px; /* Minimum width for Info section */
+  display: flex;
+  flex-direction: column; /* Stack Players and Teams vertically */
+  gap: 20px; /* Add spacing between Players and Teams */
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack Game and Info vertically */
+  }
+
+  .game, .info {
+    flex: 1 1 100%; /* Take up the full width */
+  }
+}
+
+
 .box {
   background-color: rgb(244, 236, 236);
   float: none;
