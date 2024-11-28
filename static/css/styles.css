@@ -49,9 +49,8 @@ game_rules{
   margin: 20px;
   text-align: left;
   box-sizing: content-box;
-  width: fit-content;
-  block-size: fit-content;
-
+  width: auto;
+  block-size: auto;
 }
 
 .bingo-grid {

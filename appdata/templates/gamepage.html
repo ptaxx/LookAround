@@ -7,20 +7,22 @@
 
 
 <div>
-    <!-- BINGO GRID -->
+
     <div class='box'>
-        <b>Bingo card</b>
+        <!-- BINGO GRID -->
+        <div class='bingo-grid'>
+            {% for activity in activities|slice:":9" %}    <!-- take first 9 activities from the current game, leave empty box if not enouch boxes -->
+                <div class='bingo-cell' data-id='{{ activity.id }}'>
+                    <a href='{% url "activitypage" activity.id %}' 
+                    style='color: inherit; text-decoration: none;'>
+                        {{ activity.short_description }}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class='bingo-grid'>
-        {% for activity in activities|slice:":9" %}    <!-- take first 9 activities from the current game, leave empty box if not enouch boxes -->
-            <div class='bingo-cell' data-id='{{ activity.id }}'>
-                <a href='{% url "activitypage" activity.id %}' 
-                style='color: inherit; text-decoration: none;'>
-                    {{ activity.short_description }}
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+
+    
     <div class='box'>
          <b>Players in this game</b>
          <ul>
