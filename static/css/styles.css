@@ -42,17 +42,19 @@ game_rules{
 .box {
   background-color: rgb(244, 236, 236);
   float: none;
-  /* width: 300px; */
   overflow: hidden;
   border: 15px solid rgba(128, 111, 0, 0.09);
-  padding: 5%;
   margin: 20px;
-  text-align: left;
+  text-align: center;
   box-sizing: content-box;
   width: auto;
   block-size: auto;
 }
-
+.box ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
 .bingo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -63,38 +65,44 @@ game_rules{
 }
   
 .bingo-cell {
-  aspect-ratio: 1 / 1; /* Ensures the cell is always square */
+  aspect-ratio: 1 / 1;
   background-color: #1a2b2b;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
   cursor: pointer;
   border: 2px solid #02092f;
   text-align: center;
-  overflow: hidden; /* Ensures content doesn't overflow the box */
+  overflow: hidden;
+  padding: 0;
+  margin: 2px;
 }
 
 .bingo-cell a {
   color: inherit;
   text-decoration: none;
-  width: 100%; /* Ensures the link fills the entire cell */
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 .bingo-cell a span {
   display: block;
-  width: 90%; /* Leave some padding around text */
-  height: 90%;
-  font-size: clamp(0.5rem, 5vw, 1.5rem); /* Adjust text size dynamically */
-  white-space: normal; /* Wrap the text inside the box */
-  overflow: hidden; /* Prevents content spilling out */
-  text-overflow: ellipsis; /* Adds ellipsis if text is still too large */
+  width: 100%;
+  height: auto;
+  font-size: calc(0.5em + 0.5vw); /* Dynamically resize text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow */
+  font-size: clamp(0.2rem, 0.5vw, 1.2rem);
+  line-height: 1;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 0;
 }
 
 .bingo-cell:hover {
