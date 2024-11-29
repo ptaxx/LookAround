@@ -50,15 +50,19 @@ class VenuePageView(View):
         return render(request, 'venuepage.html', context)
     
     
-class ActivityView(LoginRequiredMixin, View):
+class ActivityView(View):
     def get(self, request, *args, **kwargs):
         activity = Activity.objects.get(id=kwargs.get('pk'))
         form = PasscodeForm()
-        activitycheck = ActivityCheck.objects.filter(activity=activity)
-        user_has_activity = ActivityCheck.objects.filter(
-            user = request.user,
-            activity = activity
-        ).exists
+        activitycheck = ActivityCheck.objects.filter(
+            activity=activity,
+            user = request.user
+            )
+        for entry in activitycheck:
+            if entry.is_active:
+                user_has_activity = True
+            else:
+                user_has_activity = False
         context = {
             'activity': activity, 
             'form': form,
@@ -68,11 +72,15 @@ class ActivityView(LoginRequiredMixin, View):
         return render(request, 'activitypage.html', context)
     def post(self, request, *args, **kwargs):
         activity = Activity.objects.get(id=kwargs.get('pk'))
-        activitycheck = ActivityCheck.objects.filter(activity=activity)
-        user_has_activity = ActivityCheck.objects.filter(
-            user = request.user,
-            activity = activity
-        ).exists
+        activitycheck = ActivityCheck.objects.filter(
+            activity=activity,
+            user = request.user
+            )
+        for entry in activitycheck:
+            if entry.is_active:
+                user_has_activity = True
+            else:
+                user_has_activity = False
         form = PasscodeForm(request.POST)
         if form.is_valid():
             passcode = form.cleaned_data['passcode']

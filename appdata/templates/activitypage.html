@@ -24,13 +24,12 @@
     
         {{ form.passcode.label_tag }}
         {{ form.passcode }}
-
-        {% for message in messages %}
-        {{ message }}
-        {% endfor %}
+        <button type="submit" class="btn btn-outline-dark">Submit</button>
+        
+    {% else %}
+    You have completed the task!    
     {% endif %}
-    <button type="submit" class="btn btn-outline-dark">Submit</button>
-</div>
+    </div>
 </form>
 
 {% endblock %}
