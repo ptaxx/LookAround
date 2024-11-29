@@ -25,6 +25,7 @@ from appdata.models import (
 from django.template import loader
 from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .utils import get_weather_data
 
 
 class GamePageView(View):
@@ -32,14 +33,24 @@ class GamePageView(View):
         game = Game.objects.get(id=kwargs.get('pk'))
         activities = game.activities.all()
         players = game.players.all()
-        teams = Team.objects.filter(team_user__in=game.players.all()).distinct()  # search for teams, where at least 1 player is part of this game. So find all the teams that have players who are part of a specific game. And remove all dublicated teams.
-        context = {'game': game, 'activities': activities, 'players': players, 'teams':teams}
+        teams = Team.objects.filter(team_user__in=game.players.all()).distinct()
+        area_id = game.area.weather_id
+        weather_data = get_weather_data(area_id)
+        context = {
+            'game': game, 
+            'activities': activities, 
+            'players': players, 
+            'teams':teams,
+            'weather_data': weather_data,
+            }
         return render(request, 'gamepage.html', context)
     
 class AreaPageView(View):
     def get(self, request, *args, **kwargs):
         area = Area.objects.get(id=kwargs.get('pk'))
-        context = {'area': area}
+        area_id = area.weather_id
+        weather_data = get_weather_data(area_id)
+        context = {'area': area, 'weather_data': weather_data}
         return render(request, 'areapage.html', context)
     
 
@@ -153,7 +164,13 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         games = Game.objects.all()
         area = Area.objects.all()
-        context = {'games': games, 'area': area,}
+        user = request.user
+        if user.current_area:
+            area_id = user.current_area.weather_id
+        else: 
+            area_id = Area.objects.first().weather_id
+        weather_data = get_weather_data(area_id)
+        context = {'games': games, 'area': area, 'weather_data': weather_data}
         return render(request, "index.html", context)
 
       
@@ -327,6 +344,6 @@ class LeaveGameView(LoginRequiredMixin, View):
             messages.success(request, "You have successfully joined the game")
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-    
+       
 
     
