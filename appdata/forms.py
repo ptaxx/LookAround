@@ -49,6 +49,12 @@ class ActivityCreationForm(ModelForm):
             'full_description': 'Full description',
             'venue': 'Venue',
         }
+        widgets = {
+            'short_description': forms.TextInput(attrs={
+                'maxlength': 80,  # Limit input to 80 characters
+                'placeholder': 'Enter a short description (max 80 characters)',
+            }),
+        }
         
         
 class VenueCreationForm(ModelForm):
