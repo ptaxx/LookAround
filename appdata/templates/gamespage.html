@@ -4,28 +4,36 @@
 {% block content %}
 
     <h1>Welcome to the Game Page for all the games</h1>
-    <ul class="list-group">
-        {% for game in games|slice:"10" %}
-            <li class="list-group-item">
-                <a class="btn btn-primary" href="{% url 'gamepage' game.id %}" >{{ game.id }}</a>
-                {{ game}}
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="box">
+        <div class="row row-cols-1 row-cols-md-3 g-4"><h2>All the game:</h2>
+            <ul class="list-group">
+                {% for game in games|slice:"10" %}
+                    <li class="list-group-item">
+                        <a class="btn btn-success" href="{% url 'gamepage' game.id %}" >{{ game.id }}</a>
+                        {{ game}}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
-    <ul class='box'>
-    <b> All your games</b>
-        {% for game in games %}
-            {% if user in game.players.all  %}
-            <li>
-                <a class="list-group-ite" href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
-                {{ game }}
-            </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-
-    <a class="btn btn-outline-dark pull-left" type="button" href="{% url 'creategame' %}">Create game</a>
+    <div class="box">
+        <div class="row row-cols-1 row-cols-md-3 g-4"><h2>All your games:</h2>
+            <ul class='list-group'>
+                {% for game in games %}
+                    {% if user in game.players.all  %}
+                        <li class="list-group-item">
+                            <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
+                            {{ game }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="parent-container">
+        <a class="btn btn-success center-button" type="button" href="{% url 'creategame' %}" role="button">Create game</a>
+    </div>
 
 
 

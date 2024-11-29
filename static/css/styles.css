@@ -1,3 +1,5 @@
+
+
 /* Default link color for closed hamburger menu */
 .navbar-nav .nav-link {
     color: black; /* Black color when the menu is closed */
@@ -36,6 +38,13 @@ html, body {
   margin: 0; /* Remove default margin */
 }
 
+h1 {
+  font-size: 2rem;
+  margin: 5px auto;
+  color: whitesmoke;
+  text-align: center;
+}
+
 .content-wrapper {
         min-height: 100%;
         display: flex;
@@ -48,6 +57,32 @@ main {
 
 .main-content {
         flex: 1;
+}
+
+/*teamspage button create game*/
+.parent-container {
+  display: flex;
+  justify-content: center; /* Horizontally center the button */
+  align-items: center;     /* Vertically center the button */
+  height: 10vh; /* Optional: makes the parent container fill the entire viewport height */
+}
+
+.center-button {
+  padding: 10px 20px; /* Optional: add padding to the button */
+  font-size: 16px; /* Optional: adjust font size */
+}
+
+.center button{
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  left: 50%;
+  border: 2px;
+  border-radius: 5px;
+  position: absolute;
 }
 
 body {
@@ -66,7 +101,7 @@ body {
 
 
 
-game_rules{
+.game_rules{
   font-size: 18px;
   vertical-align: baseline;
   text-decoration: none;
@@ -144,7 +179,7 @@ game_rules{
   
 .bingo-cell {
   aspect-ratio: 1 / 1;
-  background-color: #1a2b2b;
+  background-color: rgb(96, 31, 31);
   color: white;
   display: flex;
   align-items: center;

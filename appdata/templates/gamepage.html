@@ -31,12 +31,12 @@
                 {% if user in players %}
                     <form method="post" action="{% url 'leave_game' game.id %}">
                         {% csrf_token %}
-                        <button type='submit' class='btn btn-outline-dark'>Leave game</button>
+                        <button type='submit' class="btn btn-danger">Leave game</button>
                     </form>
                     {% else %}
                     <form method="post" action="{% url 'join_game' game.id %}">
                         {% csrf_token %}
-                        <button type='submit' class='btn btn-outline-dark'>Join game</button>
+                        <button type='submit' class="btn btn-success">Join game</button>
                     </form>
                 {% endif %}
                 {% endif %}                
@@ -69,3 +69,4 @@
 </div>
 
 {% endblock %}
+</div>

@@ -21,8 +21,9 @@
             {% endif %}
         {% endfor %}
 </ul>
-
-<a class="btn btn-outline-dark pull-left" type="button" href="{% url 'createteam' %}">Create team</a>
+<div class="parent-container">
+    <a class="btn btn-success center-button" type="button" href="{% url 'createteam' %}" role="button">Create team</a>
+</div>
 
 
 {% endblock %}

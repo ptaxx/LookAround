@@ -16,7 +16,7 @@
             <ul>
                 {% for area in user_area %}
                     <li>
-                        <a href="{% url 'areapage' user.current_area %}">
+                        <a class="btn btn-success" href="{% url 'areapage' user.current_area %}">
                             {{ area }}
                         </a>
                     </li>
@@ -25,30 +25,32 @@
     </div>
 
 {% else %}
-    <div class='box'>      
-        <b>Discover available areas</b>
-            <ul>
-                {% for area in area %}
-                    <li>
-                        <a href="{% url 'areapage' area.id %}">
-                            {{ area }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>  
+    <div class='box'>
+        <div class="row row-cols-1 row-cols-md-3 g-4"><h2>Discover available areas:</h2>
+                <ul class='list-group'>
+                    {% for area in area %}
+                        <li class="list-group-item">
+                            <a class="btn btn-success"  href="{% url 'areapage' area.id %}">
+                                {{ area }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+        </div>
     </div>
     
 {% endif %}
 
 <div class='box'>
-    <b>Available ongoing games</b>
-        <ul>
+    <div class="row row-cols-1 row-cols-md-3 g-4"><h2>Available ongoing games:</h2>
+        <ul class='list-group'>
             {% for game in games|slice:"10"  %}
-                <li>
-                    <a href="{% url 'gamepage' game.id %}">{{ game }} </a>
+                <li class="list-group-item">
+                    <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }} </a>
                 </li>
             {% endfor %}
         </ul>
+    </div>
 </div>
 
 {% endblock %}
