@@ -2,60 +2,54 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-<div class='box'>
-    <h2>Weather for {{ weather_data.city }}</h2>
-    {% if weather_data %}
-        <p>Temperature: {{ weather_data.temperature }}&deg;C</p>
-        <p>Humidity: {{ weather_data.humidity }}%</p>
-        <p>Wind Speed: {{ weather_data.wind }} m/s</p>
-    {% else %}
-        <p>Unable to fetch weather data. Please try again later.</p>
-    {% endif %}
 
-</div>
-
-
-{% if user.is_authenticated %}
-    <div class='box'>
-        <b>Your areas</b>
-            <ul>
-                {% for area in user_area %}
-                    <li class="nobackround">
-                        <a class="btn btn-success" href="{% url 'areapage' user.current_area %}">
-                            {{ area }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>  
-    </div>
-
-{% else %}
-    <div class='box'>
-        <div class="row row-cols-1 row-cols-md-3 g-4"><h2>Discover available areas:</h2>
-                <ul class='list-group'>
-                    {% for area in area %}
-                        <li class="list-group-item nobackround">
-                            <a class="btn btn-success"  href="{% url 'areapage' area.id %}">
-                                {{ area }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+<body>
+    <div class="container-fluid">
+        <div class="row gx-0 gy-0">
+            <div class="box equal-box weather-box">
+                    <b>Weather for   {{ weather_data.city }}   </b>
+                    {% if weather_data %}
+                        <p>Weather: {{ weather_data.temperature }}</p>
+                        <p>Humidity: {{ weather_data.humidity }}%</p>
+                        <p>Wind Speed: {{ weather_data.wind }} m/s</p>
+                    {% else %}
+                        <p>Unable to fetch weather data. Please try again later.</p>
+                    {% endif %}
+                </div>
+            <div class="box equal-box weather-box">
+                {% if user.is_authenticated %}
+                    <b>Your areas</b>
+                        <ul>{% for area in user_area %}
+                            <li class="nobackround">
+                                <a class="btn btn-success" href="{% url 'areapage' user.current_area %}">
+                                    {{ area }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                {% else %}
+                    <b>Available areas</b>
+                        <ul class='list-group' >{% for area in area %}
+                            <li class="list-group-item nobackround">
+                                <a class="btn btn-success"  href="{% url 'areapage' area.id %}">{{ area }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                {% endif %}
+            </div>
+            <div class='box equal-box weather-box'>
+                <b> Available ongoing games:</b>
+                    <ul class='list-group '>
+                        {% for game in games|slice:"5"  %}
+                            <li class="list-group-item nobackround">
+                                <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }} </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    
-{% endif %}
-
-<div class='box'>
-    <div class="row row-cols-1 row-cols-md-3 g-4"><h2>Available ongoing games:</h2>
-        <ul class='list-group '>
-            {% for game in games|slice:"10"  %}
-                <li class="list-group-item nobackround">
-                    <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }} </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
+</body>
 
 {% endblock %}
