@@ -110,6 +110,10 @@ html, body {
     margin-bottom: 50px;
 }
 
+.singlebox {
+    width: max-content;
+}
+
 /* Responsive layout adjustments */
 @media screen and (max-width: 768px) {
     .row {
@@ -147,6 +151,14 @@ html, body {
 /* Hover effect on links */
 .navbar-nav .nav-link:hover {
     color: #f8f9fa; /* Light color when hovered */
+}
+
+.navbar .nav-link {
+    color: #000;
+}
+
+.navbar .nav-link:hover {
+    color: #28a745;
 }
 
 .footer {
