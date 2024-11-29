@@ -8,6 +8,7 @@ class Area(models.Model):
     name = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
     picture = models.ImageField(upload_to='images', null=True)
+    weather_id = models.CharField(max_length=10, default='588409')
 
     def __str__(self):
         return self.name
