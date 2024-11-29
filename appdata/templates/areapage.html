@@ -6,7 +6,7 @@
 <div class='box'>
     <h2>Weather for {{ weather_data.city }}</h2>
     {% if weather_data %}
-        <p>Weather: {{ weather_data.temperature }}</p>
+        <p>Temperature: {{ weather_data.temperature }}&deg;C</p>
         <p>Humidity: {{ weather_data.humidity }}%</p>
         <p>Wind Speed: {{ weather_data.wind }} m/s</p>
     {% else %}

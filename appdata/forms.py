@@ -51,7 +51,7 @@ class ActivityCreationForm(ModelForm):
         }
         widgets = {
             'short_description': forms.TextInput(attrs={
-                'maxlength': 80,  # Limit input to 80 characters
+                'maxlength': 80,
                 'placeholder': 'Enter a short description (max 80 characters)',
             }),
         }
@@ -83,7 +83,10 @@ class VenueCreationForm(ModelForm):
         widgets = {
             'opening_hour': forms.widgets.TimeInput(attrs={'type':'time'}),
             'closing_hour': forms.widgets.TimeInput(attrs={'type':'time'}),
-            }
+            'description': forms.TextInput(attrs={
+                'style': 'height: 150px;',
+            })
+        }
         enctype="multipart/form-data"
         
         
