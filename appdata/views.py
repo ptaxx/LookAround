@@ -33,6 +33,7 @@ class GamePageView(View):
         game = Game.objects.get(id=kwargs.get('pk'))
         activities = game.activities.all()
         players = game.players.all()
+        scoreboards = ScoreBoard.objects.filter(game=game).order_by('-points')
         teams = Team.objects.filter(team_user__in=game.players.all()).distinct()
         area_id = game.area.weather_id
         weather_data = get_weather_data(area_id)
@@ -42,6 +43,7 @@ class GamePageView(View):
             'players': players, 
             'teams':teams,
             'weather_data': weather_data,
+            'scoreboards': scoreboards,
             }
         return render(request, 'gamepage.html', context)
     
@@ -351,7 +353,7 @@ class JoinGameView(LoginRequiredMixin, View):
                 game=game,
                 user=request.user,
                 )
-            activities = game.activities
+            activities = game.activities.all()
             for activity in activities:
                 ActivityCheck.objects.create(
                     game=game,
