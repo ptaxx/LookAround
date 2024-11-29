@@ -19,15 +19,16 @@
 
 <form method="post">
     <div class="box">
-    {% if user.is_authenticated and user.isplayer and user_has_activity %}
+    {% if user.is_authenticated and user_has_activity %}
     {% csrf_token %}
     
         {{ form.passcode.label_tag }}
         {{ form.passcode }}
         <button type="submit" class="btn btn-success center-button">Submit</button>
-        
+    {% elif user.is_authenticated and not user_has_activity %}
+        You have completed the task!   
     {% else %}
-    You have completed the task!    
+        <a href={% url "login" %}>Login</a> to play the game
     {% endif %}
 
     </div>
