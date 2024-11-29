@@ -25,4 +25,11 @@
     {{ area.description }}
 </div>
 
+<div class="box">
+    {% for venue in venues %}
+    {{ venue }}
+    <br>
+    {% endfor %}
+</div>
+
 {% endblock %}

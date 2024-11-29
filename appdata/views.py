@@ -48,9 +48,14 @@ class GamePageView(View):
 class AreaPageView(View):
     def get(self, request, *args, **kwargs):
         area = Area.objects.get(id=kwargs.get('pk'))
+        venues = Venue.objects.filter(area=area)
         area_id = area.weather_id
         weather_data = get_weather_data(area_id)
-        context = {'area': area, 'weather_data': weather_data}
+        context = {
+            'area': area, 
+            'weather_data': weather_data,
+            'venues': venues
+            }
         return render(request, 'areapage.html', context)
     
 
