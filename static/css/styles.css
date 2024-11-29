@@ -1,56 +1,122 @@
+.nobackround {
+  background: none;
+}
+/* Default link color for closed hamburger menu */
+.navbar-nav .nav-link {
+    color: black; /* Black color when the menu is closed */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* Link color when the offcanvas menu is open */
+.offcanvas.show .navbar-nav .nav-link {
+    color: white; /* White color when the menu is open */
+}
+
+/* Hover effect on links */
+.navbar-nav .nav-link:hover {
+    color: #f8f9fa; /* Light color when hovered */
+}
+
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #414445;;
-  color: #ffffff;
-  text-align: center;
-  margin: 0;
+  background-color: #f8f9fa; /* Light background for footer */
+  padding: 10px 0;
+  margin-top: auto;
+  border-top: 1px solid #dee2e6;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  all-space-treatment:0.5 ;
-
+  padding: 0 15px;
 }
 
-body {
-  font-size: 18px;
-  vertical-align: baseline;
-  text-decoration: none;
-  word-spacing: normal;
+.footer-nav a {
+  margin-right: 15px;
 }
-
-a {
-  class: 'link-underline-dark'
+html, body {
+  height: 100%; /* Make sure the body takes the full viewport height */
+  margin: 0; /* Remove default margin */
 }
 
 h1 {
-  font-size: 36px;
-  text-align: left;
+  font-size: 2rem;
+  margin: 5px auto;
+  color: whitesmoke;
+  text-align: center;
 }
 
-p.c {
+.content-wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+    flex-grow: 1; /* Makes the main content take up available space */
+}
+
+.main-content {
+  flex: 1;
+}
+
+/*teamspage button create game*/
+.parent-container {
+  display: flex;
+  justify-content: center; /* Horizontally center the button */
+  align-items: center;     /* Vertically center the button */
+  height: 10vh; /* Optional: makes the parent container fill the entire viewport height */
+}
+
+.center-button {
+  padding: 10px 20px; /* Optional: add padding to the button */
+  font-size: 16px; /* Optional: adjust font size */
+}
+
+.center button{
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  left: 50%;
+  border: 2px;
+  border-radius: 5px;
+  position: absolute;
+}
+.contactpage li{
+  display: inline-block;
   font-size: 16px;
-  text-align-last: justify;
 }
 
-game_rules{
+p {
+  font-size: 16px;
+}
+
+body {
+  font-size: 22px;
+  vertical-align: baseline;
+  text-decoration: none;
+  word-spacing: normal;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Makes body span the full viewport height */
+  min-height: 100vh; /* Makes body span the full viewport height */
+  background-color: #003366;
+
+}
+
+
+
+
+.game_rules{
   font-size: 18px;
   vertical-align: baseline;
   text-decoration: none;
   word-spacing: normal;
   text-align: right;
   text-align-last: justify;
-  box-sizing: content-box;
-}
-.box_contactpage {
-  background-color: rgb(244, 236, 236);
-  float: none;
-  /* width: 500px; */
-  overflow: hidden;
-  border: 15px solid rgba(200, 111, 0, 0.09);
-  /* padding: 5%; */
-  margin: 20px;
-  text-align: left;
   box-sizing: content-box;
 }
 
@@ -122,7 +188,7 @@ game_rules{
   
 .bingo-cell {
   aspect-ratio: 1 / 1;
-  background-color: #1a2b2b;
+  background-color: rgb(96, 31, 31);
   color: white;
   display: flex;
   align-items: center;

@@ -3,14 +3,18 @@
 
 {% block content %}
 
-<ul class='box'>
-    <b> All available areas</b>
-    {% for area in areas %}
-        <li>
-            <a href="{% url 'areapage' area.id %}">{{ area.name }}</a>
-            {{ game}}
-        </li>
-    {% endfor %}
-</ul>
+     <h1>All the areas</h1>
+    <div class="box">
+        <div class="row row-cols-1 row-cols-md-3 g-4"><h2>All available areas</h2>
+            <ul class='list-group'>
+                {% for area in areas %}
+                    <li class="list-group-item">
+                        <a class="btn btn-success" href="{% url 'areapage' area.id %}">{{ area.name }}</a>
+                        {{ game}}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
 {% endblock %}
