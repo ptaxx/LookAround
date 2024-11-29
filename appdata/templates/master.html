@@ -21,7 +21,7 @@
                 <img src="{% static 'images/logo.png' %}" alt="Logo" width="60" height="40"> LOOKAROUND
             </a>
             {% if user.is_authenticated %}
-                <span class="navbar-brand">{{ user.username }}</span>
+                <span class="navbar-brand">{{ user.username|upper }}</span>
             {% endif %}
 
             <div class="d-flex">

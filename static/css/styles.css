@@ -1,4 +1,8 @@
 /* Reset margin and padding for body and html to avoid spacing issues */
+.singlebox {
+    width: max-content;
+}
+
 html, body {
     margin: 0;
     padding: 0;
