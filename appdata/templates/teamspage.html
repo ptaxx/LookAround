@@ -15,22 +15,22 @@
                     {% endfor %}
                 </ul>
             </div>
-            <div class="box equal-box weather-box">
-                <b>All Your games </b>
-                <ul class='list-group' >
-                    {% for team in teams %}
-                        {% if user in team.team_user.all or user == team.moderator %}
-                            <li class="list-group-item nobackround">
-                                {{ team.name|upper }} - moderator: {{ team.moderator|upper }}
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
+    <div class="box equal-box weather-box">
+        <b>All Your teams </b>
+        <ul class='list-group' >
+            {% for team in teams %}
+                {% if user in team.team_user.all or user == team.moderator %}
+                    <li class="list-group-item nobackround">
+                        {{ team.name|upper }} - moderator: {{ team.moderator|upper }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
                 <div class="button-box text-start">
                     <a class="btn btn-success" href="{% url 'createteam' %}" role="button">Create team</a>
                 </div>
-        </div>
+            </div>
     </div>
 </body>
 
