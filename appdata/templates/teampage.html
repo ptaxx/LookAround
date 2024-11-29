@@ -24,6 +24,20 @@
 
     </div>
 
+    <div class='box'>
+        <b>Games</b> <br>
+
+        <ul>
+           {% for game in games %}
+               <li>
+                   {{ game}}
+               </li>
+           {% endfor %}
+       </ul>
+       moderator: <b>{{team.moderator}}</b> <br>
+
+   </div>
+
 </div>
 
 {% endblock %}

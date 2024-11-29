@@ -206,8 +206,12 @@ class UserPageViews(View):
 class TeamPageViews(View):
     def get(self, request, *args, **kwargs):
         team = Team.objects.get(id=kwargs.get('pk'))
+        games = Game.objects.filter(teams=team)
         teamplayers = team.team_user.all()
-        context = {'team': team, 'teamplayers': teamplayers}
+        context = {'team': team, 
+                   'teamplayers': teamplayers,
+                   'games': games,
+                   }
         return render(request, 'teampage.html', context)
 
 
