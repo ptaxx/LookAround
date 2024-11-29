@@ -26,7 +26,7 @@ from appdata.models import (
 from django.template import loader
 from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .utils import get_weather_data
+from .utils import get_weather_data, countdown_timer
 from django.utils import timezone
 
 
@@ -39,6 +39,7 @@ class GamePageView(View):
         teams = Team.objects.filter(team_user__in=game.players.all()).distinct()
         area_id = game.area.weather_id
         weather_data = get_weather_data(area_id)
+        time_data = countdown_timer(game.starting_time)
         context = {
             'game': game, 
             'activities': activities, 
@@ -46,7 +47,8 @@ class GamePageView(View):
             'teams':teams,
             'weather_data': weather_data,
             'scoreboards': scoreboards,
-            }
+            'time_data': time_data,
+        }
         return render(request, 'gamepage.html', context)
     
 class AreaPageView(View):

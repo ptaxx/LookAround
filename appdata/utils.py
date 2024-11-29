@@ -1,18 +1,17 @@
+from datetime import datetime
 import requests
-from django.conf import settings
+from django.utils import timezone
 
 
 def get_weather_data(area_id):
     url = f"http://api.openweathermap.org/data/2.5/weather?id={area_id}&appid=6fa3a061f537db1e424bfc7a15780d0d&units=metric"
     
     try:
-        response = requests.get(url)  # No need to format the URL further
-        response.raise_for_status()  # Raise an HTTPError for bad responses (4xx, 5xx)
+        response = requests.get(url)
+        response.raise_for_status()  
 
-        # Parse JSON content
         data = response.json()
         
-        # Extract required fields
         weather = {
             'city': data['name'],
             'temperature': data['main']['temp'],
@@ -27,7 +26,30 @@ def get_weather_data(area_id):
     except KeyError:
         print("Unexpected response structure")
         return None
-    
-    
-x = get_weather_data('588409')
-print(x)
+
+
+def countdown_timer(date_time):
+    now = timezone.now()
+    if date_time > now:
+        time_remaining = date_time - now
+        hours = time_remaining.seconds // 3600
+        minutes = (time_remaining.seconds % 3600) // 60
+        seconds = time_remaining.seconds % 60
+        time_data = {
+            'game_started': False,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds,
+        }
+    else:
+        time_remaining = date_time - now
+        hours = time_remaining.seconds // 3600
+        minutes = (time_remaining.seconds % 3600) // 60
+        seconds = time_remaining.seconds % 60
+        time_data = {
+            'game_started': True,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds,
+        }
+    return time_data
