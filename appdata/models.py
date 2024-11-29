@@ -7,7 +7,7 @@ from django.db import models
 class Area(models.Model):
     name = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
-    picture = models.ImageField(upload_to='images', null=True)
+    picture = models.ImageField(upload_to='images', null=True, blank=True)
     weather_id = models.CharField(max_length=10, default='588409')
 
     def __str__(self):
@@ -17,7 +17,7 @@ class Area(models.Model):
 class CustomUser(AbstractUser):
     short_bio = models.TextField(max_length=200, blank=True)
     isplayer = models.BooleanField(default=True)
-    userpic = models.ImageField(default='default_userpic.png', upload_to='profile_pictures')
+    userpic = models.ImageField(default='default_userpic.png', upload_to='profile_pictures',null=True, blank=True)
     current_area = models.ForeignKey(Area, null=True, on_delete=models.SET_NULL)
     
     def __str__(self):
@@ -27,7 +27,7 @@ class CustomUser(AbstractUser):
 class Team(models.Model):
     name = models.CharField(max_length=32)
     moderator = models.ForeignKey(CustomUser, related_name='moderator', on_delete=models.CASCADE)
-    team_user = models.ManyToManyField(CustomUser, related_name='member')
+    team_user = models.ManyToManyField(CustomUser, related_name='member', blank=True)
 
     def __str__(self):
         return self.name
@@ -39,7 +39,7 @@ class Venue(models.Model):
     opening_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     closing_hour = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     description = models.TextField(max_length=200, blank=False)
-    picture = models.ImageField(upload_to='venue_pictures', null=True)
+    picture = models.ImageField(upload_to='venue_pictures', null=True, blank=True)
     contact = models.ForeignKey(CustomUser, null=True, on_delete=models.SET_NULL)
     tripadvisor_link = models.URLField(max_length=200, null=True, blank=True)
 
@@ -73,7 +73,7 @@ class Game(models.Model):
     activities = models.ManyToManyField(Activity)
 
     def __str__(self):
-        return f'{self.area}. {self.starting_time.strftime("%Y-%m-%d %H:%M:%S")}'
+        return f'{self.area}. {self.starting_time.strftime("%Y-%m-%d %H:%M")}'
     
     
 class ActivityCheck(models.Model):

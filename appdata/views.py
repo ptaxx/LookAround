@@ -347,6 +347,17 @@ class JoinGameView(LoginRequiredMixin, View):
             messages.warning(request, "You are already part of this game!")
         else:
             game.players.add(request.user)
+            ScoreBoard.objects.create(
+                game=game,
+                user=request.user,
+                )
+            activities = game.activities
+            for activity in activities:
+                ActivityCheck.objects.create(
+                    game=game,
+                    activity=activity,
+                    user=request.user
+                )
             messages.success(request, "You have successfully joined the game")
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
@@ -360,6 +371,14 @@ class LeaveGameView(LoginRequiredMixin, View):
             messages.warning(request, "You not a part of this game!")
         else:
             game.players.remove(request.user)
+            ScoreBoard.objects.filter(
+                game=game,
+                user=request.user,
+            ).delete()
+            ActivityCheck.objects.filter(
+                game=game,
+                user=request.user,
+            ).delete()
             messages.success(request, "You have successfully joined the game")
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
