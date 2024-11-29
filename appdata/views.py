@@ -1,3 +1,4 @@
+from datetime import datetime
 from random import randint, choice, sample
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
@@ -26,6 +27,7 @@ from django.template import loader
 from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .utils import get_weather_data
+from django.utils import timezone
 
 
 class GamePageView(View):
@@ -37,6 +39,30 @@ class GamePageView(View):
         teams = Team.objects.filter(team_user__in=game.players.all()).distinct()
         area_id = game.area.weather_id
         weather_data = get_weather_data(area_id)
+        game_start = game.starting_time
+        now = datetime.now
+        if game_start > now:
+            game_started = False
+            time_remaining = game.starting_time - timezone.now()
+            hours = time_remaining.seconds // 3600
+            minutes = (time_remaining.seconds % 3600) // 60
+            seconds = time_remaining.seconds % 60
+            time_data = {
+                'hours': hours,
+                'minutes': minutes,
+                'seconds': seconds,
+                }
+        else:
+            game_started = True
+            time_elapsed = timezone.now - game.starting_time
+            hours = time_elapsed.seconds // 3600
+            minutes = (time_elapsed.seconds % 3600) // 60
+            seconds = time_elapsed.seconds % 60
+            time_data = {
+                'hours': hours,
+                'minutes': minutes,
+                'seconds': seconds,
+                }
         context = {
             'game': game, 
             'activities': activities, 
@@ -44,6 +70,8 @@ class GamePageView(View):
             'teams':teams,
             'weather_data': weather_data,
             'scoreboards': scoreboards,
+            'time_data': time_data,
+            'game_future': game_future,
             }
         return render(request, 'gamepage.html', context)
     
