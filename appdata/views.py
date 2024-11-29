@@ -165,7 +165,7 @@ class IndexView(View):
         games = Game.objects.all()
         area = Area.objects.all()
         user = request.user
-        if user.current_area:
+        if user.is_authenticated and user.current_area:
             area_id = user.current_area.weather_id
         else: 
             area_id = Area.objects.first().weather_id
