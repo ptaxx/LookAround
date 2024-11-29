@@ -16,6 +16,10 @@
         {{venue.opening_hour}}<br>
         {{venue.opening_hour}}<br>
         {% endif %}
+        <br>
+        {% if user == venue.contact %}
+        <a class="btn btn-success center-button" type="button" href="{% url 'createactivity' %}" role="button">Create Activity</a>
+        {% endif %}
     </div>
     <div class="box">
         <b>Description</b><br>
