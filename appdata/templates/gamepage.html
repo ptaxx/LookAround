@@ -5,78 +5,81 @@
 {% block content %}
 {% load static %}
 
-<div class='box'>
-    <h2>Weather for {{ weather_data.city }}</h2>
-    {% if weather_data %}
-        <p>Weather: {{ weather_data.temperature }}</p>
-        <p>Humidity: {{ weather_data.humidity }}%</p>
-        <p>Wind Speed: {{ weather_data.wind }} m/s</p>
-    {% else %}
-        <p>Unable to fetch weather data. Please try again later.</p>
-    {% endif %}
-</div>
 
-<div>
-    <div class="container">
-        <div class="game">
-            <div class='box'>
-                <!-- BINGO GRID -->
-                <div class='bingo-grid'>
-                    {% for activity in activities|slice:":9" %}    <!-- take first 9 activities from the current game, leave empty box if not enouch boxes -->
-                        <div class='bingo-cell' data-id='{{ activity.id }}'>
-                            <a href='{% url "activitypage" activity.id %}' 
-                            style='color: inherit; text-decoration: none;'>
-                                {{ activity.short_description }}
-                            </a>
-                        </div>
-                    {% endfor %}
+<body>
+    <div class="container-fluid">
+        <div class="row gx-0 gy-0"> <!-- Remove grid gaps -->
+            <!-- First Column: Bingo Game + Button (Left) -->
+            <div class="col-md-8">
+                <!-- Bingo Game Box -->
+                <div class="box bingo-box">
+                    <div class="bingo-grid">
+                        {% for activity in activities|slice:":9" %}
+                            <div class="bingo-cell">
+                                <a href="{% url 'activitypage' activity.id %}">
+                                    {{ activity.short_description }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>            
-        </div>
 
-        <div class="game-info">
-
-            <div class="box">
-                {% if user.is_authenticated %}
-                {% if user in players %}
-                    <form method="post" action="{% url 'leave_game' game.id %}">
-                        {% csrf_token %}
-                        <button type='submit' class="btn btn-danger">Leave game</button>
-                    </form>
-                    {% else %}
-                    <form method="post" action="{% url 'join_game' game.id %}">
-                        {% csrf_token %}
-                        <button type='submit' class="btn btn-success">Join game</button>
-                    </form>
-                {% endif %}
-                {% endif %}                
+                <!-- Button Box (Below Bingo Game) -->
+                <div class="button-box">
+                    {% if user.is_authenticated %}
+                        {% if user in players %}
+                            <form method="post" action="{% url 'leave_game' game.id %}">
+                                {% csrf_token %}
+                                <button type='submit' class="btn btn-danger center-button">Leave game</button>
+                            </form>
+                        {% else %}
+                            <form method="post" action="{% url 'join_game' game.id %}">
+                                {% csrf_token %}
+                                <button type='submit' class="btn btn-success center-button">Join game</button>
+                            </form>
+                        {% endif %}
+                        {% endif %}
+                </div>
             </div>
-            <div class='box'>
-                <b>Players in this game</b>
-                <ul>
-                    {% for player in players %}
-                        <li>
-                                {{ player.username }}
-                            
-                            
-                        </li>
-                    {% endfor %}
-                </ul>
-   
-                
-        </div>
-        <div class='box'> 
-            <b>Teams in this Game</b>
-            <ul>
-                {% for team in teams %}
-                    <li>
-                        {{ team.name }}
-                    </li>
-                {% endfor %}
-            </ul>       
+
+            <!-- Third Column: Weather API, Players, and Teams (Right) -->
+            <div class="col-md-4">
+                <!-- Weather API Box -->
+                <div class="box equal-box weather-box">
+                    <b>Weather for   {{ weather_data.city }}   </b>
+                    {% if weather_data %}
+                        <p>Weather: {{ weather_data.temperature }}</p>
+                        <p>Humidity: {{ weather_data.humidity }}%</p>
+                        <p>Wind Speed: {{ weather_data.wind }} m/s</p>
+                    {% else %}
+                        <p>Unable to fetch weather data. Please try again later.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Players Box -->
+                <div class="box equal-box players-box">
+                    <b>Players in this game</b>
+                    <ul>
+                        {% for player in players %}
+                            <li>{{ player.username }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Teams Box -->
+                <div class="box equal-box teams-box">
+                    <b>Teams in this Game</b>
+                    <ul>
+                        {% for team in teams %}
+                            <li>{{ team.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</body>
+
+
 
 {% endblock %}
-</div>
