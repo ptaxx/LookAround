@@ -8,7 +8,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4"><h2>All the game:</h2>
             <ul class="list-group">
                 {% for game in games|slice:"10" %}
-                    <li class="list-group-item">
+                    <li class="list-group-item nobackround" >
                         <a class="btn btn-success" href="{% url 'gamepage' game.id %}" >{{ game.id }}</a>
                         {{ game}}
                     </li>
@@ -22,7 +22,7 @@
             <ul class='list-group'>
                 {% for game in games %}
                     {% if user in game.players.all  %}
-                        <li class="list-group-item">
+                        <li class="list-group-item nobackround">
                             <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
                             {{ game }}
                         </li>
