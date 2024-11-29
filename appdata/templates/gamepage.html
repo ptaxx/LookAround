@@ -56,6 +56,76 @@
                     {% endif %}
                 </div>
 
+                <div id="countdown" class="box equal-box players-box" style="font-size: 40px;">
+                    {% if time_data.game_started %}
+                        <b>Game played for</b>
+                    {% else %}
+                        <b>Game starts in</b>
+                    {% endif %}
+                    <p id="timer" style="font-size: 32px;">
+                        {{ time_data.hours }}h {{ time_data.minutes }}m {{ time_data.seconds }}s
+                    </p>
+                </div>
+
+                <script>
+                    // Function to update the countdown timer
+                    function updateTimer() {
+                        // Get the current timer display element
+                        var timerElement = document.getElementById('timer');
+                        
+                        // Extract hours, minutes, and seconds from the text content
+                        var timeText = timerElement.textContent.trim();
+                        var timeParts = timeText.split(' '); // ["Xh", "Ym", "Zs"]
+                        
+                        // Parse hours, minutes, and seconds
+                        var hours = parseInt(timeParts[0].replace('h', '').trim());
+                        var minutes = parseInt(timeParts[1].replace('m', '').trim());
+                        var seconds = parseInt(timeParts[2].replace('s', '').trim());
+                        
+                        // Handle countdown logic based on game status
+                        {% if time_data.game_started %}
+                            // If the game has started, we increment the time (elapsed time)
+                            seconds++;
+                            if (seconds >= 60) {
+                                seconds = 0;
+                                minutes++;
+                            }
+                            if (minutes >= 60) {
+                                minutes = 0;
+                                hours++;
+                            }
+                        {% else %}
+                            // If the game has not started, we decrement the time (time remaining)
+                            if (seconds > 0) {
+                                seconds--;
+                            } else {
+                                if (minutes > 0) {
+                                    minutes--;
+                                    seconds = 59;
+                                } else {
+                                    if (hours > 0) {
+                                        hours--;
+                                        minutes = 59;
+                                        seconds = 59;
+                                    } else {
+                                        // Timer has reached zero, you can handle this case as needed
+                                        clearInterval(timerInterval); // Stop the timer
+                                        alert("Time's up!"); // Example: Show a message when time's up
+                                        return;
+                                    }
+                                }
+                            }
+                        {% endif %}
+                
+                        // Update the timer display with the new time
+                        timerElement.textContent = hours + 'h ' + minutes + 'm ' + seconds + 's';
+                    }
+                
+                    // Start the timer with an interval of 1 second (1000 milliseconds)
+                    var timerInterval = setInterval(updateTimer, 1000);
+                </script>
+                
+                
                 <!-- Players Box -->
                 <div class="box equal-box players-box">
                     <b>Players in this game</b>
@@ -65,6 +135,8 @@
                         {% endfor %}
                     </ul>
                 </div>
+
+                
 
                 <!-- Teams Box -->
                 <div class="box equal-box teams-box">
