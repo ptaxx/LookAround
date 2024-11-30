@@ -9,6 +9,11 @@ class SignUpForm(UserCreationForm):
         model = CustomUser
         fields = ['isplayer', 'username', 'first_name', 'last_name', 'email', 'short_bio', 'userpic']
         labels = {'isplayer': 'Register as player', 'email': 'Email'}
+        widgets = {
+            'short_bio': forms.TextInput(attrs={
+                'rows': 3,
+            }),
+        }
 
 
 class GameCreationForm(ModelForm):
