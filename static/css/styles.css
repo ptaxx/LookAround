@@ -274,7 +274,7 @@ div {
   padding: 1%;
   text-align: center;
   box-sizing: content-box;
-    width: fit-content;
+    width: fit-content( max(300px, 100px));
   /*background-color: rgb(244, 236, 236);*/
   /*padding: 20px;*/
   /*margin: 0;*/

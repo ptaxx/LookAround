@@ -2,13 +2,15 @@
 {% block title %} All teams {% endblock %}
 
 {% block content %}
+
 <body>
     <div class="container-fluid">
-        <div class="row gx-0 gy-0">
-            <div class="col-md-2">
-                <div class="box equal-box weather-box">
-                    <b>All available teams </b>
-                    <ul class='list-group' >
+        <div class="row gx-3 gy-3 align-items-start"> <!-- Align items at the top -->
+            <!-- Left Box: All the areas -->
+            <div class="col-md-6 col-sm-6">
+                <div class="box-area equal-box weather-box">
+                    <b>All available teams</b>
+                    <ul class='list-group list-scroll' >
                         {% for team in teams|slice:"5" %}
                         <li class="list-group-item nobackround" >
                             <a class="btn btn-success" href=" {% url 'teampage' team.id %}">{{ team.name }}</a>
@@ -20,14 +22,18 @@
                     <a class="btn btn-success" href="{% url 'createteam' %}" role="button">Create team</a>
                 </div>
             </div>
-            <div class="col ">
-                <div class="box equal-box weather-box">
+
+
+            <!-- Right Box: Your area -->
+            <div class="col-md-6 col-sm-6">
+                <div class="box-area equal-box weather-box align-items-center">
                     <b>All Your teams </b>
-                    <ul class='list-group' >
+                    <ul class='list-group list-scroll' >
                         {% for team in teams %}
                             {% if user in team.team_user.all or user == team.moderator %}
                                 <li class="list-group-item nobackround">
-                                    {{ team.name|upper }} - moderator: {{ team.moderator|upper }}
+                                    <b>{{ team.name|upper }}</b>
+                                    <p>Moderator: {{ team.moderator|upper }}</p>
                                 </li>
                             {% endif %}
                         {% endfor %}
@@ -37,5 +43,8 @@
         </div>
     </div>
 </body>
+
+
+    <body>
 
 {% endblock %}
