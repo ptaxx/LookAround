@@ -6,7 +6,7 @@
 <div class='box'>
     <b>Venue</b>
     <br>
-    <a class="list-group-ite" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
+    <a a class="btn btn-outline-success me-2 pull-left" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
 </div>
 
 <div class='box'>
@@ -28,7 +28,7 @@
     {% elif user.is_authenticated and not user_has_activity %}
         You have completed the task!   
     {% else %}
-        <a href={% url "login" %}>Login</a> to play the game
+        <a a class="btn btn-outline-success me-2 pull-left" href={% url "login" %}>Login</a> to play the game
     {% endif %}
 
     </div>
