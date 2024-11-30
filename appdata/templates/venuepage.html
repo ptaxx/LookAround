@@ -20,7 +20,7 @@
                         {% endif %}
                         <br>
                         {% if user == venue.contact %}
-                            <a class="btn btn-success center-button" href="{% url 'createactivity' %}" role="button">Create Activity</a>
+                            <a class="btn btn-success center-button" style="width: 140px; margin: auto;" href="{% url 'createactivity' %}" role="button">Create Activity</a>
                         {% endif %}
                     </li>
                 </div>
@@ -29,9 +29,6 @@
                 <b>Description</b>
                 <br>
                 {{venue.description}}
-                <br>
-                Location: {{venue.location}}
-                <br></br>
             </div>
             <div class="box equal-box weather-box">
                     <b>Contact</b><br>

@@ -63,6 +63,22 @@ class AreaPageView(View):
             'venues': venues
             }
         return render(request, 'areapage.html', context)
+    def post(self, request, *args, **kwargs):
+        area = Area.objects.get(id=kwargs.get('pk'))
+        venues = Venue.objects.filter(area=area)
+        area_id = area.weather_id
+        weather_data = get_weather_data(area_id)
+        context = {
+            'area': area, 
+            'weather_data': weather_data,
+            'venues': venues
+            }
+        if 'set_area' in request.POST:
+            area = Area.objects.get(id=kwargs.get('pk'))
+            profile = request.user
+            profile.current_area = area
+            profile.save()
+            return render(request, 'areapage.html', context)
     
 
 class VenuePageView(View):
