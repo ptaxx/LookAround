@@ -116,7 +116,7 @@
                     <b>Players in this game</b>
                     <ul>
                         {% for entry in scoreboards %}
-                            <li>{{ entry.user.username }} - {{ entry.points}} points. {{entry.position}}</li>
+                            <li>{{ entry.user.username }} - {{ entry.points}} points. {% if entry.position %}{{entry.position}}{% endif %}</li>
                         {% endfor %}
                     </ul>
                 </div>

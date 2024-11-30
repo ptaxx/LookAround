@@ -36,7 +36,7 @@
                         <li><a class="link-success" href={% url 'venuepage' venue.pk %}>{{ venue }}</li>
                         {% endfor %}
                     </ul>
-                    {% if user.is_authenticated and user.current_area != area %}
+                    {% if user.is_authenticated and not user.isplayer %}
                         <a class="btn btn-success center-button" style="width:140px; margin:auto" href="{% url 'createvenue' %}" role="button">Create Venue</a>
                     {% endif %}
                 </div>
