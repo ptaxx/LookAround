@@ -227,16 +227,16 @@ class GameEntryView(FormView):
     template_name = 'creategame.html'
     success_url = '/'
     def form_valid(self, form):
-        game = Game.objects.create(
+        self.game = Game.objects.create(
             area=form.cleaned_data.get('area'),
             starting_time=form.cleaned_data.get('starting_time'),
             finishing_time=form.cleaned_data.get('finishing_time'),
             availability=form.cleaned_data.get('availability'),
             )
         for player in form.cleaned_data['players']:
-            game.players.add(player)
+            self.game.players.add(player)
         for team in form.cleaned_data['teams']:
-                game.teams.add(team)
+                self.game.teams.add(team)
         
         venues = Venue.objects.filter(area=form.cleaned_data.get('area'))
         if len(venues) < 9:
