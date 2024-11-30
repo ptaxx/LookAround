@@ -9,7 +9,7 @@
             <div class="box equal-box weather-box">
                     <b>Weather for   {{ weather_data.city }}   </b>
                     {% if weather_data %}
-                        <p style="margin: auto">Temperature: {{ weather_data.temperature }}</p>
+                        <p style="margin: auto">Temperature: {{ weather_data.temperature }}&deg;C</p>
                         <p style="margin: auto">Humidity: {{ weather_data.humidity }}%</p>
                         <p style="margin: auto">Wind Speed: {{ weather_data.wind }} m/s</p>
                     {% else %}

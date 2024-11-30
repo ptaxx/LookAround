@@ -1,10 +1,11 @@
 from datetime import datetime
 import requests
 from django.utils import timezone
+from decouple import config
 
 
 def get_weather_data(area_id):
-    url = f"http://api.openweathermap.org/data/2.5/weather?id={area_id}&appid=6fa3a061f537db1e424bfc7a15780d0d&units=metric"
+    url = f"http://api.openweathermap.org/data/2.5/weather?id={area_id}&appid={config('API_KEY')}&units=metric"
     
     try:
         response = requests.get(url)
