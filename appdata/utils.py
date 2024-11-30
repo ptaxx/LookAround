@@ -2,6 +2,7 @@ from datetime import datetime
 import requests
 from django.utils import timezone
 from decouple import config
+from .models import ActivityCheck
 
 
 def get_weather_data(area_id):
@@ -54,3 +55,16 @@ def countdown_timer(date_time):
             'seconds': seconds,
         }
     return time_data
+
+
+def user_activity_check(user, activity):
+    if user.is_authenticated:
+        activitycheck = ActivityCheck.objects.filter(
+            activity=activity,
+            user=user
+        )
+        # Check if any entry has is_active = True
+        user_has_activity = any(entry.is_active for entry in activitycheck)
+    else:
+        user_has_activity = False
+    return user_has_activity

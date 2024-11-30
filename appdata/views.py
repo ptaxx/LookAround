@@ -26,7 +26,7 @@ from appdata.models import (
 from django.template import loader
 from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .utils import get_weather_data, countdown_timer
+from .utils import get_weather_data, countdown_timer, user_activity_check
 from django.utils import timezone
 
 
@@ -92,43 +92,18 @@ class ActivityView(View):
     def get(self, request, *args, **kwargs):
         activity = Activity.objects.get(id=kwargs.get('pk'))
         form = PasscodeForm()
-        user_has_activity = False
         user = request.user
-        if user.is_authenticated:
-            activitycheck = ActivityCheck.objects.filter(
-                activity=activity,
-                user=user,
-                )
-            for entry in activitycheck:
-                if entry.is_active:
-                    user_has_activity = True
-                else:
-                    user_has_activity = False
-        else:
-            activitycheck = None
+        user_has_activity = user_activity_check(user, activity)
         context = {
             'activity': activity, 
             'form': form,
-            'activitycheck': activitycheck,
             'user_has_activity': user_has_activity,
             }
         return render(request, 'activitypage.html', context)
     def post(self, request, *args, **kwargs):
         activity = Activity.objects.get(id=kwargs.get('pk'))
-        user_has_activity = False
         user = request.user
-        if user.is_authenticated:
-            activitycheck = ActivityCheck.objects.filter(
-                activity=activity,
-                user=user
-                )
-            for entry in activitycheck:
-                if entry.is_active:
-                    user_has_activity = True
-                else:
-                    user_has_activity = False
-        else:
-            activitycheck = None
+        user_has_activity = user_activity_check(user, activity)
         form = PasscodeForm(request.POST)
         if form.is_valid():
             passcode = form.cleaned_data['passcode']
@@ -172,7 +147,6 @@ class ActivityView(View):
         context = {
             'activity': activity, 
             'form': form,
-            'activitycheck': activitycheck,
             'user_has_activity': user_has_activity,
             }
         return render(request, 'activitypage.html', context)
@@ -253,16 +227,16 @@ class GameEntryView(FormView):
     template_name = 'creategame.html'
     success_url = '/'
     def form_valid(self, form):
-        game = Game.objects.create(
+        self.game = Game.objects.create(
             area=form.cleaned_data.get('area'),
             starting_time=form.cleaned_data.get('starting_time'),
             finishing_time=form.cleaned_data.get('finishing_time'),
             availability=form.cleaned_data.get('availability'),
             )
         for player in form.cleaned_data['players']:
-            game.players.add(player)
+            self.game.players.add(player)
         for team in form.cleaned_data['teams']:
-                game.teams.add(team)
+                self.game.teams.add(team)
         
         venues = Venue.objects.filter(area=form.cleaned_data.get('area'))
         if len(venues) < 9:
