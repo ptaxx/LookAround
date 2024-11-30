@@ -4,7 +4,7 @@
 
 {% block content %}
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row gx-0 gy-0">
             <div class="box equal-box weather-box">
                 <img class="profile-picture"  src="{{ user.userpic.url }}" alt="">
@@ -22,7 +22,7 @@
             </div>
             <div class="box equal-box weather-box">
                 <b>All Your games </b>
-                <ul class='list-group' >
+                <ul class='list-group list-scroll' >
                     {% for game in games %}
                         {% if user in game.players.all  %}
                             <li class="list-group-item nobackround">
@@ -33,18 +33,20 @@
                 </ul>
             </div>
         </div>
-        <div class="box equal-box weather-box">
-            <ul class='list-group' >
-                {% for team in teams %}
-                    {% if user in team.team_user.all or user == team.moderator %}
-                        <li class="list-group-item nobackround">
-                            {{ team.name|upper }} - moderator: {{ team.moderator|upper }}
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-
+            <div class="row gx-0 gy-0">
+                    <div class="box equal-box weather-box">
+                        <ul class='list-group list-scroll' >
+                            {% for team in teams %}
+                                {% if user in team.team_user.all or user == team.moderator %}
+                                    <li class="list-group-item nobackround">
+                                        <b>{{ team.name|upper }}</b>
+                                        <p>Moderator: {{ team.moderator|upper }}</p>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+            </div>
     </div>
 </body>
 

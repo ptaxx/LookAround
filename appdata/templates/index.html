@@ -32,7 +32,7 @@
             </div>
             <div class='box equal-box weather-box'>
                 <b> Available ongoing games</b>
-                    <ul class='list-group '>
+                    <ul class='list-group list-scroll'>
                         {% for game in games|slice:"5"  %}
                             <li class="list-group-item nobackround">
                                 <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }} </a>
