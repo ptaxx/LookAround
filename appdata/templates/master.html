@@ -16,15 +16,16 @@
 <body class="d-flex flex-column min-vh-100 p-3 m-0 border-0">
     {% block body %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand logo-shift" href="{% url 'index' %}">
-                <img src="{% static 'images/logo.png' %}" alt="LOOKAROUND" width="60" height="40">LOOKAROUND
+        <div class="container-fluid d-flex align-items-center">
+            <a class="navbar-brand logo-shift d-flex align-items-center" href="{% url 'index' %}">
+                <img src="{% static 'images/logo.png' %}" alt="LOOKAROUND" width="70" height="40">
             </a>
+            <div class="navbar-brand logo-shift d-flex align-items-center">LOOKAROUND</div>
             {% if user.is_authenticated %}
-                <span class="navbar-brand">{{ user.username|upper }}</span>
+                <span class="navbar-brand ms-3 d-flex align-items-center">{{ user.username|upper }}</span>
             {% endif %}
 
-            <div class="d-flex">
+            <div class="d-flex ms-auto align-items-center">
                 {% if user.is_authenticated %}
                     <form action="{% url 'logout' %}" method="post" class="d-flex">
                         {% csrf_token %}
