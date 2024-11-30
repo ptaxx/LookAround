@@ -274,7 +274,7 @@ div {
   padding: 1%;
   text-align: center;
   box-sizing: content-box;
-    width: fit-content( max(300px, 100px));
+    width: fit-content;
   /*background-color: rgb(244, 236, 236);*/
   /*padding: 20px;*/
   /*margin: 0;*/
@@ -283,6 +283,20 @@ div {
 
 }
 
+.box-area {
+    background-color: rgb(244, 236, 236);
+  float: none;
+  overflow: auto;
+  border: 6px solid rgba(128, 111, 0, 0.09);
+  margin: 20px;
+  padding: 1%;
+  text-align: center;
+  box-sizing: content-box;
+    width: fit-content( max(300px, 100px));
+    border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
 
 .profile-picture{
   /* width: 100%; Make it take up the full width of the container */
