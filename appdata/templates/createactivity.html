@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <div class='box' style='margin: auto;'>
+    <div class="box equal-box weather-box" style='margin: auto;'>
         <form action="" method="post" novalidate enctype='multipart/form-data'>
         {% csrf_token %}
             {% for fm in form %}

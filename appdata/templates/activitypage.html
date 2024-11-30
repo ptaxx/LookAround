@@ -8,7 +8,7 @@
             <div class="box equal-box weather-box">
                 <b>Venue</b>
                 <br>
-                <a a class="btn btn-outline-success me-2 pull-left" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
+                <a class="btn btn-outline-success me-2 pull-left" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
 
             </div>
                 <div class="box equal-box weather-box">
@@ -30,11 +30,11 @@
                                 {% csrf_token %}
                                 {{ form.passcode.label_tag }}
                                 {{ form.passcode }}
-                                <button type="submit" class="btn btn-success center-button">Submit</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
                             {% elif user.is_authenticated and not user_has_activity %}
                                 You have completed the task!
                             {% else %}
-                                <a a class="btn btn-outline-success me-2 pull-left" href={% url "login" %}>Login</a> to play the game
+                                <a class="btn btn-outline-success me-2 pull-left" href={% url "login" %}>Login</a> to play the game
                             {% endif %}
                         </div>
                     </form>
