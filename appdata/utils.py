@@ -42,7 +42,7 @@ def countdown_timer(date_time):
             'seconds': seconds,
         }
     else:
-        time_remaining = date_time - now
+        time_remaining = now - date_time
         hours = time_remaining.seconds // 3600
         minutes = (time_remaining.seconds % 3600) // 60
         seconds = time_remaining.seconds % 60

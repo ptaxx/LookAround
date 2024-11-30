@@ -45,25 +45,25 @@
             <!-- Third Column: Weather API, Players, and Teams (Right) -->
             <div class="col-md-4">
                 <!-- Weather API Box -->
-                <div class="box equal-box weather-box">
-                    <b>Weather for   {{ weather_data.city }}   </b>
+                <div class="box equal-box weather-box" style="width: 400px;">
+                    <b>Weather for {{ weather_data.city }}</b>
                     {% if weather_data %}
-                        <p>Temperature: {{ weather_data.temperature }}&deg;C</p>
-                        <p>Humidity: {{ weather_data.humidity }}%</p>
-                        <p>Wind Speed: {{ weather_data.wind }} m/s</p>
+                        <p style="margin: auto" align="left">Temperature: {{ weather_data.temperature }}&deg;C</p>
+                        <p style="margin: auto" align="left">Humidity: {{ weather_data.humidity }}%</p>
+                        <p style="margin: auto" align="left">Wind Speed: {{ weather_data.wind }} m/s</p>
                     {% else %}
-                        <p>Unable to fetch weather data. Please try again later.</p>
+                        <p style="margin: auto">Unable to fetch weather data. Please try again later.</p>
                     {% endif %}
                 </div>
 
-                <div id="countdown" class="box equal-box players-box" style="font-size: 40px;">
+                <div id="countdown" class="box equal-box players-box" style="font-size: 40px; width: 400px;">
                     {% if time_data.game_started %}
                         <b>Game played for</b>
                     {% else %}
                         <b>Game starts in</b>
                     {% endif %}
-                    <p id="timer" style="font-size: 32px;">
-                        {{ time_data.hours }}h {{ time_data.minutes }}m {{ time_data.seconds }}s
+                    <p id="timer" style="font-size: 32px;" align="left">
+                                 {{ time_data.hours }}h {{ time_data.minutes }}m {{ time_data.seconds }}s
                     </p>
                 </div>
 
@@ -113,8 +113,7 @@
                     }
                 
                     var timerInterval = setInterval(updateTimer, 1000);
-                </script>
-                
+                </script>             
                 
                 <!-- Players Box -->
                 <div class="box equal-box players-box">

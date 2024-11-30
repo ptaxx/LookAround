@@ -166,6 +166,7 @@ class ActivityView(View):
                                 else:
                                     scoreboard.position = '1st place'
                                     scoreboard.save()
+                return redirect(request.path)
             else:
                 messages.error(request, 'Incorrect passcode. Please try again.')
         context = {
