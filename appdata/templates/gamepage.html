@@ -113,7 +113,7 @@
                 
                 <!-- Players Box -->
                 <div class="box equal-box players-box">
-                    <b>Players in this game</b>
+                    <b>Players in this Game</b>
                     <ul>
                         {% for entry in scoreboards %}
                             <li>{{ entry.user.username }} - {{ entry.points}} points. {% if entry.position %}{{entry.position}}{% endif %}</li>
