@@ -1,7 +1,4 @@
-/* Reset margin and padding for body and html to avoid spacing issues */
-.singlebox {
-    width: max-content;
-}
+
 
 html, body {
     margin: 0;
@@ -31,22 +28,21 @@ html, body {
 }
 
 /* Bingo Game Box */
-.box {
-    background-color: rgb(244, 236, 236);
-    padding: 20px;
-    margin: 0;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/*.box {*/
 
-}
+
+/*}*/
 
 /* Bingo Grid Layout */
 .bingo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-    max-width: 100%;
     margin: 0 auto;
+    /*grid-template-columns: repeat(3, 1fr);*/
+    gap: 10px;
+    max-width: 80%;
+    padding: 5px;
+
 }
 
 .bingo-cell {
@@ -60,6 +56,9 @@ html, body {
     cursor: pointer;
     text-align: center;
     overflow: hidden;
+    padding: 0;
+    margin: 2px;
+
 }
 
 .bingo-cell a {
@@ -72,11 +71,30 @@ html, body {
     height: 100%;
 }
 
+.bingo-cell a span {
+  display: block;
+  width: 100%;
+  height: auto;
+  line-height: 1;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.bingo-cell:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px #a9edf7, 0 0 25px #b2e8fb;
+}
+
 /* Button Box (Below Bingo Game) */
 .button-box {
+    text-transform: capitalize;
     padding-top: 10px;
-    padding-bottom: 50px;  /* Space between the button and footer */
-    width: 100%;
+    padding-bottom: 50px;
+    margin: 20px;
+    width: max-content;
     text-align: center;  /* Center the button */
 }
 
@@ -87,18 +105,27 @@ html, body {
 }
 
 /* Equal Height Boxes for Weather, Players, Teams */
+gamepage-sized-box {
+    width: 300px;
+    height: 400px;
+
+}
+
 .equal-box {
     height: 100%;
     display: flex;
     flex-direction: column;
+    width: 300px;
 }
 
 .weather-box, .players-box, .teams-box {
     margin-bottom: 10px;
+
 }
 
 .weather-box {
     flex-grow: 1;
+
 }
 
 .players-box {
@@ -110,12 +137,12 @@ html, body {
 }
 
 /* Footer space below the button */
-.button-box {
-    margin-bottom: 50px;
-}
+/*.button-box {*/
+/*    margin-bottom: 50px;*/
+/*}*/
 
 .singlebox {
-    width: max-content;
+    width: 250px;
 }
 
 /* Responsive layout adjustments */
@@ -138,23 +165,28 @@ html, body {
   background: none;
 }
 
-.logo-shift {
-  margin-left: 3px;
+.logo-shift-left {
+  margin-left: 15px;
 }
+
+.logo-shift-right {
+    margin-right: 15px;
+}
+
 /* Default link color for closed hamburger menu */
 .navbar-nav .nav-link {
     color: black; /* Black color when the menu is closed */
     transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
-/* Link color when the offcanvas menu is open */
+
 .offcanvas.show .navbar-nav .nav-link {
-    color: white; /* White color when the menu is open */
+    color: white;
 }
 
-/* Hover effect on links */
+
 .navbar-nav .nav-link:hover {
-    color: #f8f9fa; /* Light color when hovered */
+    color: #f8f9fa;
 }
 
 .navbar .nav-link {
@@ -166,7 +198,7 @@ html, body {
 }
 
 .footer {
-  background-color: #f8f9fa; /* Light background for footer */
+  background-color: #f8f9fa;
   padding: 10px 0;
   margin-top: auto;
   border-top: 1px solid #dee2e6;
@@ -182,130 +214,72 @@ html, body {
 .footer-nav a {
   margin-right: 15px;
 }
-html, body {
-  height: 100%; /* Make sure the body takes the full viewport height */
-  margin: 0; /* Remove default margin */
+
+/*.content-wrapper {*/
+/*  min-height: 100%;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*}*/
+.time-clock{
+    margin: auto;
+
+}
+b {
+    font-weight: bold;
+    text-decoration: none;
+    margin: auto;
+    font-size: 22px;
 }
 
-h1 {
-  font-size: 2rem;
-  margin: 5px auto;
-  color: whitesmoke;
-  text-align: center;
-}
-
-.content-wrapper {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-    flex-grow: 1; /* Makes the main content take up available space */
-}
-
-.main-content {
-  flex: 1;
-}
-
-/*teamspage button create game*/
-.parent-container {
-  display: flex;
-  justify-content: center; /* Horizontally center the button */
-  align-items: center;     /* Vertically center the button */
-  height: 10vh; /* Optional: makes the parent container fill the entire viewport height */
-}
-
-.center-button {
-  padding: 3px 20px; /* Optional: add padding to the button */
-  font-size: 16px;
-  display: flex/* Optional: adjust font size */
-}
-
-.center button{
-  width: fit-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  left: 50%;
-  border: 2px;
-  border-radius: 5px;
-  position: absolute;
-}
-.contactpage li{
-  display: inline-block;
-  font-size: 16px;
-}
 
 p {
   font-size: 16px;
-    width: 1200px;
+    margin: auto
 }
 
 body {
   height: 100%;
-  font-size: 22px;
-  vertical-align: baseline;
-  text-decoration: none;
-  word-spacing: normal;
-  margin: 0;
+    padding: 0;
+  margin:0;
   display: flex;
   flex-direction: column; /* Makes body span the full viewport height */
   min-height: 100vh; /* Makes body span the full viewport height */
   background-color: #003366;
+  /*  background-image: url('../images/backpitcure.jpg'); !* Adjust relative path as necessary *!*/
+  /*  background-size: cover;*/
+  /*  background-repeat: no-repeat;*/
+  /*  background-position: center;*/
+
 
 }
 
 
 
+/*.game {*/
+/*  flex: 1 1 60%; !* Game takes 60% of the container width *!*/
+/*  width: max-content;*/
+/*  height: max-content;*/
+/*  !* Minimum width for Game section *!*/
+/*}*/
 
-.game_rules{
-  font-size: 18px;
-  vertical-align: baseline;
-  text-decoration: none;
-  word-spacing: normal;
-  text-align: right;
-  text-align-last: justify;
-  box-sizing: content-box;
-}
+/*.game-info {*/
+/*  flex: 1 1 60%; !* Info (Players and Teams) takes 35% of the container *!*/
+/*  min-width: 300px; !* Minimum width for Info section *!*/
+/*  display: flex;*/
+/*  flex-direction: column; !* Stack Players and Teams vertically *!*/
+/*  gap: 20px; !* Add spacing between Players and Teams *!*/
+/*}*/
 
-.container_container {
-  display: flex; /* Use Flexbox for layout */
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
-  justify-content: space-between; /* Add spacing between items */
-  align-items: flex-start; /* Align items at the top */
-  gap: 20px; /* Add spacing between items */
-  margin: 20px auto; /* Center container horizontally */
-  max-width: 1200px; /* Set a max-width for consistent layout */
-}
+/*@media screen and (max-width: 768px) {*/
+/*  .game_container {*/
+/*    flex-direction: column; !* Stack Game and Info vertically *!*/
 
-.game {
-  flex: 1 1 60%; /* Game takes 60% of the container width */
-  width: max-content;
-  height: max-content;
-  /* Minimum width for Game section */
-}
+/*  }*/
+/*  .game, .game-info {*/
+/*    flex: 1 1 100%; !* Take up the full width *!*/
 
-.game-info {
-  flex: 1 1 60%; /* Info (Players and Teams) takes 35% of the container */
-  min-width: 300px; /* Minimum width for Info section */
-  display: flex;
-  flex-direction: column; /* Stack Players and Teams vertically */
-  gap: 20px; /* Add spacing between Players and Teams */
-}
-
-@media screen and (max-width: 768px) {
-  .game_container {
-    flex-direction: column; /* Stack Game and Info vertically */
-
-  }
-  .game, .game-info {
-    flex: 1 1 100%; /* Take up the full width */
-
-  }
-}
+/*  }*/
+/*}*/
 
 div {
   display: block;
@@ -325,73 +299,61 @@ div {
   block-size: auto;
   height: max-content;
   width: max-content;
+  /*background-color: rgb(244, 236, 236);*/
+  /*padding: 20px;*/
+  /*margin: 0;*/
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-
-
-  border-radius: 15px; /* Rounds the edges */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
 }
 
-.box ul {
-  list-style-type: none; /* Remove bullet points */
-  padding: 0; /* Remove default padding */
-  margin: 0; /* Remove default margin */
-}
-.bingo-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  max-width: 80%;
-  margin: 0 auto;
-  padding: 5px;
-}
+
+
+  /*border-radius: 15px; !* Rounds the edges *!*/
+  /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); !* Adds a subtle shadow *!*/
+  /*transition transform 0.3s ease, box-shadow 0.3s ease; !* Smooth hover effect *!*/
+
+
+/*.box ul {*/
+/*  list-style-type: none; !* Remove bullet points *!*/
+/*  padding: 0; !* Remove default padding *!*/
+/*  margin: 0; !* Remove default margin *!*/
+/*}*/
+/*.bingo-grid {*/
+  /*display: grid;*/
+  /*grid-template-columns: repeat(3, 1fr);*/
+  /*gap: 10px;*/
+  /*max-width: 80%;*/
+  /*margin: 0 auto;*/
+  /*padding: 5px;*/
+
 
 .bingo-cell {
-  aspect-ratio: 1 / 1;
-  background-color: rgb(96, 31, 31);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: 2px solid #02092f;
-  text-align: center;
-  overflow: hidden;
-  padding: 0;
-  margin: 2px;
+  /*aspect-ratio: 1 / 1;*/
+  /*background-color: rgb(96, 31, 31);*/
+  /*color: white;*/
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  /*cursor: pointer;*/
+  /*border: 2px solid #02092f;*/
+  /*text-align: center;*/
+  /*overflow: hidden;*/
+  /*padding: 0;*/
+  /*margin: 2px;*/
 }
 
 .bingo-cell a {
-  color: inherit;
-  text-decoration: none;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /*color: inherit;*/
+  /*text-decoration: none;*/
+  /*width: 100%;*/
+  /*height: 100%;*/
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
 }
 
-.bingo-cell a span {
-  display: block;
-  width: 100%;
-  height: auto;
-  font-size: calc(0.5em + 0.5vw); /* Dynamically resize text */
-    text-overflow: ellipsis; /* Add ellipsis for overflow */
-  font-size: clamp(0.2rem, 0.5vw, 1.2rem);
-  line-height: 1;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  text-align: center;
-  text-overflow: ellipsis;
-  margin: 0;
-  padding: 0;
-}
 
-.bingo-cell:hover {
-  transform: scale(1.2);
-  box-shadow: 0 0 10px #a9edf7, 0 0 25px #b2e8fb;
-}
 
 .profile-picture{
   /* width: 100%; Make it take up the full width of the container */
@@ -411,76 +373,75 @@ div {
   object-fit: cover;
 }
 
-.profile-container{
-  width: 90%;
-  margin: 0 auto;
-  margin: 0 auto;
-  text-align: center;
-}
+/*.profile-container{*/
+/*  width: 90%;*/
+/*  margin: 0 auto;*/
+/*  text-align: center;*/
+/*}*/
 
-.profile-header{
-  display: flex;
-  flex-wrap: wrap; /* Allow the text and profile picture to wrap */
-  justify-content: left;
-  align-items: center;
-  margin-bottom: 15px;
-  font-size: 1.8rem; /* Adjusted font size for better readability */
-  text-align: left;
-}
-.profile-header h1 {
-  margin: 0; /* Ensure the heading doesn't add extra space */
-}
+/*.profile-header{*/
+/*  display: flex;*/
+/*  flex-wrap: wrap; !* Allow the text and profile picture to wrap *!*/
+/*  justify-content: left;*/
+/*  align-items: center;*/
+/*  margin-bottom: 15px;*/
+/*  font-size: 1.8rem; !* Adjusted font size for better readability *!*/
+/*  text-align: left;*/
+/*}*/
+/*.profile-header h1 {*/
+/*  margin: 0; !* Ensure the heading doesn't add extra space *!*/
+/*}*/
 
-.statistics-container{
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 2%;
-  margin-top: 5%;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 30, 31, 0.1);
-  font-size: 1.9rem;
-}
+/*.statistics-container{*/
+/*  border: 2px solid #ccc;*/
+/*  border-radius: 10px;*/
+/*  padding: 2%;*/
+/*  margin-top: 5%;*/
+/*  background-color: #f9f9f9;*/
+/*  box-shadow: 0 4px 6px rgba(0, 30, 31, 0.1);*/
+/*  font-size: 1.9rem;*/
+/*}*/
 
 
-.statistics-container ul {
-  list-style-type: none; /* Remove bullet points */
-  padding: 0;
-  margin: 0;
-}
+/*.statistics-container ul {*/
+/*  list-style-type: none; !* Remove bullet points *!*/
+/*  padding: 0;*/
+/*  margin: 0;*/
+/*}*/
 
-.statistics-container li {
-  margin: 15px 0;
-  font-size: 1.9rem;
-}
+/*.statistics-container li {*/
+/*  margin: 15px 0;*/
+/*  font-size: 1.9rem;*/
+/*}*/
 
 
 /* Mobile Responsiveness */
-@media screen and (max-width: 600px) {
-  .profile-header {
-    font-size: 1.4rem; /* Further decrease font size */
-    flex-direction: column; /* Stack profile picture and text vertically */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 20px; /* Adjust margin for mobile */
-  }
+/*@media screen and (max-width: 600px) {*/
+/*  .profile-header {*/
+/*    font-size: 1.4rem; !* Further decrease font size *!*/
+/*    flex-direction: column; !* Stack profile picture and text vertically *!*/
+/*    align-items: center; !* Center items vertically *!*/
+/*    margin-bottom: 20px; !* Adjust margin for mobile *!*/
+/*  }*/
 
-  .profile-picture {
-    width: 100px; /* Smaller profile picture */
-    height: 100px; /* Smaller profile picture */
-  }
+/*  .profile-picture {*/
+/*    width: 100px; !* Smaller profile picture *!*/
+/*    height: 100px; !* Smaller profile picture *!*/
+/*  }*/
 
-  .profile-container {
-    width: 95%; /* Make profile container take up more space */
-  }
+/*  .profile-container {*/
+/*    width: 95%; !* Make profile container take up more space *!*/
+/*  }*/
 
-  .statistics-container {
-    padding: 5%; /* More padding for smaller screens */
-    font-size: 1.5rem; /* Adjust font size */
-  }
+/*  .statistics-container {*/
+/*    padding: 5%; !* More padding for smaller screens *!*/
+/*    font-size: 1.5rem; !* Adjust font size *!*/
+/*  }*/
 
-  .statistics-container ul {
-    padding-left: 20px; /* Add some left padding for the list */
-  }
-}
+/*  .statistics-container ul {*/
+/*    padding-left: 20px; !* Add some left padding for the list *!*/
+/*  }*/
+/*}*/
 
 
 

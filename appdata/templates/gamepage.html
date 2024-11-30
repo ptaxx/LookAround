@@ -48,9 +48,9 @@
                 <div class="box equal-box weather-box" style="width: 400px;">
                     <b>Weather for {{ weather_data.city }}</b>
                     {% if weather_data %}
-                        <p style="margin: auto" align="left">Temperature: {{ weather_data.temperature }}&deg;C</p>
-                        <p style="margin: auto" align="left">Humidity: {{ weather_data.humidity }}%</p>
-                        <p style="margin: auto" align="left">Wind Speed: {{ weather_data.wind }} m/s</p>
+                        <p align="left">Temperature: {{ weather_data.temperature }}&deg;C</p>
+                        <p align="left">Humidity: {{ weather_data.humidity }}%</p>
+                        <p align="left">Wind Speed: {{ weather_data.wind }} m/s</p>
                     {% else %}
                         <p style="margin: auto">Unable to fetch weather data. Please try again later.</p>
                     {% endif %}
@@ -62,7 +62,7 @@
                     {% else %}
                         <b>Game starts in</b>
                     {% endif %}
-                    <p id="timer" style="font-size: 32px;" align="left">
+                    <p class="time-clock" id="timer" style="font-size: 32px;" align="left">
                                  {{ time_data.hours }}h {{ time_data.minutes }}m {{ time_data.seconds }}s
                     </p>
                 </div>
