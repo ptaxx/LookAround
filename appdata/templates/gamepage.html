@@ -8,34 +8,30 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row gx-0 gy-0"> <!-- Remove grid gaps -->
-            <!-- First Column: Bingo Game + Button (Left) -->
+        <div class="row gx-0 gy-0">
             <div class="col-md-8">
-                <!-- Bingo Game Box -->
                 <div class="box bingo-box">
                     <div class="bingo-grid">
                         {% for activity in activities|slice:":9" %}
                             <div class="bingo-cell">
                                 <a href="{% url 'activitypage' activity.id %}">
-                                    {{ activity.short_description }}
+                                    {{ activity.short_description|wordwrap:20 }}
                                 </a>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
-
-                <!-- Button Box (Below Bingo Game) -->
                 <div class="button-box">
                     {% if user.is_authenticated %}
                         {% if user in players %}
                             <form method="post" action="{% url 'leave_game' game.id %}">
                                 {% csrf_token %}
-                                <button type='submit' class="btn btn-danger center-button">Leave game</button>
+                                <button type='submit' class="btn btn-danger center-button">Leave Game</button>
                             </form>
                         {% else %}
                             <form method="post" action="{% url 'join_game' game.id %}">
                                 {% csrf_token %}
-                                <button type='submit' class="btn btn-success center-button">Join game</button>
+                                <button type='submit' class="btn btn-success center-button">Join Game</button>
                             </form>
                         {% endif %}
                         {% endif %}

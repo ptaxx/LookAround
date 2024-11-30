@@ -1,4 +1,8 @@
 
+gamespagebox {
+    min-height: 400px
+}
+
 
 html, body {
     margin: 0;
@@ -11,8 +15,26 @@ html, body {
 .container-fluid {
     margin: 0 auto;
     padding: 0;
+    margin-top: 20px;
+}
+.list-scroll {
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Add vertical scrolling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
 }
 
+.list-group-item.nobackround {
+    background: none; /* No background */
+    border: none; /* No border */
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+    .col-md-3, .col-md-9 {
+        margin-bottom: 20px; /* Add spacing between rows on small screens */
+    }
+}
 /* Row with no gaps between columns */
 .row {
     display: flex;
@@ -27,13 +49,6 @@ html, body {
     align-items: flex-start; /* Align Bingo and Button at the top */
 }
 
-/* Bingo Game Box */
-/*.box {*/
-
-
-/*}*/
-
-/* Bingo Grid Layout */
 .bingo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -88,10 +103,10 @@ html, body {
   box-shadow: 0 0 10px #a9edf7, 0 0 25px #b2e8fb;
 }
 
-/* Button Box (Below Bingo Game) */
+
 .button-box {
     text-transform: capitalize;
-    padding-top: 10px;
+    padding-top: 15px;
     padding-bottom: 50px;
     margin: 20px;
     width: max-content;
@@ -105,21 +120,19 @@ html, body {
 }
 
 /* Equal Height Boxes for Weather, Players, Teams */
-gamepage-sized-box {
-    width: 300px;
-    height: 400px;
 
-}
 
 .equal-box {
     height: 100%;
     display: flex;
     flex-direction: column;
-    width: 300px;
+    justify-content: center;
+
 }
 
 .weather-box, .players-box, .teams-box {
     margin-bottom: 10px;
+    width: 300px;
 
 }
 
@@ -134,15 +147,6 @@ gamepage-sized-box {
 
 .teams-box {
     flex-grow: 1;
-}
-
-/* Footer space below the button */
-/*.button-box {*/
-/*    margin-bottom: 50px;*/
-/*}*/
-
-.singlebox {
-    width: 250px;
 }
 
 /* Responsive layout adjustments */
@@ -215,11 +219,6 @@ gamepage-sized-box {
   margin-right: 15px;
 }
 
-/*.content-wrapper {*/
-/*  min-height: 100%;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*}*/
 .time-clock{
     margin: auto;
 
@@ -245,41 +244,11 @@ body {
   flex-direction: column; /* Makes body span the full viewport height */
   min-height: 100vh; /* Makes body span the full viewport height */
   background-color: #003366;
-  /*  background-image: url('../images/backpitcure.jpg'); !* Adjust relative path as necessary *!*/
-  /*  background-size: cover;*/
-  /*  background-repeat: no-repeat;*/
-  /*  background-position: center;*/
-
-
+    /*background-image: url('../images/backpitcure.jpg'); !* Adjust relative path as necessary *!*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
 }
-
-
-
-/*.game {*/
-/*  flex: 1 1 60%; !* Game takes 60% of the container width *!*/
-/*  width: max-content;*/
-/*  height: max-content;*/
-/*  !* Minimum width for Game section *!*/
-/*}*/
-
-/*.game-info {*/
-/*  flex: 1 1 60%; !* Info (Players and Teams) takes 35% of the container *!*/
-/*  min-width: 300px; !* Minimum width for Info section *!*/
-/*  display: flex;*/
-/*  flex-direction: column; !* Stack Players and Teams vertically *!*/
-/*  gap: 20px; !* Add spacing between Players and Teams *!*/
-/*}*/
-
-/*@media screen and (max-width: 768px) {*/
-/*  .game_container {*/
-/*    flex-direction: column; !* Stack Game and Info vertically *!*/
-
-/*  }*/
-/*  .game, .game-info {*/
-/*    flex: 1 1 100%; !* Take up the full width *!*/
-
-/*  }*/
-/*}*/
 
 div {
   display: block;
@@ -287,18 +256,18 @@ div {
   object-fit: fill;
 }
 
+
+
 .box {
   background-color: rgb(244, 236, 236);
   float: none;
-  overflow: hidden;
+  overflow: auto;
   border: 6px solid rgba(128, 111, 0, 0.09);
   margin: 20px;
   padding: 1%;
   text-align: center;
   box-sizing: content-box;
-  block-size: auto;
-  height: max-content;
-  width: max-content;
+    width: fit-content( max(300px, 100px));
   /*background-color: rgb(244, 236, 236);*/
   /*padding: 20px;*/
   /*margin: 0;*/
@@ -306,53 +275,6 @@ div {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 }
-
-
-
-  /*border-radius: 15px; !* Rounds the edges *!*/
-  /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); !* Adds a subtle shadow *!*/
-  /*transition transform 0.3s ease, box-shadow 0.3s ease; !* Smooth hover effect *!*/
-
-
-/*.box ul {*/
-/*  list-style-type: none; !* Remove bullet points *!*/
-/*  padding: 0; !* Remove default padding *!*/
-/*  margin: 0; !* Remove default margin *!*/
-/*}*/
-/*.bingo-grid {*/
-  /*display: grid;*/
-  /*grid-template-columns: repeat(3, 1fr);*/
-  /*gap: 10px;*/
-  /*max-width: 80%;*/
-  /*margin: 0 auto;*/
-  /*padding: 5px;*/
-
-
-.bingo-cell {
-  /*aspect-ratio: 1 / 1;*/
-  /*background-color: rgb(96, 31, 31);*/
-  /*color: white;*/
-  /*display: flex;*/
-  /*align-items: center;*/
-  /*justify-content: center;*/
-  /*cursor: pointer;*/
-  /*border: 2px solid #02092f;*/
-  /*text-align: center;*/
-  /*overflow: hidden;*/
-  /*padding: 0;*/
-  /*margin: 2px;*/
-}
-
-.bingo-cell a {
-  /*color: inherit;*/
-  /*text-decoration: none;*/
-  /*width: 100%;*/
-  /*height: 100%;*/
-  /*display: flex;*/
-  /*align-items: center;*/
-  /*justify-content: center;*/
-}
-
 
 
 .profile-picture{
@@ -373,75 +295,6 @@ div {
   object-fit: cover;
 }
 
-/*.profile-container{*/
-/*  width: 90%;*/
-/*  margin: 0 auto;*/
-/*  text-align: center;*/
-/*}*/
-
-/*.profile-header{*/
-/*  display: flex;*/
-/*  flex-wrap: wrap; !* Allow the text and profile picture to wrap *!*/
-/*  justify-content: left;*/
-/*  align-items: center;*/
-/*  margin-bottom: 15px;*/
-/*  font-size: 1.8rem; !* Adjusted font size for better readability *!*/
-/*  text-align: left;*/
-/*}*/
-/*.profile-header h1 {*/
-/*  margin: 0; !* Ensure the heading doesn't add extra space *!*/
-/*}*/
-
-/*.statistics-container{*/
-/*  border: 2px solid #ccc;*/
-/*  border-radius: 10px;*/
-/*  padding: 2%;*/
-/*  margin-top: 5%;*/
-/*  background-color: #f9f9f9;*/
-/*  box-shadow: 0 4px 6px rgba(0, 30, 31, 0.1);*/
-/*  font-size: 1.9rem;*/
-/*}*/
-
-
-/*.statistics-container ul {*/
-/*  list-style-type: none; !* Remove bullet points *!*/
-/*  padding: 0;*/
-/*  margin: 0;*/
-/*}*/
-
-/*.statistics-container li {*/
-/*  margin: 15px 0;*/
-/*  font-size: 1.9rem;*/
-/*}*/
-
-
-/* Mobile Responsiveness */
-/*@media screen and (max-width: 600px) {*/
-/*  .profile-header {*/
-/*    font-size: 1.4rem; !* Further decrease font size *!*/
-/*    flex-direction: column; !* Stack profile picture and text vertically *!*/
-/*    align-items: center; !* Center items vertically *!*/
-/*    margin-bottom: 20px; !* Adjust margin for mobile *!*/
-/*  }*/
-
-/*  .profile-picture {*/
-/*    width: 100px; !* Smaller profile picture *!*/
-/*    height: 100px; !* Smaller profile picture *!*/
-/*  }*/
-
-/*  .profile-container {*/
-/*    width: 95%; !* Make profile container take up more space *!*/
-/*  }*/
-
-/*  .statistics-container {*/
-/*    padding: 5%; !* More padding for smaller screens *!*/
-/*    font-size: 1.5rem; !* Adjust font size *!*/
-/*  }*/
-
-/*  .statistics-container ul {*/
-/*    padding-left: 20px; !* Add some left padding for the list *!*/
-/*  }*/
-/*}*/
 
 
 
