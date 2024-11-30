@@ -4,5 +4,5 @@
 __pycache__/
 *.pyc
 *.pyo
-/images/profile_pictures
-/images/venue_pictures
+/static/images/profile_pictures
+/static/images/venue_pictures
