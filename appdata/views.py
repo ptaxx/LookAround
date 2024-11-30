@@ -26,7 +26,7 @@ from appdata.models import (
 from django.template import loader
 from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .utils import get_weather_data, countdown_timer
+from .utils import get_weather_data, countdown_timer, user_activity_check
 from django.utils import timezone
 
 
@@ -92,43 +92,18 @@ class ActivityView(View):
     def get(self, request, *args, **kwargs):
         activity = Activity.objects.get(id=kwargs.get('pk'))
         form = PasscodeForm()
-        user_has_activity = False
         user = request.user
-        if user.is_authenticated:
-            activitycheck = ActivityCheck.objects.filter(
-                activity=activity,
-                user=user,
-                )
-            for entry in activitycheck:
-                if entry.is_active:
-                    user_has_activity = True
-                else:
-                    user_has_activity = False
-        else:
-            activitycheck = None
+        user_has_activity = user_activity_check(user, activity)
         context = {
             'activity': activity, 
             'form': form,
-            'activitycheck': activitycheck,
             'user_has_activity': user_has_activity,
             }
         return render(request, 'activitypage.html', context)
     def post(self, request, *args, **kwargs):
         activity = Activity.objects.get(id=kwargs.get('pk'))
-        user_has_activity = False
         user = request.user
-        if user.is_authenticated:
-            activitycheck = ActivityCheck.objects.filter(
-                activity=activity,
-                user=user
-                )
-            for entry in activitycheck:
-                if entry.is_active:
-                    user_has_activity = True
-                else:
-                    user_has_activity = False
-        else:
-            activitycheck = None
+        user_has_activity = user_activity_check(user, activity)
         form = PasscodeForm(request.POST)
         if form.is_valid():
             passcode = form.cleaned_data['passcode']
@@ -172,7 +147,6 @@ class ActivityView(View):
         context = {
             'activity': activity, 
             'form': form,
-            'activitycheck': activitycheck,
             'user_has_activity': user_has_activity,
             }
         return render(request, 'activitypage.html', context)
