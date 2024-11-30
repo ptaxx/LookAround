@@ -23,22 +23,23 @@ class GameCreationForm(ModelForm):
             'area',
             'availability',
             'starting_time',
-            'finishing_time',
             'players',
             'teams',
         ]
         labels ={
             'area': 'Area',
             'starting_time': 'Starting time',
-            'finishing_time': 'Finishing time (optional)',
             'players': 'Players',
             'availability': 'Available to everyone',
             'teams': 'Add team',
         }
         widgets = {
-            'starting_time': forms.widgets.DateTimeInput(attrs={'type':'datetime-local'}),
-            'finishing_time': forms.widgets.DateTimeInput(attrs={'type':'datetime-local'}),
-            }
+            'area': forms.Select(attrs={'class': 'form-select'}),
+            'availability': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'starting_time': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+            'players': forms.SelectMultiple(attrs={'class': 'form-select'}),
+            'teams': forms.SelectMultiple(attrs={'class': 'form-select'}),
+        }
      
 
 class ActivityCreationForm(ModelForm):

@@ -65,7 +65,6 @@ class Activity(models.Model):
 
 class Game(models.Model):
     starting_time = models.DateTimeField(auto_now=False, auto_now_add=False, default=datetime.now)
-    finishing_time = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     availability = models.BooleanField(default=True)
     area = models.ForeignKey(Area, on_delete=models.CASCADE)
     players = models.ManyToManyField(CustomUser)
