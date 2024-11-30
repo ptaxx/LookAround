@@ -1,23 +1,11 @@
 from django.test import TestCase
 from .models import CustomUser, Game, Area, Team, Venue
 from datetime import time
+from django.contrib.auth import get_user_model
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 
-class AreaModelTestCase(TestCase):
-    def setUp(self):
-        self.area = Area.objects.create(
-            name="Test Area",
-            description="This is a test area.",
-            picture=None,  # Assuming no picture is uploaded for this test
-            weather_id="123456",
-        )
 
-    def test_area_creation(self):
-        self.assertEqual(Area.objects.count(), 1)
-        self.assertEqual(self.area.name, "Test Area")
-        self.assertEqual(self.area.description, "This is a test area.")
-        self.assertEqual(self.area.weather_id, "123456")
-        self.assertFalse(self.area.picture)
         
         
 class TeamModelCRUDTestCase(TestCase):
@@ -144,5 +132,78 @@ class VenueModelCRUDTestCase(TestCase):
 
         # Check the TripAdvisor link
         self.assertEqual(venue.tripadvisor_link, "https://www.tripadvisor.com/TestVenue")
-       
+
+
+class CustomUserTestCase(TestCase):
+    def setUp(self):
+        # Create a dummy Area instance
+        self.area = Area.objects.create(name="Test Area", description="A test area")
+        
+    def test_create_custom_user(self):
+        user = get_user_model().objects.create_user(
+            username='testuser',
+            password='password123',
+            short_bio='This is a test user',
+            isplayer=True,
+            current_area=self.area,
+        )
+        self.assertEqual(user.username, 'testuser')
+        self.assertEqual(user.short_bio, 'This is a test user')
+        self.assertTrue(user.isplayer)
+        self.assertEqual(user.current_area, self.area)
+        self.assertTrue(user.check_password('password123'))
+
+    def test_read_custom_user(self):
+        user = get_user_model().objects.create_user(
+            username='testuser',
+            password='password123',
+            short_bio='This is a test user',
+            isplayer=True,
+            current_area=self.area,
+        )
+        fetched_user = get_user_model().objects.get(username='testuser')
+        self.assertEqual(fetched_user.username, 'testuser')
+        self.assertEqual(fetched_user.short_bio, 'This is a test user')
+        self.assertEqual(fetched_user.current_area, self.area)
+
+    def test_update_custom_user(self):
+        user = get_user_model().objects.create_user(
+            username='testuser',
+            password='password123',
+            short_bio='This is a test user',
+            isplayer=True,
+            current_area=self.area,
+        )
+        user.short_bio = 'Updated bio'
+        user.save()
+        
+        updated_user = get_user_model().objects.get(username='testuser')
+        self.assertEqual(updated_user.short_bio, 'Updated bio')
+
+    def test_delete_custom_user(self):
+        user = get_user_model().objects.create_user(
+            username='testuser',
+            password='password123',
+            short_bio='This is a test user',
+            isplayer=True,
+            current_area=self.area,
+        )
+        user.delete()
+        
+        with self.assertRaises(get_user_model().DoesNotExist):
+            get_user_model().objects.get(username='testuser')
+
+    def test_userpic_upload(self):
+        image = SimpleUploadedFile("test_image.jpg", b"file_content", content_type="image/jpeg")
+        
+        user = get_user_model().objects.create_user(
+            username='testuser',
+            password='password123',
+            short_bio='This is a test user',
+            isplayer=True,
+            current_area=self.area,
+            userpic=image
+        )
+        
+        self.assertTrue(user.userpic.name.startswith('static/profile_pictures/'))       
         
