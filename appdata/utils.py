@@ -16,7 +16,7 @@ def get_weather_data(area_id):
         weather = {
             'city': data['name'],
             'temperature': data['main']['temp'],
-            'humidity': data['main']['humidity'],
+            'humidity': data.get('main', {}).get('humidity'),
             'wind': data['wind']['speed']
         }
         return weather
