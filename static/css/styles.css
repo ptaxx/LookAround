@@ -90,9 +90,10 @@ html, body {
 
 /* Button Box (Below Bingo Game) */
 .button-box {
+    text-transform: capitalize;
     padding-top: 10px;
     padding-bottom: 50px;
-    padding-left: 20px;
+    margin: 20px;
     width: max-content;
     text-align: center;  /* Center the button */
 }
@@ -104,18 +105,27 @@ html, body {
 }
 
 /* Equal Height Boxes for Weather, Players, Teams */
+gamepage-sized-box {
+    width: 300px;
+    height: 400px;
+
+}
+
 .equal-box {
     height: 100%;
     display: flex;
     flex-direction: column;
+    width: 300px;
 }
 
 .weather-box, .players-box, .teams-box {
     margin-bottom: 10px;
+
 }
 
 .weather-box {
     flex-grow: 1;
+
 }
 
 .players-box {
@@ -132,7 +142,7 @@ html, body {
 /*}*/
 
 .singlebox {
-    width: max-content;
+    width: 250px;
 }
 
 /* Responsive layout adjustments */
@@ -155,9 +165,14 @@ html, body {
   background: none;
 }
 
-.logo-shift {
-  margin-left: 3px;
+.logo-shift-left {
+  margin-left: 15px;
 }
+
+.logo-shift-right {
+    margin-right: 15px;
+}
+
 /* Default link color for closed hamburger menu */
 .navbar-nav .nav-link {
     color: black; /* Black color when the menu is closed */
@@ -205,6 +220,16 @@ html, body {
 /*  display: flex;*/
 /*  flex-direction: column;*/
 /*}*/
+.time-clock{
+    margin: auto;
+
+}
+b {
+    font-weight: bold;
+    text-decoration: none;
+    margin: auto;
+    font-size: 22px;
+}
 
 
 p {
@@ -214,12 +239,17 @@ p {
 
 body {
   height: 100%;
-  vertical-align: baseline;
-  margin:20px auto;
+    padding: 0;
+  margin:0;
   display: flex;
   flex-direction: column; /* Makes body span the full viewport height */
   min-height: 100vh; /* Makes body span the full viewport height */
   background-color: #003366;
+  /*  background-image: url('../images/backpitcure.jpg'); !* Adjust relative path as necessary *!*/
+  /*  background-size: cover;*/
+  /*  background-repeat: no-repeat;*/
+  /*  background-position: center;*/
+
 
 }
 
@@ -275,26 +305,28 @@ div {
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
+}
+
 
 
   /*border-radius: 15px; !* Rounds the edges *!*/
   /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); !* Adds a subtle shadow *!*/
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
-}
+  /*transition transform 0.3s ease, box-shadow 0.3s ease; !* Smooth hover effect *!*/
+
 
 /*.box ul {*/
 /*  list-style-type: none; !* Remove bullet points *!*/
 /*  padding: 0; !* Remove default padding *!*/
 /*  margin: 0; !* Remove default margin *!*/
 /*}*/
-.bingo-grid {
+/*.bingo-grid {*/
   /*display: grid;*/
   /*grid-template-columns: repeat(3, 1fr);*/
   /*gap: 10px;*/
   /*max-width: 80%;*/
   /*margin: 0 auto;*/
   /*padding: 5px;*/
-}
+
 
 .bingo-cell {
   /*aspect-ratio: 1 / 1;*/
