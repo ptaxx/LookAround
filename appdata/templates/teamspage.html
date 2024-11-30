@@ -2,35 +2,36 @@
 {% block title %} All teams {% endblock %}
 
 {% block content %}
-
-<ul class='box'>
- <div class="row row-cols-1 row-cols-md-3 g-4"><h2>All available teams:</h2>
-    <ul class='list-group'>
-        {% for team in teams %}
-            <li class="list-group-item nobackround">
-                <a class="btn btn-success" href=" {% url 'teampage' team.id %}">{{ team.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
- </div>
-</ul>
-
-<ul class='box'>
-    <div class="row row-cols-1 row-cols-md-3 g-4"><h2> All your teams:</h2>
-        <ul class='list-group'>
+<body>
+    <div class="container-fluid">
+        <div class="row gx-0 gy-0">
+            <div class="box equal-box weather-box">
+                <b>All available teams </b>
+                <ul class='list-group' >
+                    {% for team in teams %}
+                    <li class="list-group-item nobackround" >
+                        <a class="btn btn-success" href=" {% url 'teampage' team.id %}">{{ team.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    <div class="box equal-box weather-box">
+        <b>All Your teams </b>
+        <ul class='list-group' >
             {% for team in teams %}
                 {% if user in team.team_user.all or user == team.moderator %}
-                    <li  class="list-group-item nobackround">
-                        {{ team.name }} - moderator: {{ team.moderator }}>
+                    <li class="list-group-item nobackround">
+                        {{ team.name|upper }} - moderator: {{ team.moderator|upper }}
                     </li>
                 {% endif %}
             {% endfor %}
         </ul>
     </div>
-</ul>
-<div class="parent-container">
-    <a class="btn btn-success center-button" type="button" href="{% url 'createteam' %}" role="button">Create team</a>
-</div>
-
+                <div class="button-box text-start">
+                    <a class="btn btn-success" href="{% url 'createteam' %}" role="button">Create team</a>
+                </div>
+            </div>
+    </div>
+</body>
 
 {% endblock %}

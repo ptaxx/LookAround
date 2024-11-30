@@ -2,43 +2,54 @@
 {% block title %} {{ venue }} {% endblock %}
 
 {% block content %}
-    <div class="box">
-        <b>{{venue.name}}</b>
-        <br>
-        <img class="venue-picture" src="{{ venue.picture.url }}" alt="">
-    </div>
-    
-    <div class="box">
-        Name: {{venue.name}}<br>
-        Area: {{venue.area}}<br>
-        {% if venue.opening_hour and venue.closing_hour %}
-        Opening hours: <br>
-        {{venue.opening_hour}}<br>
-        {{venue.opening_hour}}<br>
-        {% endif %}
-        <br>
-        {% if user == venue.contact %}
-        <a class="btn btn-success center-button" type="button" href="{% url 'createactivity' %}" role="button">Create Activity</a>
-        {% endif %}
-    </div>
-    <div class="box">
-        <b>Description</b><br>
-            {{venue.description}}<br>
-    </div>
-    {% if venue.tripadvisor_link %}
-    <div class="box">
-        <b>Tripadvisor</b><br>
-        <a class="list-group-ite" href="{{ venue.tripadvisor_link }}">{{ venue }}</a><br>
+<body>
+    <div class="container">
+        <div class="row gx-0 gy-0">
+            <div class="box equal-box weather-box">
+                <img class="venue-picture" src="{{ venue.picture.url }}" alt="">
+                <br>
+                <b>{{venue.name}}</b>
+                <div class="list-group">
+                    <li class="list-group-item nobackround">
+                        Name: {{venue.name}}<br>
+                        Area: {{venue.area}}<br>
+                        {% if venue.opening_hour and venue.closing_hour %}
+                            Opening hours: <br>
+                            {{venue.opening_hour}}<br>
+                            {{venue.opening_hour}}<br>
+                        {% endif %}
+                        <br>
+                        {% if user == venue.contact %}
+                            <a class="btn btn-success center-button" href="{% url 'createactivity' %}" role="button">Create Activity</a>
+                        {% endif %}
+                    </li>
+                </div>
+            </div>
+            <div class="box equal-box weather-box">
+                <b>Description</b>
+                <br>
+                {{venue.description}}
+                <br>
+                Location: {{venue.location}}
+                <br></br>
+            </div>
+            <div class="box equal-box weather-box">
+                    <b>Contact</b><br>
+                    {{venue.contact|upper}}<br>
+                </div>
         </div>
+        {% if venue.tripadvisor_link %}
+        <div class="box equal-box weather-box">
+                <b>Tripadvisor</b><br>
+                <a class="btn btn-success center-button" type="button"  href="{{ venue.tripadvisor_link }}">{{ venue }}</a>
+                <br>
         {% endif %}
-    <div class="box">
-        <b>Contact</b><br>
-            {{venue.contact}}<br>
+        </div>
+
     </div>
+</body>
 
 {% endblock %}
-
-
 
 
 

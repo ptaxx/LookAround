@@ -1,43 +1,53 @@
 {% extends "master.html" %}
 {% block title %} Profile {% endblock %}
+
+
 {% block content %}
-
-{% load static %}
-
-<div>
-    <div class='box'>
-        <div class="profile-header">
-            <img class="profile-picture" src="{{ user.userpic.url }}">
-            <div class="text-container">
-                Name:<b> {{ user.first_name }} {{ user.last_name }}</b>
-                <br>
-                Username: <b>{{ user.username }}</b>
-                <br>
-                <b>Something about you:</b>
-                <br>
-                {{ user.short_bio }}
+<body>
+    <div class="container">
+        <div class="row gx-0 gy-0">
+            <div class="box equal-box weather-box">
+                <img class="profile-picture"  src="{{ user.userpic.url }}">
+                <div class="list-group">
+                    <li class="list-group-item nobackround">
+                        Name:<b> {{ user.first_name }} {{ user.last_name }}</b>
+                        <br>
+                        Username: <b>{{ user.username }}</b>
+                        <br>
+                        <b>Something about you:</b>
+                        <br>
+                        {{ user.short_bio }}
+                    </li>
+                </div>
+            </div>
+            <div class="box equal-box weather-box">
+                <b>All Your games </b>
+                <ul class='list-group' >
+                    {% for game in games %}
+                        {% if user in game.players.all  %}
+                            <li class="list-group-item nobackround">
+                                <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
         </div>
-    </div>
-        <div class='box'>
-            <b>Your Games:</b>
-            <ul>
-                {% for game in games %}
-                    <li>
-                        <a href="{% url 'gamepage' game.id %}">{{ game.id }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class='box'>
-            <b>Your Teams:</b>
-            <ul>
+        <div class="box equal-box weather-box">
+            <ul class='list-group' >
                 {% for team in teams %}
-                    <li>{{ team.name }} - moderator: {{team.moderator}}</li>
+                    {% if user in team.team_user.all or user == team.moderator %}
+                        <li class="list-group-item nobackround">
+                            {{ team.name|upper }} - moderator: {{ team.moderator|upper }}
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>
-    
 
-</div>
+    </div>
+</body>
+
 {% endblock %}
+
+
