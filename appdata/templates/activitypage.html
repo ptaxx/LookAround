@@ -2,36 +2,45 @@
 {% block title %} Activity page {% endblock %}
 
 {% block content %}
+<body>
+    <div class="container">
+        <div class="row gx-0 gy-0">
+            <div class="box equal-box weather-box">
+                <b>Venue</b>
+                <br>
+                <a a class="btn btn-outline-success me-2 pull-left" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
 
-<div class='box'>
-    <b>Venue</b>
-    <br>
-    <a a class="btn btn-outline-success me-2 pull-left" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
-</div>
-
-<div class='box'>
-    <b>Activity</b>
-    <br>
-    {{ activity.short_description }}
-    <br>
-    {{ activity.full_description }}
-</div>
-
-<form method="post">
-    <div class="box">
-    {% if user.is_authenticated and user_has_activity %}
-    {% csrf_token %}
-    
-        {{ form.passcode.label_tag }}
-        {{ form.passcode }}
-        <button type="submit" class="btn btn-success center-button">Submit</button>
-    {% elif user.is_authenticated and not user_has_activity %}
-        You have completed the task!   
-    {% else %}
-        <a a class="btn btn-outline-success me-2 pull-left" href={% url "login" %}>Login</a> to play the game
-    {% endif %}
-
+            </div>
+                <div class="box equal-box weather-box">
+                    <b>Activity</b>
+                    <br>
+                    {{ activity.short_description }}
+                    <br>
+                    {{ activity.full_description }}
+                </div>
+                <div class="box equal-box weather-box">
+                    <b>Description</b>
+                    <br>
+                    {{ area.description }}
+                </div>
+                <div class="box equal-box weather-box">
+                    <form method="post">
+                        <div class="box">
+                            {% if user.is_authenticated and user_has_activity %}
+                                {% csrf_token %}
+                                {{ form.passcode.label_tag }}
+                                {{ form.passcode }}
+                                <button type="submit" class="btn btn-success center-button">Submit</button>
+                            {% elif user.is_authenticated and not user_has_activity %}
+                                You have completed the task!
+                            {% else %}
+                                <a a class="btn btn-outline-success me-2 pull-left" href={% url "login" %}>Login</a> to play the game
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+        </div>
     </div>
-</form>
+</body>
 
 {% endblock %}
