@@ -22,8 +22,8 @@
 
             <!-- Right Box: Your area -->
             <div class="col-md-6 col-sm-6">
+                {% if user.is_authenticated %}
                 <div class="box-area equal-box weather-box align-items-center">
-                    {% if user.is_authenticated and user.current_area %}
                         <b>Your area</b>
                         <a class="btn btn-success" href="{% url 'areapage' user.current_area.pk %}">
                             {{ user.current_area }}
@@ -31,7 +31,7 @@
                         <div class="box equal-box weather-box align-items-center">
                             <p>"{{ user.current_area.description }}"</p>
                         </div>
-                    {% endif %}
+                {% endif %}
                 </div>
             </div>
         </div>

@@ -3,14 +3,17 @@
 
 {% block content %}
 
-    <div class='box', style='margin: auto;'>
-        <form action="" method="post" novalidate>
-        {% csrf_token %}
-            {% for fm in form %}
-                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
-            {% endfor %}
-            <button class="btn btn-success center-button" type="submit">Register</button>
-        </form>
+<body>
+    <div class="container-fluid">
+        <div class="box leather-box">
+            <form action="" method="post" novalidate>
+            {% csrf_token %}
+                {% for fm in form %}
+                    <p>{{fm.label_tag}} {{fm}} {{fm.errors|striptags}} </p><br>
+                {% endfor %}
+                <button class="btn btn-success center-button" type="submit">Register</button>
+            </form>
+        </div>
     </div>
-
+</body>
 {% endblock %}
