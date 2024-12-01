@@ -15,10 +15,10 @@ def get_weather_data(area_id):
         data = response.json()
         
         weather = {
-            'city': data['name'],
-            'temperature': data['main']['temp'],
+            'city': data.get('name'),
+            'temperature': data.get('main', {}).get('temp'),
             'humidity': data.get('main', {}).get('humidity'),
-            'wind': data['wind']['speed']
+            'wind': data.get('wind', {}).get('speed')
         }
         return weather
 
@@ -63,7 +63,6 @@ def user_activity_check(user, activity):
             activity=activity,
             user=user
         )
-        # Check if any entry has is_active = True
         user_has_activity = any(entry.is_active for entry in activitycheck)
     else:
         user_has_activity = False
