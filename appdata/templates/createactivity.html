@@ -3,14 +3,31 @@
 
 {% block content %}
 
-    <div class="box equal-box weather-box" style='margin: auto;'>
-        <form action="" method="post" novalidate enctype='multipart/form-data'>
+<div class="box leather-box">
+    <b>Submit Your Details</b>
+    <form action="" method="post" novalidate enctype="multipart/form-data">
         {% csrf_token %}
+
+        <div class="form-group">
             {% for fm in form %}
-                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+                <div class="mb-3">
+                    <label for="{{ fm.id_for_label }}" class="form-label fw-bold">{{ fm.label }}</label>
+                    {{ fm }}
+                    {% if fm.errors %}
+                        <div class="text-danger small mt-1">{{ fm.errors|striptags }}</div>
+                    {% endif %}
+                </div>
             {% endfor %}
-        <input class="btn btn-success" type="submit" value="Submit">
-        </form>
-    </div>
+        </div>
+
+        <div>
+            <input class="btn btn-success" type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+
+
+
+
 
 {% endblock %}

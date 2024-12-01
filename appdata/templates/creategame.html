@@ -3,7 +3,9 @@
 
 {% block content %}
 
-    <div class='box', style='margin: auto;'>
+<body>
+    <div class="box leather-box">
+        <b> Submit Game Details</b>
         <form action="" method="post" novalidate>
         {% csrf_token %}
             {% for fm in form %}
@@ -12,5 +14,5 @@
         <input class="btn btn-success" type="submit" value="Submit">
         </form>
     </div>
-
+</body>
 {% endblock %}

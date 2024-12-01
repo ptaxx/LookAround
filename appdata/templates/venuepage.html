@@ -9,7 +9,7 @@
                 <img class="venue-picture" src="{{ venue.picture.url }}" alt="">
                 <br>
                 <b>{{venue.name}}</b>
-                <div class="list-group">
+                <div class="list-group list-scroll">
                     <li class="list-group-item nobackround">
                         Name: {{venue.name}}<br>
                         Area: {{venue.area}}<br>
@@ -20,7 +20,7 @@
                         {% endif %}
                         <br>
                         {% if user == venue.contact %}
-                            <a class="btn btn-success center-button" style="width: 140px; margin: auto;" href="{% url 'createactivity' %}" role="button">Create Activity</a>
+                            <a class="btn btn-success center-button" href="{% url 'createactivity' %}" role="button">Create Activity</a>
                         {% endif %}
                     </li>
                 </div>
@@ -31,18 +31,11 @@
                 {{venue.description}}
             </div>
             <div class="box equal-box weather-box">
-                    <b>Contact</b><br>
-                    {{venue.contact|upper}}<br>
-                </div>
+                <b>Contact</b><br>
+                <p>{{venue.contact|upper}}</p> <br>
+                <a class="btn btn-success center-button" type="button" target="_blank" href="{{ venue.tripadvisor_link }}">Tripadvisor LINK</a>
+            </div>
         </div>
-        {% if venue.tripadvisor_link %}
-        <div class="box equal-box weather-box">
-                <b>Tripadvisor</b><br>
-                <a class="btn btn-success center-button" type="button"  href="{{ venue.tripadvisor_link }}">{{ venue }}</a>
-                <br>
-        {% endif %}
-        </div>
-
     </div>
 </body>
 

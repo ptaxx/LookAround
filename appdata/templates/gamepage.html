@@ -41,7 +41,7 @@
             <!-- Third Column: Weather API, Players, and Teams (Right) -->
             <div class="col-md-4">
                 <!-- Weather API Box -->
-                <div class="box equal-box weather-box" style="width: 400px;">
+                <div class="box equal-box weather-box">
                     <b>Weather for {{ weather_data.city }}</b>
                     {% if weather_data %}
                         <p align="left">Temperature: {{ weather_data.temperature }}&deg;C</p>
@@ -52,13 +52,13 @@
                     {% endif %}
                 </div>
 
-                <div id="countdown" class="box equal-box players-box" style="font-size: 40px; width: 400px;">
+                <div id="countdown" class="box equal-box players-box" >
                     {% if time_data.game_started %}
                         <b>Game played for</b>
                     {% else %}
                         <b>Game starts in</b>
                     {% endif %}
-                    <p class="time-clock" id="timer" style="font-size: 32px;" align="left">
+                    <p class="time-clock" id="timer"  align="left">
                                  {{ time_data.hours }}h {{ time_data.minutes }}m {{ time_data.seconds }}s
                     </p>
                 </div>
@@ -116,7 +116,7 @@
                     <b>Players in this Game</b>
                     <ul>
                         {% for entry in scoreboards %}
-                            <li>{{ entry.user.username }} - {{ entry.points}} points. {% if entry.position %}{{entry.position}}{% endif %}</li>
+                            <li class="list-group list-scroll">{{ entry.user.username }} - {{ entry.points}} points. {% if entry.position %}{{entry.position}}{% endif %}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -128,7 +128,7 @@
                     <b>Teams in this Game</b>
                     <ul>
                         {% for team in teams %}
-                            <li>{{ team.name }}</li>
+                            <li class="list-group list-scroll">{{ team.name }}</li>
                         {% endfor %}
                     </ul>
                 </div>

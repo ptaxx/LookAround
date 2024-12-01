@@ -4,7 +4,7 @@
 {% block content %}
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid-center">
         <div class="row gx-0 gy-0">
             <div class="box equal-box weather-box">
                     <b>Weather for   {{ weather_data.city }}   </b>
@@ -22,7 +22,8 @@
                         <a class="btn btn-success" href="{% url 'areapage' user.current_area.pk %}">{{ user.current_area }}</a>
                 {% else %}
                     <b>Available areas</b>
-                        <ul class='list-group' >{% for area in area %}
+                        <ul class='list-group list-scroll'>
+                            {% for area in area %}
                             <li class="list-group-item nobackround">
                                 <a class="btn btn-success"  href="{% url 'areapage' area.id %}">{{ area }}</a>
                             </li>
@@ -30,15 +31,15 @@
                         </ul>
                 {% endif %}
             </div>
-            <div class='box equal-box weather-box'>
-                <b> Available ongoing games</b>
-                    <ul class='list-group '>
-                        {% for game in games|slice:"5"  %}
-                            <li class="list-group-item nobackround">
-                                <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }} </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                <div class='box equal-box weather-box'>
+                    <b> Available ongoing games</b>
+                        <ul class='list-group list-scroll'>
+                            {% for game in games|slice:"5"  %}
+                                <li class="list-group-item nobackround">
+                                    <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }} </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                 </div>
             </div>
         </div>

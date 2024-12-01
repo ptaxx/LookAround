@@ -3,14 +3,17 @@
 
 {% block content %}
 
-    <div class='box' style='margin: auto;'>
+<body>
+    <div class="box leather-box">
+        <b> Submit Venue Details</b>
         <form action="" method="post" novalidate enctype='multipart/form-data'>
         {% csrf_token %}
             {% for fm in form %}
-                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+                <p>{{fm.label_tag}} {{fm}} {{fm.errors|striptags}}</p> <br><br>
             {% endfor %}
             <button type='submit' class="btn btn-success center-button">Submit</button>
         </form>
     </div>
+</body>
 
 {% endblock %}

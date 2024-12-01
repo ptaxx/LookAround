@@ -5,9 +5,27 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <!-- First Column: All the games and Create game button -->
             <div class="col-md-3 col-sm-12">
+                <div class="box equal-box weather-box">
+                    <b>All the games</b>
+                    <ul class="list-group list-scroll">
+                        {% for game in games %}
+                        <li class="list-group-item nobackround">
+                            <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="button-box text-start mt-3 ">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'creategame' %}" class="btn btn-success" role="button">Create game</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Second Column: All Your games -->
+            <div class="col-md-9 col-sm-12">
+                {% if user.is_authenticated %}
                 <div class="box equal-box weather-box">
                     <b>All Your games</b>
                     <ul class="list-group list-scroll">
@@ -20,27 +38,9 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="button-box text-start mt-3 ">
-                    <a href="{% url 'creategame' %}" class="btn btn-success" role="button">Create game</a>
-                </div>
-            </div>
-
-            <!-- Second Column: All Your games -->
-            <div class="col-md-9 col-sm-12">
-                <div class="box equal-box weather-box">
-                    <b>All the games</b>
-                    <ul class="list-group list-scroll">
-                        {% for game in games %}
-                        <li class="list-group-item nobackround">
-                            <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-
-                </div>
+                {% endif %}
             </div>
         </div>
-    </div>
 </body>
 
 

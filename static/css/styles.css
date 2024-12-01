@@ -1,8 +1,97 @@
 
+
+
+.leather-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: auto;
+    width: 100%;
+    max-width: 600px; /* Ensure it doesn't stretch too wide */
+    padding: 30px;
+}
+
+/* Styling the form labels */
+form .form-label {
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Button styling */
+form .btn-success {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+form .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 128, 0, 0.2);
+}
+
+/* Styling the error messages */
+.text-danger {
+    font-size: 0.875rem;
+}
+
+/* Spacing between form groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Center the button */
+.mt-4.text-center {
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+
+
+form .form-label {
+    color: #555;
+    font-size: 1rem;
+}
+
+form .btn-success {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+form .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 128, 0, 0.2);
+}
+
+
+form.code-area .form-control {
+    max-width: 200px; /* Limits the input width */
+    font-size: 14px;  /* Smaller font size */
+    padding: 5px;     /* Compact padding */
+}
+form.code-area .btn {
+    padding: 5px 10px; /* Compact button */
+    font-size: 14px;
+}
+
+forminareapage {
+    display: inline;
+}
+
+areapagebox {
+    width:140px;
+    margin:auto
+}
+
 gamespagebox {
     min-height: 400px
 }
 
+
+div {
+    position: relative;
+    float: left;
+    ;
+
+}
 
 html, body {
     margin: 0;
@@ -221,6 +310,7 @@ html, body {
 
 .time-clock{
     margin: auto;
+    font-size: 32px;
 
 }
 b {
@@ -265,6 +355,7 @@ div {
   border: 6px solid rgba(128, 111, 0, 0.09);
   margin: 20px;
   padding: 1%;
+    justify-content: stretch;
   text-align: center;
   box-sizing: content-box;
     width: fit-content( max(300px, 100px));
@@ -276,6 +367,20 @@ div {
 
 }
 
+.box-area {
+    background-color: rgb(244, 236, 236);
+  float: none;
+  overflow: auto;
+  border: 6px solid rgba(128, 111, 0, 0.09);
+  margin: 20px;
+  padding: 1%;
+  text-align: center;
+  box-sizing: content-box;
+    width: fit-content( max(300px, 100px));
+    border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
 
 .profile-picture{
   /* width: 100%; Make it take up the full width of the container */

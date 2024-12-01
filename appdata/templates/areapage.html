@@ -18,9 +18,9 @@
                 <div class="box equal-box weather-box">
                     <b>Area: {{area.name|upper}}</b>
                     {% if user.is_authenticated %}
-                    <form method="post" style="display: inline;">
+                    <form method="post" >
                         {% csrf_token %}
-                        <button type="submit" name="set_area" class="btn btn-success center-button" style="margin: auto;">
+                        <button type="submit" name="set_area" class="btn btn-success center-button">
                             Set as Your Current Area
                         </button>
                     </form>
@@ -32,12 +32,16 @@
                     {{ area.description }}
                 </div>
                 <div class="box equal-box weather-box">
-                    <ul>{% for venue in venues %}
-                        <li><a class="link-success" href={% url 'venuepage' venue.pk %}>{{ venue }}</li>
+                    <b>Venues in this area</b>
+                    <ul class="list-group list-scroll" >
+                        {% for venue in venues %}
+                            <li class="list-group-item nobackround">
+                                <a class="btn btn-success" href={% url 'venuepage' venue.pk %}>{{ venue }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                     {% if user.is_authenticated and not user.isplayer %}
-                        <a class="btn btn-success center-button" style="width:140px; margin:auto" href="{% url 'createvenue' %}" role="button">Create Venue</a>
+                        <a class="btn btn-success center-button areapagebox"  href="{% url 'createvenue' %}" role="button">Create Venue</a>
                     {% endif %}
                 </div>
         </div>
