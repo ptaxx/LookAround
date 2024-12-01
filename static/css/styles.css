@@ -72,17 +72,10 @@ form.code-area .btn {
     font-size: 14px;
 }
 
-forminareapage {
-    display: inline;
-}
 
-areapagebox {
+.areapagebox {
     width:140px;
     margin:auto
-}
-
-gamespagebox {
-    min-height: 400px
 }
 
 
@@ -104,7 +97,7 @@ html, body {
 .container-fluid {
     margin: 0 auto;
     padding: 0;
-    margin-top: 20px;
+
 }
 .list-scroll {
     max-height: 300px; /* Adjust as needed */
@@ -192,6 +185,26 @@ html, body {
   box-shadow: 0 0 10px #a9edf7, 0 0 25px #b2e8fb;
 }
 
+.bingo-box-movement {
+    background-color: rgb(244, 236, 236);
+    float: none;
+    overflow: auto;
+    border: 6px solid rgba(128, 111, 0, 0.09);
+    margin: 20px;
+    justify-content: stretch;
+    text-align: center;
+    box-sizing: content-box;
+    width: fit-content( max(300px, 100px));
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-left: 13%;
+    background-image: url('../images/backpitcure.jpg'); /* Adjust relative path as necessary */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+
+}
 
 .button-box {
     text-transform: capitalize;
@@ -346,7 +359,10 @@ div {
   object-fit: fill;
 }
 
-
+.bingo-round-box {
+    width: fit-content;
+    align-items: center;
+}
 
 .box {
   background-color: rgb(244, 236, 236);
