@@ -2,6 +2,8 @@
 
 LookAround is a Location Bingo Game application.
 
+![Image](assets/Screenshot 2024-12-01 at 08-15-15 Home.png)
+
 LookAround is our SDA Python course final project. 
 
 This project was made for people who like to travel, and for business owners, who woulf like to promote their respective business. The player can play the game, by completing the tasks on a bingo board. The application uses OpenWeatherAPI.
@@ -44,7 +46,7 @@ MYSQL
 
    Ensure MySQL is installed and running.
 
-   Create a MySQL database named moviematrix.
+   Create a MySQL database named lookaround.
 
    Update the database configuration in .env with your MySQL credentials
 
@@ -74,4 +76,4 @@ Daniil Popov
 
 Tanel Tarkvee
 
-Kristjan Peek
+Monika Vihmand

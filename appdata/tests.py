@@ -205,5 +205,5 @@ class CustomUserTestCase(TestCase):
             userpic=image
         )
         
-        self.assertTrue(user.userpic.name.startswith('static/profile_pictures/'))       
+        self.assertTrue(user.userpic.name.startswith('profile_pictures/'))       
         
