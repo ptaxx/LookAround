@@ -189,8 +189,9 @@ html, body {
     background-color: rgb(244, 236, 236);
     float: none;
     overflow: auto;
-    border: 6px solid rgba(128, 111, 0, 0.09);
+    border: 0 solid rgba(128, 111, 0, 0.09);
     margin: 20px;
+    margin-left: 180px;
     justify-content: stretch;
     text-align: center;
     box-sizing: content-box;
@@ -198,12 +199,10 @@ html, body {
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding-left: 13%;
-    background-image: url('../images/backpitcure.jpg'); /* Adjust relative path as necessary */
-    background-size: contain;
+    background-image: url('../images/backround.jpg'); /* Adjust relative path as necessary */
+    background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: center;
-
-
 }
 
 .button-box {
@@ -215,8 +214,15 @@ html, body {
     text-align: center;  /* Center the button */
 }
 
+.gamepage-create-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    width: auto;
+}
+
 .center-button {
     padding: 10px 20px;
+    margin-left: 160px;
     font-size: 16px;
     width: auto;  /* Let the button fit its content width */
 }
@@ -347,7 +353,7 @@ body {
   flex-direction: column; /* Makes body span the full viewport height */
   min-height: 100vh; /* Makes body span the full viewport height */
   background-color: #003366;
-    /*background-image: url('../images/backpitcure.jpg'); !* Adjust relative path as necessary *!*/
+    /*background-image: url('../images/backround.jpg'); !* Adjust relative path as necessary *!*/
     /*background-size: cover;*/
     /*background-repeat: no-repeat;*/
     /*background-position: center;*/

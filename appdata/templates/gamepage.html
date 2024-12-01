@@ -11,7 +11,7 @@
         <div class="row gx-0 gy-0">
             <div class="col-md-8">
                 <div class="bingo-box-movement">
-                    <div class="bingo-grid align-items-center justify-content-center">
+                    <div class="bingo-grid">
                         {% for activity in activities|slice:":9" %}
                             <div class="bingo-cell ">
                                 <a href="{% url 'activitypage' activity.id %}">
@@ -48,7 +48,7 @@
                         <p align="left">Humidity: {{ weather_data.humidity }}%</p>
                         <p align="left">Wind Speed: {{ weather_data.wind }} m/s</p>
                     {% else %}
-                        <p style="margin: auto">Unable to fetch weather data. Please try again later.</p>
+                        <p>Unable to fetch weather data. Please try again later.</p>
                     {% endif %}
                 </div>
 
