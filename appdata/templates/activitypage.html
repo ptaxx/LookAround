@@ -8,15 +8,17 @@
             <div class="box equal-box weather-box">
                 <b>Venue</b>
                 <br>
-                <a class="btn btn-outline-success me-2 pull-left" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
+                <li class="list-group-item nobackround">
+                    <a class="btn btn-success" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
+                </li>
 
             </div>
                 <div class="box equal-box weather-box">
                     <b>Activity</b>
                     <br>
-                    {{ activity.short_description }}
+                    <p>{{ activity.short_description }}</p>
                     <br>
-                    {{ activity.full_description }}
+                    <p>{{ activity.full_description }}</p>
                 </div>
                 <!-- <div class="box equal-box weather-box">
                     <b>Description</b>
@@ -24,17 +26,17 @@
                     {{ area.description }}
                 </div> -->
                 <div class="box equal-box weather-box">
-                    <form method="post">
-                        <div class="box">
+                    <form class="code-area" method="post">
+                        <div class="box d-flex align-items-center justify-content-center gap-2">
                             {% if user.is_authenticated and user_has_activity %}
                                 {% csrf_token %}
-                                {{ form.passcode.label_tag }}
-                                {{ form.passcode }}
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <label for="passcode" class="form-label mb-0"><b>{{ form.passcode.label_tag }}</b></label>
+                                <input class="form-control form-control-sm w-25" id="passcode" name="passcode" type="text" placeholder="Enter Passcode">
+                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
                             {% elif user.is_authenticated and not user_has_activity %}
                                 You have completed the task!
                             {% else %}
-                                <a class="btn btn-outline-success me-2 pull-left" href={% url "login" %}>Login</a> to play the game
+                                <a class="btn btn-outline-success me-2 pull-left" href="{% url "login" %}">Login</a> to play the game
                             {% endif %}
                         </div>
                     </form>
