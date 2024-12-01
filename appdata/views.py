@@ -183,9 +183,7 @@ class IndexView(View):
 class SignUpView(CreateView):
     form_class = SignUpForm
     template_name = "registration/signup.html"
-    success_url = reverse_lazy(
-        "login"
-    )  # Redirects to login if registration was successful
+    success_url = reverse_lazy("login")
 
     def form_valid(self, form):
         messages.success(self.request, "Registration was successful!")
@@ -196,11 +194,9 @@ class SignUpView(CreateView):
 class UserPageViews(View):
     def get(self, request, *args, **kwargs):
         user = CustomUser.objects.get(id=kwargs.get("pk"))
-        # Find all teams where at least one player is part of
         teams = Team.objects.filter(
             team_user__in=user.game_set.values_list("players", flat=True)
         ).distinct()
-        # Find all games where user is the player
         games = Game.objects.filter(players=user).distinct()
         context = {"user": user, "teams": teams, "games": games}
         return render(request, "userpage.html", context)
