@@ -10,7 +10,7 @@
                 <br>
                 <b>{{venue.name}}</b>
                 <div class="list-group list-scroll">
-                    <li class="list-group-item nobackround">
+                    <li class="list-group-item no-backround">
                         Name: {{venue.name}}<br>
                         Area: {{venue.area}}<br>
                         {% if venue.opening_hour and venue.closing_hour %}
@@ -33,7 +33,9 @@
             <div class="box equal-box weather-box">
                 <b>Contact</b><br>
                 <p>{{venue.contact|upper}}</p> <br>
+                {% if venue.tripadvisor_link %}
                 <a class="btn btn-success center-button" type="button" target="_blank" href="{{ venue.tripadvisor_link }}">Tripadvisor LINK</a>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -7,18 +7,18 @@ from .models import ActivityCheck
 
 def get_weather_data(area_id):
     url = f"http://api.openweathermap.org/data/2.5/weather?id={area_id}&appid={config('API_KEY')}&units=metric"
-    
+
     try:
         response = requests.get(url)
-        response.raise_for_status()  
+        response.raise_for_status()
 
         data = response.json()
-        
+
         weather = {
-            'city': data['name'],
-            'temperature': data['main']['temp'],
-            'humidity': data.get('main', {}).get('humidity'),
-            'wind': data['wind']['speed']
+            "city": data.get("name"),
+            "temperature": data.get("main", {}).get("temp"),
+            "humidity": data.get("main", {}).get("humidity"),
+            "wind": data.get("wind", {}).get("speed"),
         }
         return weather
 
@@ -38,10 +38,10 @@ def countdown_timer(date_time):
         minutes = (time_remaining.seconds % 3600) // 60
         seconds = time_remaining.seconds % 60
         time_data = {
-            'game_started': False,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds,
+            "game_started": False,
+            "hours": hours,
+            "minutes": minutes,
+            "seconds": seconds,
         }
     else:
         time_remaining = now - date_time
@@ -49,21 +49,17 @@ def countdown_timer(date_time):
         minutes = (time_remaining.seconds % 3600) // 60
         seconds = time_remaining.seconds % 60
         time_data = {
-            'game_started': True,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds,
+            "game_started": True,
+            "hours": hours,
+            "minutes": minutes,
+            "seconds": seconds,
         }
     return time_data
 
 
 def user_activity_check(user, activity):
     if user.is_authenticated:
-        activitycheck = ActivityCheck.objects.filter(
-            activity=activity,
-            user=user
-        )
-        # Check if any entry has is_active = True
+        activitycheck = ActivityCheck.objects.filter(activity=activity, user=user)
         user_has_activity = any(entry.is_active for entry in activitycheck)
     else:
         user_has_activity = False

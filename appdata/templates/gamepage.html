@@ -38,10 +38,7 @@
                         {% endif %}
                 </div>
             </div>
-
-            <!-- Third Column: Weather API, Players, and Teams (Right) -->
             <div class="col-md-4">
-                <!-- Weather API Box -->
                 <div class="box equal-box weather-box">
                     <b>Weather for {{ weather_data.city }}</b>
                     {% if weather_data %}
@@ -110,9 +107,7 @@
                     }
                 
                     var timerInterval = setInterval(updateTimer, 1000);
-                </script>             
-                
-                <!-- Players Box -->
+                </script>
                 <div class="box equal-box players-box">
                     <b>Players in this Game</b>
                     <ul>
@@ -121,10 +116,6 @@
                         {% endfor %}
                     </ul>
                 </div>
-
-                
-
-                <!-- Teams Box -->
                 <div class="box equal-box teams-box">
                     <b>Teams in this Game</b>
                     <ul>

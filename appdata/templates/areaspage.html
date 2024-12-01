@@ -5,24 +5,21 @@
 
 <body>
     <div class="container-fluid-center">
-        <div class="row gx-3 gy-3 align-items-start"> <!-- Align items at the top -->
-            <!-- Left Box: All the areas -->
+        <div class="row gx-3 gy-3 align-items-start">
             <div class="col-md-6 col-sm-6">
                 <div class="box-area equal-box weather-box">
                     <b>All the areas</b>
                     <ul class="list-group list-scroll">
                         {% for area in areas %}
-                        <li class="list-group-item nobackround">
+                        <li class="list-group-item no-backround">
                             <a class="btn btn-success" href="{% url 'areapage' area.id %}">{{ area.name }}</a>
                         </li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
-
-            <!-- Right Box: Your area -->
             <div class="col-md-6 col-sm-6">
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and user.current_area %}
                 <div class="box-area equal-box weather-box align-items-center">
                         <b>Your area</b>
                         <a class="btn btn-success" href="{% url 'areapage' user.current_area.pk %}">

@@ -1,15 +1,77 @@
 # LookAround
 
-Location Bingo application based on geolocation
+LookAround is a Location Bingo Game application.
+
+LookAround is our SDA Python course final project. 
+
+This project was made for people who like to travel, and for business owners, who woulf like to promote their respective business. The player can play the game, by completing the tasks on a bingo board. The application uses OpenWeatherAPI.
+
+## Technology
+
+This project is based on:
+
+Python 3.12.3
+
+Django5.1.3
+
+MYSQL
+
+## Installation
+
+1. Clone the repository:
+
+   git clone [https://github.com/ptaxx/LookAround.git]
+   
+2. Install the project dependencies:
+
+   pip install -r requirements.txt
+
+3. Create a virtual environment and install dependencies:
+
+   python -m venv venv
 
 
-# Installation
+   source venv/bin/activate   # On Windows: venv\Scripts\activate
 
-1. Clone the project
-2. Create Python virtual environment
-3. Install requirements with `pip install -r requirements.txt`
-4. Create `.env` file with the keys from `example.env`
-5. Migrate Django database tables with `python manage.py migrate`
-6. Create your project's database with the same name as DB_NAME from the `.env` file
-7. Launch the local Django development server with `python manage.py runserver`
-8. Enjoy :)
+
+   pip install -r requirements.txt
+
+4. Copy the example environment file:
+
+   cp .env.example .env
+
+5. Database Setup
+
+   Ensure MySQL is installed and running.
+
+   Create a MySQL database named moviematrix.
+
+   Update the database configuration in .env with your MySQL credentials
+
+6. Start the development server
+
+   python manage.py runserver
+
+## API reference
+
+This app uses OpenWeatherAPI to fetch data.
+
+You should get your own API key at https://openweathermap.org/ and update API_KEY in the .env file
+
+## Views
+
+In this project we use ClassBased views.
+
+## Credits
+
+This project was made as a collaboration by
+
+Kati Kraavi
+
+Kristjan Peek
+
+Daniil Popov
+
+Tanel Tarkvee
+
+Kristjan Peek

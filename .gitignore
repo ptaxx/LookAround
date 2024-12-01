@@ -6,3 +6,4 @@ __pycache__/
 *.pyo
 /static/images/profile_pictures
 /static/images/venue_pictures
+images

@@ -7,7 +7,7 @@ from django.db import models
 class Area(models.Model):
     name = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
-    picture = models.ImageField(upload_to="static/area_pictures", null=True, blank=True)
+    picture = models.ImageField(upload_to="area_pictures", null=True, blank=True)
     weather_id = models.CharField(max_length=10, default="588409")
 
     def __str__(self):
@@ -19,7 +19,7 @@ class CustomUser(AbstractUser):
     isplayer = models.BooleanField(default=True)
     userpic = models.ImageField(
         default="static/images/default_userpic.png",
-        upload_to="static/profile_pictures",
+        upload_to="profile_pictures",
         null=True,
         blank=True,
     )
@@ -51,7 +51,7 @@ class Venue(models.Model):
     )
     description = models.TextField(max_length=200, blank=False)
     picture = models.ImageField(
-        upload_to="static/venue_pictures", null=True, blank=True
+        upload_to="venue_pictures", null=True, blank=True
     )
     contact = models.ForeignKey(CustomUser, null=True, on_delete=models.SET_NULL)
     tripadvisor_link = models.URLField(max_length=200, null=True, blank=True)

@@ -225,16 +225,15 @@ class GameEntryView(FormView):
     success_url = "/"
 
     def form_valid(self, form):
-        self.game = Game.objects.create(
+        game = Game.objects.create(
             area=form.cleaned_data.get("area"),
             starting_time=form.cleaned_data.get("starting_time"),
-            finishing_time=form.cleaned_data.get("finishing_time"),
             availability=form.cleaned_data.get("availability"),
         )
         for player in form.cleaned_data["players"]:
-            self.game.players.add(player)
+            game.players.add(player)
         for team in form.cleaned_data["teams"]:
-            self.game.teams.add(team)
+            game.teams.add(team)
 
         venues = Venue.objects.filter(area=form.cleaned_data.get("area"))
         if len(venues) < 9:
@@ -242,7 +241,7 @@ class GameEntryView(FormView):
                 activities = Activity.objects.filter(venue=x)
                 if activities.exists():
                     activity = choice(activities)
-                    self.game.activities.add(activity)
+                    game.activities.add(activity)
         if len(venues) >= 9:
             venues = list(venues)
             selected_venues = sample(venues, 9)
@@ -250,11 +249,11 @@ class GameEntryView(FormView):
                 activities = Activity.objects.filter(venue=x)
                 if activities.exists():
                     activity = choice(activities)
-                    self.game.activities.add(activity)
+                    game.activities.add(activity)
 
-        activities = self.game.activities.all()
-        players = set(self.game.players.all())
-        teams = self.game.teams.all()
+        activities = game.activities.all()
+        players = set(game.players.all())
+        teams = game.teams.all()
         for team in teams:
             for user in team.team_user.all():
                 players.add(user)
@@ -262,15 +261,16 @@ class GameEntryView(FormView):
         for activity in activities:
             for player in players:
                 ActivityCheck.objects.create(
-                    game=self.game,
+                    game=game,
                     user=player,
                     activity=activity,
                 )
         for player in players:
             ScoreBoard.objects.create(
-                game=self.game,
+                game=game,
                 user=player,
             )
+        self.game = game
 
         return super(GameEntryView, self).form_valid(form)
 
