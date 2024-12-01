@@ -24,17 +24,15 @@ MYSQL
 
    git clone [https://github.com/ptaxx/LookAround.git]
    
-2. Install the project dependencies:
-
-   pip install -r requirements.txt
-
-3. Create a virtual environment and install dependencies:
+2. Create a virtual environment:
 
    python -m venv venv
 
+   On Linux/Mac source venv/bin/activate   
+   
+   On Windows: venv\Scripts\activate
 
-   source venv/bin/activate   # On Windows: venv\Scripts\activate
-
+3. Install dependencies:
 
    pip install -r requirements.txt
 
@@ -50,7 +48,11 @@ MYSQL
 
    Update the database configuration in .env with your MySQL credentials
 
-6. Start the development server
+6. Migrate the models:
+
+   python manage.py migrate
+
+7. Start the development server
 
    python manage.py runserver
 
