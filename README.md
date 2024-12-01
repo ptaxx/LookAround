@@ -2,7 +2,7 @@
 
 LookAround is a Location Bingo Game application.
 
-![Image](https://github.com/ptaxx/LookAround/assets/Screenshot 2024-12-01 at 08-15-15 Home.png)
+![Image](https://github.com/ptaxx/LookAround/assets/ScreenshotHome.png)
 
 LookAround is our SDA Python course final project. 
 
