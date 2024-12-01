@@ -31,18 +31,11 @@
                 {{venue.description}}
             </div>
             <div class="box equal-box weather-box">
-                    <b>Contact</b><br>
-                    {{venue.contact|upper}}<br>
-                </div>
+                <b>Contact</b><br>
+                <p>{{venue.contact|upper}}</p> <br>
+                <a class="btn btn-success center-button" type="button" target="_blank" href="{{ venue.tripadvisor_link }}">Tripadvisor LINK</a>
+            </div>
         </div>
-        {% if venue.tripadvisor_link %}
-        <div class="box equal-box weather-box">
-                <b>Tripadvisor</b><br>
-                <a class="btn btn-success center-button" type="button" target="_blank" href="{{ venue.tripadvisor_link }}">{{ venue }}</a>
-                <br>
-        {% endif %}
-        </div>
-
     </div>
 </body>
 
