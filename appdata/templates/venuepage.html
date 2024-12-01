@@ -33,7 +33,9 @@
             <div class="box equal-box weather-box">
                 <b>Contact</b><br>
                 <p>{{venue.contact|upper}}</p> <br>
+                {% if venue.tripadvisor_link %}
                 <a class="btn btn-success center-button" type="button" target="_blank" href="{{ venue.tripadvisor_link }}">Tripadvisor LINK</a>
+                {% endif %}
             </div>
         </div>
     </div>
