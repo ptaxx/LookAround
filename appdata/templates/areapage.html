@@ -35,7 +35,7 @@
                     <b>Venues in this area</b>
                     <ul class="list-group list-scroll" >
                         {% for venue in venues %}
-                            <li class="list-group-item nobackround">
+                            <li class="list-group-item no-backround">
                                 <a class="btn btn-success" href={% url 'venuepage' venue.pk %}>{{ venue }}</a>
                             </li>
                         {% endfor %}

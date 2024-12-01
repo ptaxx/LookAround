@@ -4,14 +4,14 @@
 {% block content %}
 
 <body>
-    <div class="box leather-box" style="margin: auto;">
+    <div class="box leather-box">
         <b> Submit Team Details</b>
         <form action="" method="post" novalidate>
             <br>
-        {% csrf_token %}<br><br>
-        <p>{{ form.as_p }}</p><br><br>
-        <input class="btn btn-success center-button" type="submit" value="Submit">
+            {% csrf_token %}<br><br>
+            <p>{{ form.as_p }}</p><br><br>
+            <input class="btn btn-success center-button" type="submit" value="Submit">
         </form>
     </div>
-
+</body>
 {% endblock %}

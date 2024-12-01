@@ -5,14 +5,13 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row gx-3 gy-3 align-items-start"> <!-- Align items at the top -->
-            <!-- Left Box: All the areas -->
+        <div class="row gx-3 gy-3 align-items-start">
             <div class="col-md-6 col-sm-6">
                 <div class="box-area equal-box weather-box">
                     <b>All available teams</b>
                     <ul class='list-group list-scroll' >
                         {% for team in teams|slice:"5" %}
-                        <li class="list-group-item nobackround" >
+                        <li class="list-group-item no-backround" >
                             <a class="btn btn-success" href=" {% url 'teampage' team.id %}">{{ team.name }}</a>
                         </li>
                         {% endfor %}
@@ -22,16 +21,13 @@
                     <a class="btn btn-success" href="{% url 'createteam' %}" role="button">Create team</a>
                 </div>
             </div>
-
-
-            <!-- Right Box: Your area -->
             <div class="col-md-6 col-sm-6">
                 <div class="box-area equal-box weather-box align-items-center">
                     <b>All Your teams </b>
                     <ul class='list-group list-scroll' >
                         {% for team in teams|slice:"5" %}
                             {% if user in team.team_user.all or user == team.moderator %}
-                                <li class="list-group-item nobackround">
+                                <li class="list-group-item no-backround">
                                     <b>{{ team.name|upper }}</b>
                                     <p>Moderator: {{ team.moderator|upper }}</p>
                                 </li>

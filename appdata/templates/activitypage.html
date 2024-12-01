@@ -8,7 +8,7 @@
             <div class="box equal-box weather-box">
                 <b>Venue</b>
                 <br>
-                <li class="list-group-item nobackround">
+                <li class="list-group-item no-backround">
                     <a class="btn btn-success" href="{% url 'venuepage' activity.venue.id %}">{{ activity.venue }}</a>
                 </li>
 
@@ -20,11 +20,6 @@
                     <br>
                     <p>{{ activity.full_description }}</p>
                 </div>
-                <!-- <div class="box equal-box weather-box">
-                    <b>Description</b>
-                    <br>
-                    {{ area.description }}
-                </div> -->
                 <div class="box equal-box weather-box">
                     <form class="code-area" method="post">
                         <div class="box d-flex align-items-center justify-content-center gap-2">
