@@ -199,10 +199,10 @@ html, body {
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding-left: 13%;
-    background-image: url('../images/backround.jpg'); /* Adjust relative path as necessary */
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-    background-position: center;
+    /*background-image: url('../images/backround.jpg'); !* Adjust relative path as necessary *!*/
+    /*background-size: auto 100%;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
 }
 
 .button-box {
