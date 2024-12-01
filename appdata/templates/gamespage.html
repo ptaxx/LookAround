@@ -10,7 +10,7 @@
                     <b>All the Games</b>
                     <ul class="list-group list-scroll">
                         {% for game in games %}
-                        <li class="list-group-item nobackround">
+                        <li class="list-group-item no-backround">
                             <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }}</a>
                         </li>
                         {% endfor %}
@@ -22,8 +22,6 @@
                     {% endif %}
                 </div>
             </div>
-
-            <!-- Second Column: All Your Games -->
             <div class="col-md-9 col-sm-12">
                 {% if user.is_authenticated %}
                 <div class="box equal-box weather-box">
@@ -31,7 +29,7 @@
                     <ul class="list-group list-scroll">
                         {% for game in games %}
                             {% if user in game.players.all %}
-                            <li class="list-group-item nobackround">
+                            <li class="list-group-item no-backround">
                                 <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }}</a>
                             </li>
                             {% endif %}

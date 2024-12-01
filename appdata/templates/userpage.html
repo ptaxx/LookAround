@@ -9,7 +9,7 @@
             <div class="box equal-box weather-box">
                 <img class="profile-picture"  src="{{ user.userpic.url }}" alt="">
                 <div class="list-group">
-                    <li class="list-group-item nobackround">
+                    <li class="list-group-item no-backround">
                         Name:<b> {{ user.first_name }} {{ user.last_name }}</b>
                         <br>
                         Username: <b>{{ user.username }}</b>
@@ -25,7 +25,7 @@
                 <ul class='list-group list-scroll' >
                     {% for game in games %}
                         {% if user in game.players.all  %}
-                            <li class="list-group-item nobackround">
+                            <li class="list-group-item no-backround">
                                 <a class="btn btn-success" href="{% url 'gamepage' game.id %}">{{ game }}</a>
                             </li>
                         {% endif %}
@@ -38,7 +38,7 @@
                         <ul class='list-group list-scroll' >
                             {% for team in teams %}
                                 {% if user in team.team_user.all or user == team.moderator %}
-                                    <li class="list-group-item nobackround">
+                                    <li class="list-group-item no-backround">
                                         <b>{{ team.name|upper }}</b>
                                         <p>Moderator: {{ team.moderator|upper }}</p>
                                     </li>
