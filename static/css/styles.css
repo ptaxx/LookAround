@@ -82,7 +82,7 @@ html, body {
 .container-fluid {
     margin: 0 auto;
     padding: 0;
-    margin-top: 20px;
+
 }
 .list-scroll {
     max-height: 300px;
@@ -169,6 +169,25 @@ html, body {
   box-shadow: 0 0 10px #a9edf7, 0 0 25px #b2e8fb;
 }
 
+.bingo-box-movement {
+    background-color: rgb(244, 236, 236);
+    float: none;
+    overflow: auto;
+    border: 0 solid rgba(128, 111, 0, 0.09);
+    margin: 20px;
+    margin-left: 180px;
+    justify-content: stretch;
+    text-align: center;
+    box-sizing: content-box;
+    width: fit-content( max(300px, 100px));
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-left: 13%;
+    /*background-image: url('../images/backround.jpg'); !* Adjust relative path as necessary *!*/
+    /*background-size: auto 100%;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+}
 
 .button-box {
     text-transform: capitalize;
@@ -179,8 +198,15 @@ html, body {
     text-align: center;
 }
 
+.gamepage-create-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    width: auto;
+}
+
 .center-button {
     padding: 10px 20px;
+    margin-left: 160px;
     font-size: 16px;
     width: auto;
 }
@@ -311,7 +337,6 @@ body {
   flex-direction: column; /
   min-height: 100vh;
   background-color: #003366;
-
 }
 
 div {
@@ -320,7 +345,10 @@ div {
   object-fit: fill;
 }
 
-
+.bingo-round-box {
+    width: fit-content;
+    align-items: center;
+}
 
 .box {
   background-color: rgb(244, 236, 236);

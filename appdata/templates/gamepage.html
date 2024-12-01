@@ -7,13 +7,14 @@
 
 
 <body>
+    {% if user.is_authenticated %}
     <div class="container-fluid">
         <div class="row gx-0 gy-0">
             <div class="col-md-8">
-                <div class="box bingo-box">
+                <div class="bingo-box-movement">
                     <div class="bingo-grid">
                         {% for activity in activities|slice:":9" %}
-                            <div class="bingo-cell">
+                            <div class="bingo-cell ">
                                 <a href="{% url 'activitypage' activity.id %}">
                                     {{ activity.short_description|wordwrap:20 }}
                                 </a>
@@ -126,6 +127,12 @@
             </div>
         </div>
     </div>
+    {% else %}
+        <div class="box equal-box weather-box">
+        <b>Too play you have to Log In</b>
+            <a class="btn btn-success me-2" href="{% url 'login' %}">Log In</a>
+        </div>
+    {% endif %}
 </body>
 
 
