@@ -34,9 +34,11 @@ def countdown_timer(date_time):
     now = timezone.now()
     if date_time > now:
         time_remaining = date_time - now
+        days = time_remaining.days
         hours = time_remaining.seconds // 3600
         minutes = (time_remaining.seconds % 3600) // 60
         seconds = time_remaining.seconds % 60
+        total_hours = days * 24 + hours
         time_data = {
             "game_started": False,
             "hours": hours,
@@ -45,12 +47,14 @@ def countdown_timer(date_time):
         }
     else:
         time_remaining = now - date_time
+        days = time_remaining.days
         hours = time_remaining.seconds // 3600
         minutes = (time_remaining.seconds % 3600) // 60
         seconds = time_remaining.seconds % 60
+        total_hours = days * 24 + hours
         time_data = {
             "game_started": True,
-            "hours": hours,
+            "hours": total_hours,
             "minutes": minutes,
             "seconds": seconds,
         }

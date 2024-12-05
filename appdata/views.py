@@ -40,6 +40,16 @@ class GamePageView(View):
         area_id = game.area.weather_id
         weather_data = get_weather_data(area_id)
         time_data = countdown_timer(game.starting_time)
+        activity_checks = []
+        user = request.user
+        if user in players:
+            activity_checks = ActivityCheck.objects.filter(
+                game=game,
+                user=user,
+            )
+        else:
+            activity_checks = [None] * 9
+        combined = zip(activities, activity_checks)
         context = {
             "game": game,
             "activities": activities,
@@ -48,6 +58,8 @@ class GamePageView(View):
             "weather_data": weather_data,
             "scoreboards": scoreboards,
             "time_data": time_data,
+            "activity_checks": activity_checks,
+            "combined": combined
         }
         return render(request, "gamepage.html", context)
 

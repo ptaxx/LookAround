@@ -13,11 +13,17 @@
             <div class="col-md-8">
                 <div class="bingo-box-movement">
                     <div class="bingo-grid">
-                        {% for activity in activities|slice:":9" %}
+                        {% for activity, check in combined %}
                             <div class="bingo-cell ">
+                                {% if check.is_active %}
                                 <a href="{% url 'activitypage' activity.id %}">
                                     {{ activity.short_description|wordwrap:20 }}
                                 </a>
+                                {% else %}
+                                <s><a href="{% url 'activitypage' activity.id %}">
+                                    {{ activity.short_description|wordwrap:20 }}
+                                </a></s>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>
