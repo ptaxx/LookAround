@@ -78,14 +78,10 @@
     {% endblock %}
 
     {% block content %}
-    <main class="flex-grow-1">
-        <div class="container">
-            <h1>Welcome to LOOKAROUND</h1>
-            <p>Explore areas, games, teams, and more!</p>
-        </div>
+    <main class="d-flex flex-column p-3 align-items-center flex-grow: 1">
     </main>
     {% endblock %}
-    <footer class="footer">
+    <footer class="footer bg-light">
         <div class="footer-container">
             <nav class="footer-nav">
                 <a class="btn btn-outline-success me-2" role="button" href="{% url 'contact' %}">Contact</a>
