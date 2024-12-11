@@ -309,7 +309,7 @@ body {
     margin:0;
     min-height: 100vh;
     object-fit: scale-down;
-    background: #ffffff url('../images/bright-backround-3.png') no-repeat  center center;
+    background: #ffffff url('../images/background-picture.png') no-repeat  center center fixed;
     background-size: cover;
     display: flex;
     flex-direction: column;
