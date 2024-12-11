@@ -24,7 +24,7 @@
                     <b>Available areas</b>
                         <ul class='list-group list-scroll'>
                             {% for area in area %}
-                            <li class="list-group-item no-backround">
+                            <li class="list-group-item no-backround list-scroll">
                                 <a class="btn btn-success"  href="{% url 'areapage' area.id %}">{{ area }}</a>
                             </li>
                             {% endfor %}
