@@ -238,11 +238,6 @@ class GameEntryView(FormView):
             starting_time=form.cleaned_data.get("starting_time"),
             availability=form.cleaned_data.get("availability"),
         )
-        for player in form.cleaned_data["players"]:
-            game.players.add(player)
-        for team in form.cleaned_data["teams"]:
-            game.teams.add(team)
-
         venues = Venue.objects.filter(area=form.cleaned_data.get("area"))
         if len(venues) < 9:
             for x in venues:
@@ -260,24 +255,6 @@ class GameEntryView(FormView):
                     game.activities.add(activity)
 
         activities = game.activities.all()
-        players = set(game.players.all())
-        teams = game.teams.all()
-        for team in teams:
-            for user in team.team_user.all():
-                players.add(user)
-            players.add(team.moderator)
-        for activity in activities:
-            for player in players:
-                ActivityCheck.objects.create(
-                    game=game,
-                    user=player,
-                    activity=activity,
-                )
-        for player in players:
-            ScoreBoard.objects.create(
-                game=game,
-                user=player,
-            )
         self.game = game
 
         return super(GameEntryView, self).form_valid(form)
