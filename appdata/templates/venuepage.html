@@ -6,7 +6,9 @@
     <div class="container">
         <div class="row gx-0 gy-0">
             <div class="box equal-box weather-box">
-                <img class="venue-picture" src="{{ venue.picture.url }}" alt="">
+                {% if venue.picture %}
+                    <img class="venue-picture" src="{{ venue.picture.url }}" alt="">
+                {% endif %}
                 <br>
                 <b>{{venue.name}}</b>
                 <div class="list-group list-scroll">
