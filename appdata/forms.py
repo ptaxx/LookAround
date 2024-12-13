@@ -33,15 +33,11 @@ class GameCreationForm(ModelForm):
             "area",
             "availability",
             "starting_time",
-            "players",
-            "teams",
         ]
         labels = {
             "area": "Area",
             "starting_time": "Starting time",
-            "players": "Players",
             "availability": "Available to everyone",
-            "teams": "Add team",
         }
         widgets = {
             "area": forms.Select(attrs={"class": "form-select"}),
@@ -49,8 +45,6 @@ class GameCreationForm(ModelForm):
             "starting_time": forms.DateTimeInput(
                 attrs={"type": "datetime-local", "class": "form-control"}
             ),
-            "players": forms.SelectMultiple(attrs={"class": "form-select"}),
-            "teams": forms.SelectMultiple(attrs={"class": "form-select"}),
         }
 
 
