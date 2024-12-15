@@ -68,3 +68,34 @@ def user_activity_check(user, activity):
     else:
         user_has_activity = False
     return user_has_activity
+
+
+def get_location():
+    url = "http://ip-api.com/json/"
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+
+        data = response.json()
+
+        location = {
+            "lat": data.get("lat"),
+            "lon": data.get("lon"),
+        }
+        return location
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        return None
+    except KeyError:
+        print("Unexpected response structure")
+        return None
+
+
+def compare_location(lat, lon):
+    your_latitude = get_location()
+    if your_latitude.get("lat") == lat and your_latitude.get("lon") == lon:
+        return True
+    else:
+        return False
