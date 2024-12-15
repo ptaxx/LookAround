@@ -66,6 +66,9 @@ class Activity(models.Model):
     passcode = models.CharField(max_length=5)
     active = models.BooleanField(default=True)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
+    is_location = models.BooleanField(default=False)
+    latitude = models.FloatField(max_length=50, default=0)
+    longitude = models.FloatField(max_length=50, default=0)
 
     def __str__(self):
         return self.short_description
