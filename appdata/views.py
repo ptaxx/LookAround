@@ -26,7 +26,13 @@ from appdata.models import (
 from django.template import loader
 from django.views.generic.edit import FormView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .utils import get_weather_data, countdown_timer, user_activity_check
+from .utils import (
+    get_weather_data, 
+    countdown_timer, 
+    user_activity_check, 
+    get_location, 
+    compare_location,
+)
 from django.utils import timezone
 
 
@@ -115,47 +121,63 @@ class ActivityView(View):
         if form.is_valid():
             passcode = form.cleaned_data["passcode"]
             if passcode == activity.passcode:
-                messages.success(request, "The passcode is correct! Task complete!")
-                activity_checks = ActivityCheck.objects.filter(
-                    activity=activity, user=request.user
-                )
-                for entry in activity_checks:
-                    entry.is_active = False
-                    entry.save()
-                games = Game.objects.filter(activities=activity)
-                for game in games:
-                    scoreboards = ScoreBoard.objects.filter(
-                        game=game, user=request.user
-                    )
-                    for scoreboard in scoreboards:
-                        if scoreboard.points < 9:
-                            scoreboard.points += 1
-                            scoreboard.save()
-                            if scoreboard.points == 9:
-                                scoreboards = ScoreBoard.objects.filter(game=game)
-                                positions = [entry.position for entry in scoreboards]
-                                if "3rd place" in positions:
-                                    scoreboard.position = "Finished"
-                                    scoreboard.save()
-                                elif "2nd place" in positions:
-                                    scoreboard.position = "3rd place"
-                                    scoreboard.save()
-                                elif "1st place" in positions:
-                                    scoreboard.position = "2nd place"
-                                    scoreboard.save()
-                                else:
-                                    scoreboard.position = "1st place"
-                                    scoreboard.save()
+                self.update_scoreboard(request)
                 return redirect(request.path)
             else:
                 messages.error(request, "Incorrect passcode. Please try again.")
+        if "compare_locations" in request.POST:
+            latitude = activity.latitude
+            longitude = activity.longitude
+            if compare_location(latitude, longitude):
+                if user_has_activity:
+                    self.update_scoreboard(request)
+                    return redirect(request.path)
+            else:
+                messages.error(request, "You are not at the location. Please try again.")
         context = {
             "activity": activity,
             "form": form,
             "user_has_activity": user_has_activity,
         }
         return render(request, "activitypage.html", context)
-
+    
+    def update_scoreboard(self, request, *args, **kwargs):
+        activity_id = self.kwargs.get("pk")
+        activity = Activity.objects.get(id=activity_id)
+        user = request.user
+        messages.success(request, "Task complete!")
+        activity_checks = ActivityCheck.objects.filter(
+            activity=activity, user=request.user
+        )
+        for entry in activity_checks:
+            entry.is_active = False
+            entry.save()
+            games = Game.objects.filter(activities=activity)
+        for game in games:
+            scoreboards = ScoreBoard.objects.filter(
+                game=game, user=request.user
+        )
+            for scoreboard in scoreboards:
+                if scoreboard.points < 9:
+                    scoreboard.points += 1
+                    scoreboard.save()
+                    if scoreboard.points == 9:
+                        scoreboards = ScoreBoard.objects.filter(game=game)
+                        positions = [entry.position for entry in scoreboards]
+                        if "3rd place" in positions:
+                            scoreboard.position = "Finished"
+                            scoreboard.save()
+                        elif "2nd place" in positions:
+                            scoreboard.position = "3rd place"
+                            scoreboard.save()
+                        elif "1st place" in positions:
+                            scoreboard.position = "2nd place"
+                            scoreboard.save()
+                        else:
+                            scoreboard.position = "1st place"
+                            scoreboard.save()
+                
+            
 
 class AreasPageView(View):
     def get(self, request, *args, **kwargs):

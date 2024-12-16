@@ -24,10 +24,19 @@
                     <form class="code-area" method="post">
                         <div class="box d-flex align-items-center justify-content-center gap-2">
                             {% if user.is_authenticated and user_has_activity %}
-                                {% csrf_token %}
-                                <label for="passcode" class="form-label mb-0"><b>{{ form.passcode.label_tag }}</b></label>
-                                <input class="form-control form-control-sm w-25" id="passcode" name="passcode" type="text" placeholder="Enter Passcode">
-                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                {% if activity.is_location %}
+                                    {% csrf_token %}
+                                    <button type="submit" name="compare_locations" class="btn btn-success btn-sm">I am here</button>
+                                {% else %}                            
+                                    {% csrf_token %}
+                                    <label for="passcode" class="form-label mb-0"><b>{{ form.passcode.label_tag }}</b></label>
+                                    <input class="form-control form-control-sm w-25" id="passcode" name="passcode" type="text" placeholder="Enter Passcode">
+                                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                {% endif %}
+                            {% elif user == activity.venue.contact %}
+                                Passcode: {{ activity.passcode }} <br>
+                                Latitude: {{ activity.latitude }} <br>
+                                Longitude: {{ activity.longitude }}
                             {% elif user.is_authenticated and not user_has_activity %}
                                 You have completed the task!
                             {% else %}
