@@ -87,15 +87,15 @@ def get_location():
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
-        return None
     except KeyError:
         print("Unexpected response structure")
-        return None
+    return {"lat": 0, "lon": 0}
+        
 
 
 def compare_location(lat, lon):
-    your_latitude = get_location()
-    if your_latitude.get("lat") == lat and your_latitude.get("lon") == lon:
+    your_location = get_location()
+    if your_location.get("lat") == lat and your_location.get("lon") == lon:
         return True
     else:
         return False

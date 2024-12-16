@@ -296,11 +296,16 @@ class ActivityCreationFormView(FormView):
     success_url = "/"
 
     def form_valid(self, form):
+        your_location = get_location()
+        lat = your_location.get("lat")
+        lon = your_location.get("lon")
         self.activity = Activity.objects.create(
             short_description=form.cleaned_data.get("short_description"),
             full_description=form.cleaned_data.get("full_description"),
             venue=form.cleaned_data.get("venue"),
             passcode=str(randint(10000, 99999)),
+            latitude=lat,
+            longitude=lon,
         )
         return super(ActivityCreationFormView, self).form_valid(form)
 

@@ -55,11 +55,13 @@ class ActivityCreationForm(ModelForm):
             "short_description",
             "full_description",
             "venue",
+            "is_location",
         ]
         labels = {
             "short_description": "Short Description (80 symbols max)",
             "full_description": "Full description",
             "venue": "Venue",
+            "is_location": "Use location"
         }
         widgets = {
             "short_description": forms.TextInput(
